@@ -239,29 +239,16 @@ p {
   justify-content: space-between;
 }
 
-/* =========================================================
-   Navbar Logo
-   ========================================================= */
 .navbar__logo {
   display: flex;
   align-items: center;
   gap: 0;
   flex-shrink: 0;
-  height: 62px;
-}
-
-.navbar__logo-mark {
-  height: 52px;
-  width: auto;
-  max-width: 42px;
-  object-fit: contain;
-  object-position: center;
-  display: block;
-  flex-shrink: 0;
+  height: 72px;
 }
 
 .navbar__logo-text {
-  height: 52px;
+  height: 62px;
   width: auto;
   max-width: 170px;
   object-fit: contain;
