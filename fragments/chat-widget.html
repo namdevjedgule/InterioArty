@@ -1,0 +1,42 @@
+<div class="chat-widget" id="chatWidget">
+  <button class="chat-widget__bubble" id="chatToggle" aria-label="Chat with Arty" aria-expanded="false">
+    <span class="chat-widget__bubble-icon chat-widget__bubble-icon--open">
+      <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M4 4h16a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H8l-4.6 3.45A.5.5 0 0 1 2.6 20V6a1 1 0 0 1 1-1z"/></svg>
+    </span>
+    <span class="chat-widget__bubble-icon chat-widget__bubble-icon--close">
+      <svg viewBox="0 0 24 24" width="20" height="20"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M5 5l14 14M19 5 5 19"/></svg>
+    </span>
+    <span class="chat-widget__ping"></span>
+  </button>
+
+  <div class="chat-widget__panel" id="chatPanel" role="dialog" aria-label="Chat with Arty">
+    <div class="chat-widget__header">
+      <div class="chat-widget__avatar">IA</div>
+      <div>
+        <p class="chat-widget__name">Arty</p>
+        <p class="chat-widget__status"><span class="chat-widget__dot"></span> Usually replies in a minute</p>
+      </div>
+      <button class="chat-widget__minimize" id="chatMinimize" aria-label="Minimize chat">
+        <svg viewBox="0 0 24 24" width="16" height="16"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M5 12h14"/></svg>
+      </button>
+    </div>
+
+    <div class="chat-widget__body" id="chatBody">
+      <div class="chat-msg chat-msg--bot">
+        <p>Hi, I'm Arty &mdash; InterioArty's design assistant. Ask me about pricing, timelines, our VR walkthroughs, or tell me about your space and I'll point you the right way.</p>
+      </div>
+      <div class="chat-widget__quick" id="chatQuickReplies">
+        <button type="button" class="chat-chip" data-msg="How much does a 2BHK cost?">2BHK pricing</button>
+        <button type="button" class="chat-chip" data-msg="How does the VR walkthrough work?">VR walkthrough</button>
+        <button type="button" class="chat-chip" data-msg="I'd like to book a free consultation">Book consultation</button>
+      </div>
+    </div>
+
+    <form class="chat-widget__input" id="chatForm">
+      <input type="text" id="chatInput" placeholder="Type your message&hellip;" autocomplete="off" aria-label="Type your message">
+      <button type="submit" aria-label="Send message">
+        <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M3 12 21 3l-4 18-6-6-6 3 2-6z"/></svg>
+      </button>
+    </form>
+  </div>
+</div>
