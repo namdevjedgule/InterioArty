@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - InterioArty | Pune's VR-First Interior Design Studio</title>
+    <link rel="icon" type="image/x-icon" href="/favicon_io/favicon.ico" />
+    <meta name="description"
+        content="Since 2012, InterioArty has designed 300+ full home interiors across Pune with a VR-first, transparent process. Meet the studio behind the work.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .page-header {
+            position: relative;
+            min-height: clamp(360px, 46vh, 520px);
+            display: flex;
+            align-items: flex-end;
+            overflow: hidden;
+            padding-top: var(--nav-h);
+            background: var(--emerald-deep);
+        }
+
+        .page-header__media {
+            position: absolute;
+            inset: 0;
+        }
+
+        .page-header__media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.05);
+        }
+
+        .page-header__scrim {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,
+                    rgba(var(--emerald-deep-rgb), .5) 0%,
+                    rgba(var(--emerald-deep-rgb), .3) 40%,
+                    rgba(var(--emerald-deep-rgb), .92) 100%);
+        }
+
+        .page-header__content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding: 0 32px clamp(32px, 6vh, 56px);
+            max-width: var(--container);
+            margin: 0 auto;
+            color: var(--white);
+        }
+
+        .page-header__content h1 {
+            font-size: clamp(32px, 5vw, 54px);
+            color: var(--white);
+            margin: 14px 0 18px;
+            max-width: 18ch;
+        }
+
+        .page-header__content h1 em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .page-header__content p.sub {
+            color: rgba(255, 255, 255, .75);
+            font-size: 16px;
+            max-width: 52ch;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .6);
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+
+        .breadcrumb .sep {
+            opacity: .5;
+        }
+
+        .breadcrumb .current {
+            color: var(--gold-light);
+        }
+
+        .story {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 70px;
+            align-items: start;
+        }
+
+        .story__copy p {
+            color: var(--text-muted);
+            font-size: 16px;
+            margin-bottom: 18px;
+        }
+
+        .story__figure {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .story__figure img {
+            border-radius: var(--radius-lg);
+        }
+
+        .story__frame {
+            position: absolute;
+            inset: 14px;
+            border: 1px solid rgba(219, 181, 106, .4);
+            border-radius: calc(var(--radius-lg) - 10px);
+            pointer-events: none;
+        }
+
+        .story__corner {
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            border-color: var(--gold);
+            border-style: solid;
+        }
+
+        .story__corner--tl {
+            top: -1px;
+            left: -1px;
+            border-width: 2px 0 0 2px;
+        }
+
+        .story__corner--br {
+            bottom: -1px;
+            right: -1px;
+            border-width: 0 2px 2px 0;
+        }
+
+        .stats-band {
+            position: relative;
+            background: var(--emerald-deep);
+            color: var(--white);
+            padding: 90px 0;
+            overflow: hidden;
+        }
+
+        .stats-band::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(219, 181, 106, .06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(219, 181, 106, .06) 1px, transparent 1px);
+            background-size: 44px 44px;
+            mask-image: radial-gradient(ellipse at 50% 50%, black 0%, transparent 75%);
+        }
+
+        .stats-grid {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+            background: rgba(255, 255, 255, .1);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, .03);
+            padding: 44px 28px;
+            text-align: center;
+        }
+
+        .stat-card__num {
+            font-family: var(--font-display);
+            font-size: clamp(30px, 3.2vw, 42px);
+            color: var(--gold);
+            display: inline-flex;
+            align-items: baseline;
+            gap: 2px;
+        }
+
+        .stat-card h4 {
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            color: var(--white);
+            margin: 14px 0 10px;
+        }
+
+        .stat-card p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, .6);
+        }
+
+        .mission-vision {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .mv-card {
+            border-radius: var(--radius-lg);
+            padding: 46px 42px;
+            position: relative;
+        }
+
+        .mv-card__mark {
+            width: 34px;
+            height: 1px;
+            background: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .mv-card h3 {
+            font-size: 26px;
+            margin-bottom: 16px;
+        }
+
+        .mv-card p {
+            font-size: 15px;
+        }
+
+        .mv-card--light {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            color: var(--text-muted);
+        }
+
+        .mv-card--light h3 {
+            color: var(--espresso);
+        }
+
+        .mv-card--dark {
+            background: var(--emerald);
+            color: rgba(255, 255, 255, .78);
+        }
+
+        .mv-card--dark h3 {
+            color: var(--white);
+        }
+
+        .founders {
+            background: var(--sand);
+        }
+
+        .founders__card {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-lg);
+            padding: 40px 44px;
+            flex-wrap: wrap;
+        }
+
+        .founders__avatars {
+            display: flex;
+            flex-shrink: 0;
+        }
+
+        .founders__avatars img {
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--sand-light);
+            box-shadow: 0 6px 18px rgba(43, 33, 24, .12);
+        }
+
+        .founders__avatars img:last-child {
+            margin-left: -22px;
+        }
+
+        .founders__text {
+            flex: 1;
+            min-width: 240px;
+        }
+
+        .founders__text h3 {
+            font-size: 21px;
+            margin-bottom: 6px;
+        }
+
+        .founders__text p.role {
+            font-size: 12px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .founders__text p.quote {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 17px;
+            color: var(--espresso);
+            max-width: 56ch;
+        }
+
+        .process__grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 34px;
+        }
+
+        .process__step {
+            position: relative;
+            padding-top: 32px;
+        }
+
+        .process__step-num {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-family: var(--font-display);
+            font-size: 13px;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .process__step-num::after {
+            content: "";
+            height: 1px;
+            width: 36px;
+            background: var(--line-gold);
+        }
+
+        .process__step h4 {
+            font-size: 17px;
+            margin: 14px 0 8px;
+        }
+
+        .process__step p {
+            font-size: 13.5px;
+            color: var(--text-muted);
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: var(--line);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .why-card {
+            background: var(--surface);
+            padding: 38px 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .why-card__icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--sand);
+            color: var(--emerald);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .why-card h4 {
+            font-size: 14.5px;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            color: var(--espresso);
+        }
+
+        .why-card p {
+            font-size: 13.5px;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 1024px) {
+            .story {
+                gap: 45px;
+            }
+
+            .process__grid {
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 899px) {
+            .page-header {
+                padding-top: 84px;
+            }
+
+            .story {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .story__figure {
+                order: -1;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .mission-vision {
+                grid-template-columns: 1fr;
+            }
+
+            .process__grid {
+                grid-template-columns: repeat(2, 1fr);
+                row-gap: 32px;
+            }
+
+            .why-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .page-header {
+                min-height: 400px;
+                padding-top: 76px;
+            }
+
+            .page-header__content h1 {
+                max-width: 15ch;
+            }
+
+            .story__copy p {
+                font-size: 14px;
+            }
+
+            .stats-band {
+                padding: 60px 0;
+            }
+
+            .stat-card {
+                padding: 32px 18px;
+            }
+
+            .stat-card__num {
+                font-size: 28px;
+            }
+
+            .mv-card {
+                padding: 32px 26px;
+            }
+
+            .founders__card {
+                padding: 30px 26px;
+                gap: 24px;
+            }
+
+            .founders__text p.quote {
+                font-size: 15px;
+            }
+
+            .process__grid {
+                grid-template-columns: 1fr;
+                row-gap: 28px;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .why-card {
+                padding: 28px 24px;
+            }
+        }
+    </style>
+</head>
+
+<body data-page="about">
+
+    <div data-include="fragments/navbar.html"></div>
+
+    <section class="page-header">
+        <div class="page-header__media">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=80"
+                alt="InterioArty design studio in Pune">
+        </div>
+        <div class="page-header__scrim"></div>
+        <div class="page-header__content">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a><span class="sep">/</span><span class="current">About</span>
+            </div>
+            <p class="eyebrow" style="margin-top:18px;">About InterioArty</p>
+            <h1>Creativity, integrity <em>and innovation.</em></h1>
+            <p class="sub">At InterioArty, we transform ideas into thoughtfully considered spaces - balancing
+                creativity, functionality and timeless aesthetics to create interiors that feel distinctive, purposeful
+                and enduring.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container story">
+            <div class="story__copy reveal">
+                <p class="eyebrow">Our Story</p>
+                <h2 style="margin-top:18px;margin-bottom:26px;">From one home, <em
+                        style="color:var(--gold);font-style:italic;">to hundreds.</em></h2>
+                <p>It all started in 2012 when Saurabh and Manu Aneja began to fix up their ancestral home. They wanted
+                    to make it look modern and friendly, so they considered everything - from the rooms to the
+                    furniture, the kitchen, and even the colours of the walls. Unfortunately, the interior designers
+                    they hired before performed poorly.</p>
+                <p>With time, they discovered that the interior design world needed clarity and better organisation.</p>
+                <p>That realisation led them to start InterioArty - a studio that offers personalised, modern interior
+                    design options and ensures the work gets done smoothly. As a team of interior decor professionals,
+                    we work on ideating and transforming home and commercial spaces without much hassle.</p>
+                <a href="contact.html" class="btn btn--gold" style="margin-top:10px;">Contact Us Now!</a>
+            </div>
+            <div class="story__figure reveal">
+                <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=1200&q=80"
+                    alt="InterioArty founders reviewing a home interior design">
+                <div class="story__frame">
+                    <span class="story__corner story__corner--tl"></span>
+                    <span class="story__corner story__corner--br"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-band">
+        <div class="container">
+            <div class="stats-grid reveal">
+                <div class="stat-card">
+                    <span class="stat-card__num"><span class="stat-num" data-target="400">0</span>+</span>
+                    <h4>Happy Customers</h4>
+                    <p>Proudly designing smiles for hundreds of happy clients and counting - your dream home is next.
+                    </p>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-card__num"><span class="stat-num" data-target="100000">0</span>+</span>
+                    <h4>Delivered Area (sq. ft.)</h4>
+                    <p>Proudly crafted over a lakh sq. ft. of bespoke interiors - where every inch tells a story of
+                        style.</p>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-card__num"><span class="stat-num" data-target="300">0</span>+</span>
+                    <h4>Complete Home Interiors</h4>
+                    <p>From concept to completion, we design full home interiors that feel like "you" in every corner.
+                    </p>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-card__num"><span class="stat-num" data-target="100">0</span>+</span>
+                    <h4>Makeovers</h4>
+                    <p>Breathtaking makeovers that turn ordinary spaces into extraordinary living experiences.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-head reveal">
+                <p class="eyebrow">What Drives Us</p>
+                <h2>Mission <em>&amp;</em> vision.</h2>
+            </div>
+            <div class="mission-vision reveal">
+                <div class="mv-card mv-card--light">
+                    <span class="mv-card__mark"></span>
+                    <h3>Our Mission</h3>
+                    <p>We specialise in crafting interiors that capture the essence of our clients' personalities and
+                        lifestyles, bringing their visions to life. Designing spaces that evoke emotion and vitality
+                        through utmost functionality is not just our privilege but also our commitment.</p>
+                </div>
+                <div class="mv-card mv-card--dark">
+                    <span class="mv-card__mark"></span>
+                    <h3>Our Vision</h3>
+                    <p>We aim to inspire and captivate clients across generations with our diverse, innovative and
+                        collaborative approach to design, infused with joy and depth. With creativity, integrity and
+                        innovation, we bring dynamic ideas that help us shape timeless and classic spaces for our
+                        customers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section--tight founders">
+        <div class="container">
+            <div class="section-head reveal">
+                <p class="eyebrow">The People Behind It</p>
+                <h2>Meet the <em style="color:var(--gold);font-style:italic;">founders.</em></h2>
+            </div>
+            <div class="founders__card reveal">
+                <div class="founders__avatars">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&w=200&q=80"
+                        alt="Saurabh Aneja, Co-Founder of InterioArty">
+                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80"
+                        alt="Manu Aneja, Co-Founder of InterioArty">
+                </div>
+                <div class="founders__text">
+                    <h3>Saurabh &amp; Manu Aneja</h3>
+                    <p class="role">Co-Founders, InterioArty</p>
+                    <p class="quote">"What started as fixing up our own home became a mission to bring clarity, honesty
+                        and better organisation to interior design in Pune."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section--tight">
+        <div class="container">
+            <div class="section-head reveal">
+                <p class="eyebrow">How We Work</p>
+                <h2>From consult <em style="color:var(--gold);font-style:italic;">to handover.</em></h2>
+            </div>
+            <div class="process__grid reveal">
+                <div class="process__step">
+                    <p class="process__step-num">01 - Consult</p>
+                    <h4>We learn your space.</h4>
+                    <p>Your needs, your rooms, your budget - mapped out in a free consultation.</p>
+                </div>
+                <div class="process__step">
+                    <p class="process__step-num">02 - Design in VR</p>
+                    <h4>Walk it before it's built.</h4>
+                    <p>A full VR walkthrough so you can approve layout, colour and material choices upfront.</p>
+                </div>
+                <div class="process__step">
+                    <p class="process__step-num">03 - Execute</p>
+                    <h4>Premium materials, on schedule.</h4>
+                    <p>Our team manages sourcing, fabrication and site work end to end.</p>
+                </div>
+                <div class="process__step">
+                    <p class="process__step-num">04 - Handover</p>
+                    <h4>Move in, worry-free.</h4>
+                    <p>Quality checks, a clean handover, and warranty support after you move in.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-head section-head--center reveal">
+                <p class="eyebrow">Why Choose Us</p>
+                <h2>Built on <em style="color:var(--gold);font-style:italic;">trust, not just design.</em></h2>
+            </div>
+            <div class="why-grid reveal">
+                <div class="why-card">
+                    <span class="why-card__icon">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor"
+                                d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3zm0 2.2 6 2.2v4.6c0 3.9-2.5 7.4-6 8.8-3.5-1.4-6-4.9-6-8.8V6.4l6-2.2z" />
+                        </svg>
+                    </span>
+                    <h4>Up To 10 Year's Warranty</h4>
+                    <p>Long-term coverage on materials and craftsmanship, so your investment is protected.</p>
+                </div>
+                <div class="why-card">
+                    <span class="why-card__icon">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor"
+                                d="M12 1a4 4 0 0 1 4 4v3h1a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2h1V5a4 4 0 0 1 4-4zm0 2a2 2 0 0 0-2 2v3h4V5a2 2 0 0 0-2-2z" />
+                        </svg>
+                    </span>
+                    <h4>No Hidden Costs</h4>
+                    <p>Transparent quotes upfront - the price you're told is the price you pay.</p>
+                </div>
+                <div class="why-card">
+                    <span class="why-card__icon">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor"
+                                d="M12 2 2 7v2h20V7l-10-5zM4 11v8H2v2h20v-2h-2v-8h-2v8h-3v-8h-2v8h-2v-8H9v8H6v-8H4z" />
+                        </svg>
+                    </span>
+                    <h4>Post-Installation Services</h4>
+                    <p>We stay on call after handover for any snags, tweaks or support you need.</p>
+                </div>
+                <div class="why-card">
+                    <span class="why-card__icon">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor"
+                                d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm.75 5v5.4l4.2 2.5-.75 1.3-5-3V7h1.55z" />
+                        </svg>
+                    </span>
+                    <h4>Stress-Free Service</h4>
+                    <p>One point of contact manages your whole project, so you're never chasing vendors.</p>
+                </div>
+                <div class="why-card">
+                    <span class="why-card__icon">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor"
+                                d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z" />
+                        </svg>
+                    </span>
+                    <h4>On-Time Delivery</h4>
+                    <p>Clear project timelines with milestone tracking, so your handover date holds.</p>
+                </div>
+                <div class="why-card">
+                    <span class="why-card__icon">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor"
+                                d="m12 2 2.4 6.6L21 10l-5 4.4L17.4 21 12 17.3 6.6 21 8 14.4 3 10l6.6-1.4L12 2z" />
+                        </svg>
+                    </span>
+                    <h4>Super Quality Products</h4>
+                    <p>Only vetted, branded materials and fittings - no unnamed substitutes, ever.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section cta-band" id="contact">
+        <div class="container cta-band__inner">
+            <div class="reveal">
+                <p class="eyebrow">Let's Talk</p>
+                <h2>Ready to start <em>your story?</em></h2>
+                <p>Tell us about your space and budget - our design team usually calls back within a few hours.</p>
+                <p style="margin-top:30px;"><a href="tel:+917838653501" class="btn btn--outline">+91 78386 53501</a></p>
+            </div>
+            <form class="cta-form reveal" id="ctaForm">
+                <input type="text" placeholder="Full name" required aria-label="Full name">
+                <input type="tel" placeholder="Phone number" required aria-label="Phone number">
+                <input type="text" placeholder="What are you looking to design? (e.g. 2BHK, kitchen)"
+                    aria-label="Project type">
+                <button type="submit" class="btn btn--gold">Request a Call</button>
+                <p class="cta-form__note">We usually call back within a few hours.</p>
+            </form>
+        </div>
+    </section>
+
+    <div data-include="fragments/footer.html"></div>
+    <div data-include="fragments/chat-widget.html"></div>
+
+    <script src="js/script.js" defer></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const statEls = document.querySelectorAll('.stat-num');
+            if (!statEls.length) return;
+
+            function animateStat(el) {
+                const target = parseInt(el.dataset.target, 10) || 0;
+                const duration = 1400;
+                const startTime = performance.now();
+
+                function tick(now) {
+                    const progress = Math.min((now - startTime) / duration, 1);
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    const value = Math.floor(eased * target);
+                    el.textContent = value.toLocaleString('en-IN');
+                    if (progress < 1) {
+                        requestAnimationFrame(tick);
+                    } else {
+                        el.textContent = target.toLocaleString('en-IN');
+                    }
+                }
+                requestAnimationFrame(tick);
+            }
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateStat(entry.target);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.4 });
+
+            statEls.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+
+</html>

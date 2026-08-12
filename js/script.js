@@ -1,12 +1,3 @@
-/* =========================================================
-   InterioArty — script.js
-   Fragment loading + all site interactions.
-   NOTE: This file must be served over http(s) (e.g. `npx serve`,
-   VS Code "Live Server", or python -m http.server) for the
-   fetch() fragment includes below to work — opening index.html
-   directly as a file:// URL will block them (CORS).
-   ========================================================= */
-
 document.addEventListener('DOMContentLoaded', () => {
     loadFragments().then(() => {
         initNavbar();
@@ -20,9 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initCtaForm();
 });
 
-/* ---------------------------------------------------------
-   Fragment loading (navbar / footer / chat widget)
-   --------------------------------------------------------- */
 function loadFragments() {
     const slots = document.querySelectorAll('[data-include]');
     const jobs = Array.from(slots).map(slot => {
@@ -38,9 +26,6 @@ function loadFragments() {
     return Promise.all(jobs);
 }
 
-/* ---------------------------------------------------------
-   Navbar: scroll state, active link, mobile toggle
-   --------------------------------------------------------- */
 function initNavbar() {
     const navbar = document.getElementById('navbar');
     const toggle = document.getElementById('navToggle');
@@ -68,7 +53,6 @@ function initNavbar() {
         });
     }
 
-    // Mark active page link
     const current = document.body.getAttribute('data-page');
     if (current) {
         navbar.querySelectorAll('.navbar__link').forEach(link => {
@@ -77,9 +61,6 @@ function initNavbar() {
     }
 }
 
-/* ---------------------------------------------------------
-   Scroll reveal (IntersectionObserver)
-   --------------------------------------------------------- */
 function initRevealOnScroll() {
     const items = document.querySelectorAll('.reveal');
     if (!items.length) return;
@@ -96,9 +77,6 @@ function initRevealOnScroll() {
     items.forEach(item => observer.observe(item));
 }
 
-/* ---------------------------------------------------------
-   FAQ accordion
-   --------------------------------------------------------- */
 function initFaqAccordion() {
     const faqItems = document.querySelectorAll('.faq-item');
     if (!faqItems.length) return;
@@ -125,9 +103,6 @@ function initFaqAccordion() {
     });
 }
 
-/* ---------------------------------------------------------
-   Testimonial carousel
-   --------------------------------------------------------- */
 function initTestimonialCarousel() {
     const root = document.querySelector('.carousel');
     if (!root) return;
@@ -169,9 +144,6 @@ function initTestimonialCarousel() {
     resetTimer();
 }
 
-/* ---------------------------------------------------------
-   VR "move to look around" parallax
-   --------------------------------------------------------- */
 function initVrParallax() {
     const stage = document.querySelector('.vr__stage');
     if (!stage) return;
@@ -188,9 +160,6 @@ function initVrParallax() {
     });
 }
 
-/* ---------------------------------------------------------
-   CTA / contact form (frontend-only placeholder)
-   --------------------------------------------------------- */
 function initCtaForm() {
     const form = document.getElementById('ctaForm');
     if (!form) return;
@@ -202,8 +171,6 @@ function initCtaForm() {
         btn.textContent = 'Sending…';
         btn.disabled = true;
 
-        // TODO: replace with a real POST to /api/leads once the
-        // Spring Boot backend is live.
         setTimeout(() => {
             btn.textContent = 'Request sent ✓';
             form.reset();
@@ -226,8 +193,6 @@ function initChatWidget() {
     const widget = document.getElementById('chatWidget');
     const toggleBtn = document.getElementById('chatToggle');
 
-    // The chat fragment must at least contain these two
-    // elements for the open/close button to work.
     if (!widget || !toggleBtn) {
         console.warn('Chat widget: widget or toggle button not found.');
         return;
@@ -243,7 +208,6 @@ function initChatWidget() {
         widget.classList.add('is-open');
         toggleBtn.setAttribute('aria-expanded', 'true');
 
-        // Focus only if input exists
         if (input) {
             input.focus({ preventScroll: true });
         }

@@ -4,7 +4,9 @@
 :root {
   /* Brand palette */
   --emerald: #0F3D33;
-  --emerald-deep: #0A2B24;
+  --emerald-deep: #061c16;
+  /* Primary brand color — matches the logo mark exactly */
+  --emerald-deep-rgb: 6, 28, 22;
   --emerald-soft: #1D5A4B;
   --sand: #EBE3D6;
   --sand-light: #F7F3EC;
@@ -224,9 +226,9 @@ p {
 
 .navbar.is-scrolled {
   height: 84px;
-  background: rgba(15, 61, 51, 0.92);
+  background: var(--emerald-deep);
   backdrop-filter: blur(10px);
-  box-shadow: 0 10px 30px rgba(10, 27, 22, .18);
+  box-shadow: 0 10px 30px rgba(var(--emerald-deep-rgb), .18);
 }
 
 .navbar__inner {
@@ -245,6 +247,16 @@ p {
   gap: 0;
   flex-shrink: 0;
   height: 72px;
+}
+
+.navbar__logo-mark {
+  height: 62px;
+  width: auto;
+  max-width: 50px;
+  object-fit: contain;
+  object-position: left center;
+  display: block;
+  flex-shrink: 0;
 }
 
 .navbar__logo-text {
@@ -338,6 +350,7 @@ p {
   transform: translateY(-7px) rotate(-45deg);
 }
 
+/* Structural (not just sizing) — kept next to the component they control */
 @media (min-width: 900px) {
   .navbar__phone {
     display: block;
@@ -404,8 +417,10 @@ p {
 .hero__scrim {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(180deg, rgba(10, 27, 22, .55) 0%, rgba(10, 27, 22, .35) 35%, rgba(10, 27, 22, .85) 100%);
+  background: linear-gradient(180deg,
+      rgba(var(--emerald-deep-rgb), .55) 0%,
+      rgba(var(--emerald-deep-rgb), .35) 35%,
+      rgba(var(--emerald-deep-rgb), .85) 100%);
 }
 
 .hero__frame {
@@ -413,13 +428,6 @@ p {
   inset: 24px;
   border: 1px solid rgba(219, 181, 106, .35);
   pointer-events: none;
-}
-
-.hero__frame::before,
-.hero__frame::after,
-.hero__corner-tl,
-.hero__corner-br {
-  content: "";
 }
 
 .hero__corner {
@@ -563,73 +571,6 @@ p {
   }
 }
 
-@media (max-width: 1024px) {
-  .hero__title {
-    max-width: 13ch;
-  }
-
-  .hero__actions .btn {
-    padding: 13px 24px;
-    font-size: 12px;
-  }
-}
-
-@media (max-width: 640px) {
-  .hero {
-    min-height: 620px;
-    padding-top: calc(var(--nav-h) + 10px);
-  }
-
-  .hero__stats {
-    flex-wrap: wrap;
-    gap: 18px;
-  }
-
-  .hero__stat {
-    flex: 1 1 40%;
-    border-right: none;
-    padding-right: 0;
-  }
-
-  .hero__scroll {
-    display: none;
-  }
-}
-
-/* Short viewports (small laptops, landscape tablets): compress further
-   so the whole hero — nav clearance through stats — still fits in one screen. */
-@media (max-height: 760px) {
-  .hero__scroll {
-    display: none;
-  }
-
-  .hero__eyebrow {
-    margin-bottom: 8px;
-  }
-
-  .hero__title {
-    margin-bottom: 10px;
-  }
-
-  .hero__sub {
-    margin-bottom: 16px;
-  }
-
-  .hero__actions {
-    margin-bottom: 18px;
-  }
-
-  .hero__stats {
-    padding-top: 12px;
-  }
-}
-
-@media (max-height: 620px) {
-  .hero__sub {
-    display: none;
-  }
-}
-
 /* =========================================================
    Section shells
    ========================================================= */
@@ -731,16 +672,6 @@ p {
   letter-spacing: .08em;
 }
 
-@media (max-width: 860px) {
-  .studio {
-    grid-template-columns: 1fr;
-  }
-
-  .studio__figure {
-    order: -1;
-  }
-}
-
 /* =========================================================
    Collections — 4 disciplines
    ========================================================= */
@@ -780,7 +711,7 @@ p {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(10, 27, 22, .35), rgba(10, 27, 22, .92));
+  background: linear-gradient(180deg, rgba(var(--emerald-deep-rgb), .35), rgba(var(--emerald-deep-rgb), .92));
 }
 
 .collection-card:hover .collection-card__img {
@@ -844,22 +775,6 @@ p {
 
 .collection-card:hover .collection-card__link svg {
   transform: translateX(4px);
-}
-
-@media (max-width: 980px) {
-  .collections-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 560px) {
-  .collections-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .collection-card {
-    min-height: 280px;
-  }
 }
 
 /* =========================================================
@@ -944,7 +859,7 @@ p {
   left: 50%;
   bottom: 22px;
   transform: translateX(-50%);
-  background: rgba(10, 27, 22, .65);
+  background: rgba(var(--emerald-deep-rgb), .65);
   backdrop-filter: blur(6px);
   color: var(--white);
   font-size: 12px;
@@ -976,12 +891,6 @@ p {
   bottom: 14px;
   right: 14px;
   border-width: 0 2px 2px 0;
-}
-
-@media (max-width: 860px) {
-  .vr__inner {
-    grid-template-columns: 1fr;
-  }
 }
 
 /* =========================================================
@@ -1082,12 +991,6 @@ p {
   letter-spacing: .06em;
   text-transform: uppercase;
   color: var(--gold-light);
-}
-
-@media (max-width: 860px) {
-  .project__steps {
-    grid-template-columns: 1fr;
-  }
 }
 
 /* =========================================================
@@ -1371,12 +1274,6 @@ p {
   color: rgba(255, 255, 255, .45);
 }
 
-@media (max-width: 860px) {
-  .cta-band__inner {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* =========================================================
    Footer
    ========================================================= */
@@ -1501,18 +1398,6 @@ p {
   color: var(--gold);
 }
 
-@media (max-width: 900px) {
-  .footer__top {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 560px) {
-  .footer__top {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* =========================================================
    Chat widget — "Chat with Arty"
    ========================================================= */
@@ -1589,7 +1474,7 @@ p {
   max-height: 70vh;
   background: var(--surface);
   border-radius: var(--radius-lg);
-  box-shadow: 0 30px 70px rgba(10, 27, 22, .3);
+  box-shadow: 0 30px 70px rgba(var(--emerald-deep-rgb), .3);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -1806,18 +1691,6 @@ p {
   background: var(--gold-light);
 }
 
-@media (max-width: 480px) {
-  .chat-widget {
-    right: 14px;
-    bottom: 14px;
-  }
-
-  .chat-widget__panel {
-    width: calc(100vw - 28px);
-    right: -6px;
-  }
-}
-
 /* =========================================================
    Utilities
    ========================================================= */
@@ -1829,23 +1702,20 @@ p {
   color: var(--text-muted);
 }
 
-/* =========================================================
-   Responsive Refinements
-   Tablet + Mobile
-   ========================================================= */
+/* =========================================================================
+   RESPONSIVE
+   One consolidated, descending breakpoint ladder: 1024 → 899 → 640 → 480 → 390,
+   then viewport-height tweaks. Every component's tablet/mobile behavior lives
+   here — nothing is redefined twice.
+   ========================================================================= */
 
-/* ---------------------------------------------------------
-   Large Tablet / Small Laptop
-   1024px and below
-   --------------------------------------------------------- */
+/* ---------- ≤1024px — small desktop / landscape tablet ---------- */
 @media (max-width: 1024px) {
-
   .container {
     padding-left: 28px;
     padding-right: 28px;
   }
 
-  /* Navbar */
   .navbar__inner {
     padding-left: 28px;
     padding-right: 28px;
@@ -1880,7 +1750,15 @@ p {
     max-width: 160px;
   }
 
-  /* Sections */
+  .hero__title {
+    max-width: 13ch;
+  }
+
+  .hero__actions .btn {
+    padding: 13px 24px;
+    font-size: 12px;
+  }
+
   .section {
     padding: 100px 0;
   }
@@ -1893,23 +1771,19 @@ p {
     margin-bottom: 50px;
   }
 
-  /* Collections */
   .collection-card {
     padding-left: 24px;
     padding-right: 24px;
   }
 
-  /* VR */
   .vr__inner {
     gap: 40px;
   }
 
-  /* Project */
   .project__steps {
     gap: 28px;
   }
 
-  /* CTA */
   .cta-band__inner {
     gap: 40px;
   }
@@ -1918,15 +1792,13 @@ p {
     padding: 28px;
   }
 
-  /* Footer */
   .footer__top {
     gap: 35px;
   }
 }
 
+/* ---------- ≤899px — tablet portrait: nav collapses, 2-col grids, stacked layouts ---------- */
 @media (max-width: 899px) {
-
-  /* Navbar becomes hamburger earlier */
   .navbar {
     height: 84px;
   }
@@ -1960,7 +1832,6 @@ p {
     font-size: 14px;
   }
 
-  /* Hero */
   .hero {
     padding-top: 84px;
   }
@@ -1983,7 +1854,6 @@ p {
     bottom: 28px;
   }
 
-  /* Sections */
   .section {
     padding: 90px 0;
   }
@@ -1996,50 +1866,53 @@ p {
     margin-bottom: 44px;
   }
 
-  /* Studio */
   .studio {
     gap: 45px;
+    grid-template-columns: 1fr;
   }
 
-  /* Collections */
+  .studio__figure {
+    order: -1;
+  }
+
   .collections-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  /* VR */
   .vr__inner {
     gap: 45px;
+    grid-template-columns: 1fr;
   }
 
   .vr__copy p {
     max-width: 55ch;
   }
 
-  /* Project */
   .project__head {
     margin-bottom: 45px;
   }
 
-  /* CTA */
+  .project__steps {
+    grid-template-columns: 1fr;
+  }
+
   .cta-band__inner {
     gap: 45px;
+    grid-template-columns: 1fr;
+  }
+
+  .footer__top {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
-
-/* ---------------------------------------------------------
-   Mobile
-   640px and below
-   --------------------------------------------------------- */
+/* ---------- ≤640px — mobile ---------- */
 @media (max-width: 640px) {
-
-  /* Global container */
   .container {
     padding-left: 20px;
     padding-right: 20px;
   }
 
-  /* Navbar */
   .navbar {
     height: 76px;
   }
@@ -2080,7 +1953,6 @@ p {
     height: 2px;
   }
 
-  /* Mobile menu */
   .navbar__nav {
     width: min(310px, 86vw);
     padding: 100px 28px 35px;
@@ -2092,7 +1964,6 @@ p {
     padding: 7px 0;
   }
 
-  /* Hero */
   .hero {
     min-height: 590px;
     padding-top: 76px;
@@ -2144,11 +2015,13 @@ p {
     max-width: 100%;
     gap: 14px;
     padding-top: 14px;
+    flex-wrap: wrap;
   }
 
   .hero__stat {
     flex: 1 1 30%;
     padding-right: 12px;
+    border-right: none;
   }
 
   .hero__stat b {
@@ -2160,7 +2033,10 @@ p {
     line-height: 1.35;
   }
 
-  /* Sections */
+  .hero__scroll {
+    display: none;
+  }
+
   .section {
     padding: 72px 0;
   }
@@ -2178,7 +2054,6 @@ p {
     margin-top: 14px;
   }
 
-  /* Studio */
   .studio {
     gap: 30px;
   }
@@ -2195,7 +2070,6 @@ p {
     font-size: 22px;
   }
 
-  /* Collections */
   .collections-grid {
     grid-template-columns: 1fr;
   }
@@ -2214,7 +2088,6 @@ p {
     font-size: 13px;
   }
 
-  /* VR */
   .vr__inner {
     gap: 35px;
   }
@@ -2239,7 +2112,6 @@ p {
     padding: 8px 13px;
   }
 
-  /* Project */
   .project__head {
     margin-bottom: 35px;
   }
@@ -2270,7 +2142,6 @@ p {
     font-size: 21px;
   }
 
-  /* Testimonials */
   .carousel__track {
     min-height: 250px;
   }
@@ -2288,7 +2159,6 @@ p {
     gap: 18px;
   }
 
-  /* FAQ */
   .faq-item__q {
     font-size: 16px;
     padding: 22px 2px;
@@ -2300,7 +2170,6 @@ p {
     padding-right: 2px;
   }
 
-  /* CTA */
   .cta-band__inner {
     gap: 35px;
   }
@@ -2328,12 +2197,12 @@ p {
     justify-content: center;
   }
 
-  /* Footer */
   .footer {
     padding-top: 65px;
   }
 
   .footer__top {
+    grid-template-columns: 1fr;
     gap: 35px;
     padding-bottom: 40px;
   }
@@ -2344,7 +2213,6 @@ p {
     padding: 22px 0;
   }
 
-  /* Chat */
   .chat-widget {
     right: 14px;
     bottom: 14px;
@@ -2364,19 +2232,13 @@ p {
   }
 }
 
-
-/* ---------------------------------------------------------
-   Small Mobile
-   480px and below
-   --------------------------------------------------------- */
+/* ---------- ≤480px — small mobile ---------- */
 @media (max-width: 480px) {
-
   .container {
     padding-left: 16px;
     padding-right: 16px;
   }
 
-  /* Navbar */
   .navbar__inner {
     padding-left: 16px;
     padding-right: 16px;
@@ -2398,7 +2260,6 @@ p {
     padding-right: 24px;
   }
 
-  /* Hero */
   .hero {
     min-height: 570px;
   }
@@ -2442,18 +2303,15 @@ p {
     font-size: 8px;
   }
 
-  /* Collection */
   .collection-card {
     min-height: 270px;
     padding: 26px 20px;
   }
 
-  /* Quote */
   .project__quote {
     padding: 24px 20px;
   }
 
-  /* Chat */
   .chat-widget__panel {
     width: calc(100vw - 24px);
     max-width: calc(100vw - 24px);
@@ -2461,13 +2319,8 @@ p {
   }
 }
 
-
-/* ---------------------------------------------------------
-   Very Small Phones
-   390px and below
-   --------------------------------------------------------- */
+/* ---------- ≤390px — extra small mobile ---------- */
 @media (max-width: 390px) {
-
   .navbar {
     height: 72px;
   }
@@ -2530,5 +2383,38 @@ p {
   .chat-widget__bubble {
     width: 52px;
     height: 52px;
+  }
+}
+
+/* ---------- Short viewports (any width) — laptops/tablets with limited height ---------- */
+@media (max-height: 760px) {
+  .hero__scroll {
+    display: none;
+  }
+
+  .hero__eyebrow {
+    margin-bottom: 8px;
+  }
+
+  .hero__title {
+    margin-bottom: 10px;
+  }
+
+  .hero__sub {
+    margin-bottom: 16px;
+  }
+
+  .hero__actions {
+    margin-bottom: 18px;
+  }
+
+  .hero__stats {
+    padding-top: 12px;
+  }
+}
+
+@media (max-height: 620px) {
+  .hero__sub {
+    display: none;
   }
 }
