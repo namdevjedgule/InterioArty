@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - InterioArty | Interior Design Projects Across Pune</title>
+    <link rel="icon" type="image/x-icon" href="/favicon_io/favicon.ico" />
+    <meta name="description"
+        content="Browse InterioArty's completed full home, modular kitchen, office and renovation projects across Pune — filter by category and view each project up close.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .page-header {
+            position: relative;
+            min-height: clamp(360px, 46vh, 520px);
+            display: flex;
+            align-items: flex-end;
+            overflow: hidden;
+            padding-top: var(--nav-h);
+            background: var(--emerald-deep);
+        }
+
+        .page-header__media {
+            position: absolute;
+            inset: 0;
+        }
+
+        .page-header__media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.05);
+        }
+
+        .page-header__scrim {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,
+                    rgba(var(--emerald-deep-rgb), .5) 0%,
+                    rgba(var(--emerald-deep-rgb), .3) 40%,
+                    rgba(var(--emerald-deep-rgb), .92) 100%);
+        }
+
+        .page-header__content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding: 0 32px clamp(32px, 6vh, 56px);
+            max-width: var(--container);
+            margin: 0 auto;
+            color: var(--white);
+        }
+
+        .page-header__content h1 {
+            font-size: clamp(32px, 5vw, 54px);
+            color: var(--white);
+            margin: 14px 0 18px;
+            max-width: 18ch;
+        }
+
+        .page-header__content h1 em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .page-header__content p.sub {
+            color: rgba(255, 255, 255, .75);
+            font-size: 16px;
+            max-width: 52ch;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .6);
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+
+        .breadcrumb .sep {
+            opacity: .5;
+        }
+
+        .breadcrumb .current {
+            color: var(--gold-light);
+        }
+
+        /* ---------- Filter bar ---------- */
+        .gallery-filter {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 50px;
+        }
+
+        .filter-pill {
+            font-family: var(--font-body);
+            font-size: 12.5px;
+            font-weight: 600;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            padding: 11px 22px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: var(--surface);
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: background .25s, color .25s, border-color .25s;
+        }
+
+        .filter-pill:hover {
+            border-color: var(--gold);
+            color: var(--emerald);
+        }
+
+        .filter-pill.is-active {
+            background: var(--emerald);
+            border-color: var(--emerald);
+            color: var(--white);
+        }
+
+        /* ---------- Masonry-style gallery grid ---------- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 230px;
+            grid-auto-flow: dense;
+            gap: 18px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            cursor: pointer;
+            background: var(--taupe);
+            transition: opacity .35s var(--ease), transform .35s var(--ease);
+        }
+
+        .gallery-item.is-hidden {
+            display: none;
+        }
+
+        .gallery-item--wide {
+            grid-column: span 2;
+        }
+
+        .gallery-item--tall {
+            grid-row: span 2;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .6s var(--ease);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.06);
+        }
+
+        .gallery-item__overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+            background: linear-gradient(180deg, transparent 40%, rgba(var(--emerald-deep-rgb), .88) 100%);
+            opacity: 0;
+            transition: opacity .35s var(--ease);
+        }
+
+        .gallery-item:hover .gallery-item__overlay {
+            opacity: 1;
+        }
+
+        .gallery-item__cat {
+            align-self: flex-start;
+            font-size: 10.5px;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--espresso);
+            background: var(--gold);
+            padding: 5px 12px;
+            border-radius: 999px;
+            margin-bottom: 12px;
+        }
+
+        .gallery-item__title {
+            color: var(--white);
+            font-family: var(--font-display);
+            font-size: 17px;
+            line-height: 1.25;
+        }
+
+        .gallery-item__zoom {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .9);
+            color: var(--emerald);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(.8);
+            transition: opacity .3s var(--ease), transform .3s var(--ease);
+        }
+
+        .gallery-item:hover .gallery-item__zoom {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* ---------- Lightbox ---------- */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            background: rgba(6, 28, 22, .92);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity .35s var(--ease), visibility .35s;
+        }
+
+        .lightbox.is-open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox__figure {
+            position: relative;
+            max-width: 1000px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .lightbox__img-wrap {
+            position: relative;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            background: rgba(255, 255, 255, .03);
+            max-height: 78vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox__img-wrap img {
+            max-width: 100%;
+            max-height: 78vh;
+            width: auto;
+            object-fit: contain;
+            border-radius: var(--radius-md);
+        }
+
+        .lightbox__caption {
+            margin-top: 18px;
+            color: var(--white);
+        }
+
+        .lightbox__caption .cat {
+            font-size: 11px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 6px;
+        }
+
+        .lightbox__caption .title {
+            font-family: var(--font-display);
+            font-size: 19px;
+        }
+
+        .lightbox__close,
+        .lightbox__prev,
+        .lightbox__next {
+            position: absolute;
+            background: rgba(255, 255, 255, .1);
+            border: 1px solid rgba(255, 255, 255, .25);
+            color: var(--white);
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background .25s, border-color .25s;
+        }
+
+        .lightbox__close:hover,
+        .lightbox__prev:hover,
+        .lightbox__next:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--espresso);
+        }
+
+        .lightbox__close {
+            top: -56px;
+            right: 0;
+        }
+
+        .lightbox__prev {
+            left: -60px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .lightbox__next {
+            right: -60px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* ---------- Responsive (Gallery page only) ---------- */
+        @media (max-width: 1024px) {
+            .gallery-grid {
+                grid-auto-rows: 200px;
+                gap: 14px;
+            }
+
+            .lightbox__prev {
+                left: -10px;
+            }
+
+            .lightbox__next {
+                right: -10px;
+            }
+        }
+
+        @media (max-width: 899px) {
+            .page-header {
+                padding-top: 84px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 220px;
+            }
+
+            .gallery-item--wide {
+                grid-column: span 2;
+            }
+
+            .lightbox {
+                padding: 24px;
+            }
+
+            .lightbox__close {
+                top: -50px;
+                right: 0;
+            }
+
+            .lightbox__prev,
+            .lightbox__next {
+                width: 38px;
+                height: 38px;
+            }
+
+            .lightbox__prev {
+                left: 4px;
+            }
+
+            .lightbox__next {
+                right: 4px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .page-header {
+                min-height: 400px;
+                padding-top: 76px;
+            }
+
+            .page-header__content h1 {
+                max-width: 15ch;
+            }
+
+            .gallery-filter {
+                gap: 8px;
+                margin-bottom: 34px;
+            }
+
+            .filter-pill {
+                padding: 9px 16px;
+                font-size: 11.5px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                grid-auto-rows: 260px;
+                gap: 14px;
+            }
+
+            .gallery-item--wide,
+            .gallery-item--tall {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .lightbox {
+                padding: 16px;
+            }
+
+            .lightbox__close {
+                top: 10px;
+                right: 10px;
+                background: rgba(6, 28, 22, .6);
+            }
+
+            .lightbox__prev,
+            .lightbox__next {
+                top: auto;
+                bottom: -54px;
+                transform: none;
+            }
+
+            .lightbox__prev {
+                left: 50%;
+                margin-left: -50px;
+            }
+
+            .lightbox__next {
+                right: 50%;
+                margin-right: -50px;
+            }
+        }
+    </style>
+</head>
+
+<body data-page="gallery">
+
+    <div data-include="fragments/navbar.html"></div>
+
+    <!-- ============ PAGE HEADER ============ -->
+    <section class="page-header">
+        <div class="page-header__media">
+            <img src="https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=2000&q=80"
+                alt="InterioArty gallery of completed interior design projects">
+        </div>
+        <div class="page-header__scrim"></div>
+        <div class="page-header__content">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a><span class="sep">/</span><span class="current">Gallery</span>
+            </div>
+            <p class="eyebrow" style="margin-top:18px;">Gallery</p>
+            <h1>Work come <em>to life.</em></h1>
+            <p class="sub">On-site shots from homes and offices across Pune - every project delivered by the same team,
+                to the same standard.</p>
+        </div>
+    </section>
+
+    <!-- ============ FILTER + GRID ============ -->
+    <section class="section">
+        <div class="container">
+            <div class="gallery-filter reveal" id="galleryFilter">
+                <button class="filter-pill is-active" data-filter="all">All Projects</button>
+                <button class="filter-pill" data-filter="full-home">Full Home</button>
+                <button class="filter-pill" data-filter="kitchen">Modular Kitchen</button>
+                <button class="filter-pill" data-filter="office">Office</button>
+                <button class="filter-pill" data-filter="renovation">Renovation</button>
+            </div>
+
+            <div class="gallery-grid reveal" id="galleryGrid">
+                <div class="gallery-item gallery-item--wide gallery-item--tall" data-category="full-home"
+                    data-title="Amorapolis 3BHK — Living Room" data-cat-label="Full Home">
+                    <img src="https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=800&q=80"
+                        alt="Amorapolis 3BHK — Living Room by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Full Home</span><span
+                            class="gallery-item__title">Amorapolis 3BHK — Living Room</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="kitchen" data-title="Wagholi — Modular Kitchen"
+                    data-cat-label="Modular Kitchen">
+                    <img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=800&q=80"
+                        alt="Wagholi — Modular Kitchen by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Modular Kitchen</span><span
+                            class="gallery-item__title">Wagholi — Modular Kitchen</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="office" data-title="Kharadi Startup — Office Cabins"
+                    data-cat-label="Office">
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80"
+                        alt="Kharadi Startup — Office Cabins by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Office</span><span
+                            class="gallery-item__title">Kharadi Startup — Office Cabins</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="renovation" data-title="Kothrud — Living Room Renovation"
+                    data-cat-label="Renovation">
+                    <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?auto=format&fit=crop&w=800&q=80"
+                        alt="Kothrud — Living Room Renovation by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Renovation</span><span
+                            class="gallery-item__title">Kothrud — Living Room Renovation</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="full-home" data-title="Hadapsar 3BHK — Bedroom"
+                    data-cat-label="Full Home">
+                    <img src="https://images.unsplash.com/photo-1449247709967-d4461a6a6103?auto=format&fit=crop&w=800&q=80"
+                        alt="Hadapsar 3BHK — Bedroom by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Full Home</span><span
+                            class="gallery-item__title">Hadapsar 3BHK — Bedroom</span></div>
+                </div>
+
+                <div class="gallery-item gallery-item--tall" data-category="kitchen"
+                    data-title="Viman Nagar — Kitchen Island" data-cat-label="Modular Kitchen">
+                    <img src="https://images.unsplash.com/photo-1524230507669-5ff97982bb5e?auto=format&fit=crop&w=800&q=80"
+                        alt="Viman Nagar — Kitchen Island by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Modular Kitchen</span><span
+                            class="gallery-item__title">Viman Nagar — Kitchen Island</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="office" data-title="Baner — Meeting Room"
+                    data-cat-label="Office">
+                    <img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80"
+                        alt="Baner — Meeting Room by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Office</span><span
+                            class="gallery-item__title">Baner — Meeting Room</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="renovation" data-title="Kalyani Nagar — Kitchen Renovation"
+                    data-cat-label="Renovation">
+                    <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=800&q=80"
+                        alt="Kalyani Nagar — Kitchen Renovation by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Renovation</span><span
+                            class="gallery-item__title">Kalyani Nagar — Kitchen Renovation</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="full-home" data-title="Amorapolis 3BHK — Final Handover"
+                    data-cat-label="Full Home">
+                    <img src="https://images.unsplash.com/photo-1615529182904-14819c35db37?auto=format&fit=crop&w=800&q=80"
+                        alt="Amorapolis 3BHK — Final Handover by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Full Home</span><span
+                            class="gallery-item__title">Amorapolis 3BHK — Final Handover</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="kitchen" data-title="Baner — Modular Kitchen"
+                    data-cat-label="Modular Kitchen">
+                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80"
+                        alt="Baner — Modular Kitchen by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Modular Kitchen</span><span
+                            class="gallery-item__title">Baner — Modular Kitchen</span></div>
+                </div>
+
+                <div class="gallery-item gallery-item--wide" data-category="office"
+                    data-title="Yerawada — Reception &amp; Lobby" data-cat-label="Office">
+                    <img src="https://images.unsplash.com/photo-1556909212-d5b604d0c90d?auto=format&fit=crop&w=800&q=80"
+                        alt="Yerawada — Reception &amp; Lobby by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Office</span><span
+                            class="gallery-item__title">Yerawada — Reception &amp; Lobby</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="renovation" data-title="Undri — Bathroom Renovation"
+                    data-cat-label="Renovation">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80"
+                        alt="Undri — Bathroom Renovation by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Renovation</span><span
+                            class="gallery-item__title">Undri — Bathroom Renovation</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="full-home" data-title="Koregaon Park — Duplex Living Room"
+                    data-cat-label="Full Home">
+                    <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=800&q=80"
+                        alt="Koregaon Park — Duplex Living Room by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Full Home</span><span
+                            class="gallery-item__title">Koregaon Park — Duplex Living Room</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="kitchen" data-title="Kalyani Nagar — U-Shape Kitchen"
+                    data-cat-label="Modular Kitchen">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
+                        alt="Kalyani Nagar — U-Shape Kitchen by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Modular Kitchen</span><span
+                            class="gallery-item__title">Kalyani Nagar — U-Shape Kitchen</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="office" data-title="Hinjewadi — IT Park Workstations"
+                    data-cat-label="Office">
+                    <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=800&q=80"
+                        alt="Hinjewadi — IT Park Workstations by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Office</span><span
+                            class="gallery-item__title">Hinjewadi — IT Park Workstations</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="renovation" data-title="Bavdhan — Full Home Makeover"
+                    data-cat-label="Renovation">
+                    <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80"
+                        alt="Bavdhan — Full Home Makeover by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Renovation</span><span
+                            class="gallery-item__title">Bavdhan — Full Home Makeover</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="full-home" data-title="Magarpatta — 2BHK Interiors"
+                    data-cat-label="Full Home">
+                    <img src="https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=900&q=80"
+                        alt="Magarpatta — 2BHK Interiors by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Full Home</span><span
+                            class="gallery-item__title">Magarpatta — 2BHK Interiors</span></div>
+                </div>
+
+                <div class="gallery-item gallery-item--tall" data-category="kitchen"
+                    data-title="Wakad — Parallel Kitchen" data-cat-label="Modular Kitchen">
+                    <img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=900&q=80"
+                        alt="Wakad — Parallel Kitchen by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Modular Kitchen</span><span
+                            class="gallery-item__title">Wakad — Parallel Kitchen</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="office" data-title="Magarpatta — Corporate Cabin"
+                    data-cat-label="Office">
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80"
+                        alt="Magarpatta — Corporate Cabin by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Office</span><span
+                            class="gallery-item__title">Magarpatta — Corporate Cabin</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="renovation" data-title="NIBM — Balcony Renovation"
+                    data-cat-label="Renovation">
+                    <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?auto=format&fit=crop&w=900&q=80"
+                        alt="NIBM — Balcony Renovation by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Renovation</span><span
+                            class="gallery-item__title">NIBM — Balcony Renovation</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="full-home" data-title="NIBM — Family Room"
+                    data-cat-label="Full Home">
+                    <img src="https://images.unsplash.com/photo-1449247709967-d4461a6a6103?auto=format&fit=crop&w=900&q=80"
+                        alt="NIBM — Family Room by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Full Home</span><span
+                            class="gallery-item__title">NIBM — Family Room</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="kitchen" data-title="Hinjewadi — Open Kitchen"
+                    data-cat-label="Modular Kitchen">
+                    <img src="https://images.unsplash.com/photo-1524230507669-5ff97982bb5e?auto=format&fit=crop&w=900&q=80"
+                        alt="Hinjewadi — Open Kitchen by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Modular Kitchen</span><span
+                            class="gallery-item__title">Hinjewadi — Open Kitchen</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="office" data-title="Viman Nagar — Co-working Space"
+                    data-cat-label="Office">
+                    <img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=900&q=80"
+                        alt="Viman Nagar — Co-working Space by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Office</span><span
+                            class="gallery-item__title">Viman Nagar — Co-working Space</span></div>
+                </div>
+
+                <div class="gallery-item gallery-item--wide" data-category="renovation"
+                    data-title="Hadapsar — Office Renovation" data-cat-label="Renovation">
+                    <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=900&q=80"
+                        alt="Hadapsar — Office Renovation by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Renovation</span><span
+                            class="gallery-item__title">Hadapsar — Office Renovation</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="full-home" data-title="Aundh — Penthouse Living"
+                    data-cat-label="Full Home">
+                    <img src="https://images.unsplash.com/photo-1615529182904-14819c35db37?auto=format&fit=crop&w=900&q=80"
+                        alt="Aundh — Penthouse Living by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Full Home</span><span
+                            class="gallery-item__title">Aundh — Penthouse Living</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="kitchen" data-title="Pimple Saudagar — L-Shape Kitchen"
+                    data-cat-label="Modular Kitchen">
+                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=80"
+                        alt="Pimple Saudagar — L-Shape Kitchen by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Modular Kitchen</span><span
+                            class="gallery-item__title">Pimple Saudagar — L-Shape Kitchen</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="office" data-title="Aundh — Conference Room"
+                    data-cat-label="Office">
+                    <img src="https://images.unsplash.com/photo-1556909212-d5b604d0c90d?auto=format&fit=crop&w=900&q=80"
+                        alt="Aundh — Conference Room by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Office</span><span
+                            class="gallery-item__title">Aundh — Conference Room</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="renovation" data-title="Wagholi — Terrace Makeover"
+                    data-cat-label="Renovation">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80"
+                        alt="Wagholi — Terrace Makeover by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Renovation</span><span
+                            class="gallery-item__title">Wagholi — Terrace Makeover</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="full-home" data-title="Undri — 3BHK Dining"
+                    data-cat-label="Full Home">
+                    <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=900&q=80"
+                        alt="Undri — 3BHK Dining by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Full Home</span><span
+                            class="gallery-item__title">Undri — 3BHK Dining</span></div>
+                </div>
+
+                <div class="gallery-item gallery-item--tall" data-category="kitchen"
+                    data-title="Kharadi — Compact Kitchen" data-cat-label="Modular Kitchen">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80"
+                        alt="Kharadi — Compact Kitchen by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Modular Kitchen</span><span
+                            class="gallery-item__title">Kharadi — Compact Kitchen</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="office" data-title="Wakad — Startup Lounge"
+                    data-cat-label="Office">
+                    <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=900&q=80"
+                        alt="Wakad — Startup Lounge by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Office</span><span
+                            class="gallery-item__title">Wakad — Startup Lounge</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="renovation" data-title="Pimple Saudagar — Kitchen Revamp"
+                    data-cat-label="Renovation">
+                    <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=900&q=80"
+                        alt="Pimple Saudagar — Kitchen Revamp by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Renovation</span><span
+                            class="gallery-item__title">Pimple Saudagar — Kitchen Revamp</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="full-home" data-title="Bavdhan — Master Bedroom"
+                    data-cat-label="Full Home">
+                    <img src="https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=1000&q=80"
+                        alt="Bavdhan — Master Bedroom by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Full Home</span><span
+                            class="gallery-item__title">Bavdhan — Master Bedroom</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="kitchen" data-title="Kothrud — Island Kitchen"
+                    data-cat-label="Modular Kitchen">
+                    <img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=1000&q=80"
+                        alt="Kothrud — Island Kitchen by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Modular Kitchen</span><span
+                            class="gallery-item__title">Kothrud — Island Kitchen</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="office" data-title="Koregaon Park — Studio Office"
+                    data-cat-label="Office">
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&q=80"
+                        alt="Koregaon Park — Studio Office by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Office</span><span
+                            class="gallery-item__title">Koregaon Park — Studio Office</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="renovation" data-title="Magarpatta — Living Room Revamp"
+                    data-cat-label="Renovation">
+                    <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?auto=format&fit=crop&w=1000&q=80"
+                        alt="Magarpatta — Living Room Revamp by InterioArty">
+                    <div class="gallery-item__zoom"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" />
+                        </svg></div>
+                    <div class="gallery-item__overlay"><span class="gallery-item__cat">Renovation</span><span
+                            class="gallery-item__title">Magarpatta — Living Room Revamp</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ LIGHTBOX ============ -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Project image viewer">
+        <div class="lightbox__figure">
+            <button class="lightbox__close" id="lightboxClose" aria-label="Close">
+                <svg viewBox="0 0 24 24" width="18" height="18">
+                    <path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M5 5l14 14M19 5 5 19" />
+                </svg>
+            </button>
+            <button class="lightbox__prev" id="lightboxPrev" aria-label="Previous image">
+                <svg viewBox="0 0 24 24" width="18" height="18">
+                    <path stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round" d="M15 18l-6-6 6-6" />
+                </svg>
+            </button>
+            <div class="lightbox__img-wrap"><img id="lightboxImg" src="" alt=""></div>
+            <button class="lightbox__next" id="lightboxNext" aria-label="Next image">
+                <svg viewBox="0 0 24 24" width="18" height="18">
+                    <path stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round" d="M9 18l6-6-6-6" />
+                </svg>
+            </button>
+            <div class="lightbox__caption">
+                <p class="cat" id="lightboxCat"></p>
+                <p class="title" id="lightboxTitle"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ CTA / CONTACT (reuses shared .cta-band + #ctaForm from style.css / script.js) ============ -->
+    <section class="section cta-band" id="contact">
+        <div class="container cta-band__inner">
+            <div class="reveal">
+                <p class="eyebrow">Like What You See?</p>
+                <h2>Your project could be <em>next.</em></h2>
+                <p>Share your space and budget - we'll show you how it could look, in VR, before you commit to anything.
+                </p>
+                <p style="margin-top:30px;"><a href="tel:+917838653501" class="btn btn--outline">+91 78386 53501</a></p>
+            </div>
+            <form class="cta-form reveal" id="ctaForm">
+                <input type="text" placeholder="Full name" required aria-label="Full name">
+                <input type="tel" placeholder="Phone number" required aria-label="Phone number">
+                <input type="text" placeholder="What are you looking to design?" aria-label="Project type">
+                <button type="submit" class="btn btn--gold">Request a Call</button>
+                <p class="cta-form__note">We usually call back within a few hours.</p>
+            </form>
+        </div>
+    </section>
+
+    <div data-include="fragments/footer.html"></div>
+    <div data-include="fragments/chat-widget.html"></div>
+
+    <script src="js/script.js" defer></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            initGalleryFilter();
+            initLightbox();
+        });
+
+        function initGalleryFilter() {
+            const filterBar = document.getElementById('galleryFilter');
+            const items = Array.from(document.querySelectorAll('.gallery-item'));
+            if (!filterBar || !items.length) return;
+
+            filterBar.addEventListener('click', (e) => {
+                const btn = e.target.closest('.filter-pill');
+                if (!btn) return;
+
+                filterBar.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('is-active'));
+                btn.classList.add('is-active');
+
+                const filter = btn.dataset.filter;
+                items.forEach(item => {
+                    const match = filter === 'all' || item.dataset.category === filter;
+                    item.classList.toggle('is-hidden', !match);
+                });
+            });
+        }
+
+        function initLightbox() {
+            const items = Array.from(document.querySelectorAll('.gallery-item'));
+            const lightbox = document.getElementById('lightbox');
+            if (!items.length || !lightbox) return;
+
+            const imgEl = document.getElementById('lightboxImg');
+            const catEl = document.getElementById('lightboxCat');
+            const titleEl = document.getElementById('lightboxTitle');
+            const closeBtn = document.getElementById('lightboxClose');
+            const prevBtn = document.getElementById('lightboxPrev');
+            const nextBtn = document.getElementById('lightboxNext');
+
+            let currentIndex = 0;
+
+            function show(index) {
+                currentIndex = (index + items.length) % items.length;
+                const item = items[currentIndex];
+                const img = item.querySelector('img');
+                imgEl.src = img.src.replace('w=800', 'w=1400').replace('w=1200', 'w=1600');
+                imgEl.alt = img.alt;
+                catEl.textContent = item.dataset.catLabel || '';
+                titleEl.textContent = item.dataset.title || '';
+            }
+
+            function open(index) {
+                show(index);
+                lightbox.classList.add('is-open');
+                document.body.style.overflow = 'hidden';
+            }
+            function close() {
+                lightbox.classList.remove('is-open');
+                document.body.style.overflow = '';
+            }
+
+            items.forEach((item, index) => {
+                item.addEventListener('click', () => open(index));
+            });
+
+            closeBtn.addEventListener('click', close);
+            prevBtn.addEventListener('click', () => show(currentIndex - 1));
+            nextBtn.addEventListener('click', () => show(currentIndex + 1));
+            lightbox.addEventListener('click', (e) => { if (e.target === lightbox) close(); });
+
+            document.addEventListener('keydown', (e) => {
+                if (!lightbox.classList.contains('is-open')) return;
+                if (e.key === 'Escape') close();
+                if (e.key === 'ArrowLeft') show(currentIndex - 1);
+                if (e.key === 'ArrowRight') show(currentIndex + 1);
+            });
+        }
+    </script>
+</body>
+
+</html>

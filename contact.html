@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - InterioArty | Pune Interior Design Studio</title>
+    <link rel="icon" type="image/x-icon" href="/favicon_io/favicon.ico" />
+    <meta name="description"
+        content="Talk to InterioArty about your full home, modular kitchen, office or renovation project in Pune. Call, WhatsApp, or send an enquiry - we usually call back within a few hours.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- =========================================================
+     Contact page - page-only CSS (kept in this file, not style.css).
+     Reuses design tokens; the main form keeps id="ctaForm" so the
+     shared submit-animation logic in js/script.js works here too —
+     no duplicate JS needed for that part.
+     ========================================================= -->
+    <style>
+        /* ---------- Page header banner (same pattern as about/services/gallery) ---------- */
+        .page-header {
+            position: relative;
+            min-height: clamp(360px, 46vh, 520px);
+            display: flex;
+            align-items: flex-end;
+            overflow: hidden;
+            padding-top: var(--nav-h);
+            background: var(--emerald-deep);
+        }
+
+        .page-header__media {
+            position: absolute;
+            inset: 0;
+        }
+
+        .page-header__media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.05);
+        }
+
+        .page-header__scrim {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,
+                    rgba(var(--emerald-deep-rgb), .5) 0%,
+                    rgba(var(--emerald-deep-rgb), .3) 40%,
+                    rgba(var(--emerald-deep-rgb), .92) 100%);
+        }
+
+        .page-header__content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding: 0 32px clamp(32px, 6vh, 56px);
+            max-width: var(--container);
+            margin: 0 auto;
+            color: var(--white);
+        }
+
+        .page-header__content h1 {
+            font-size: clamp(32px, 5vw, 54px);
+            color: var(--white);
+            margin: 14px 0 18px;
+            max-width: 18ch;
+        }
+
+        .page-header__content h1 em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .page-header__content p.sub {
+            color: rgba(255, 255, 255, .75);
+            font-size: 16px;
+            max-width: 52ch;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .6);
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+
+        .breadcrumb .sep {
+            opacity: .5;
+        }
+
+        .breadcrumb .current {
+            color: var(--gold-light);
+        }
+
+        /* ---------- Quick-contact tiles ---------- */
+        .quick-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+            background: var(--line);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .quick-card {
+            background: var(--surface);
+            padding: 32px 26px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: background .3s var(--ease);
+        }
+
+        .quick-card:hover {
+            background: var(--emerald);
+            color: var(--white);
+        }
+
+        .quick-card__icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--sand);
+            color: var(--emerald);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background .3s, color .3s;
+        }
+
+        .quick-card:hover .quick-card__icon {
+            background: var(--gold);
+            color: var(--espresso);
+        }
+
+        .quick-card h4 {
+            font-size: 14.5px;
+            letter-spacing: .03em;
+        }
+
+        .quick-card p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .quick-card:hover p {
+            color: rgba(255, 255, 255, .75);
+        }
+
+        /* ---------- Contact grid: form + studio info ---------- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .contact-form-card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-lg);
+            padding: 46px;
+        }
+
+        .contact-form-card h3 {
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .contact-form-card>p {
+            color: var(--text-muted);
+            font-size: 14.5px;
+            margin-bottom: 30px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin-bottom: 18px;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-field--full {
+            grid-column: 1 / -1;
+        }
+
+        .form-field label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .form-field input,
+        .form-field select,
+        .form-field textarea {
+            width: 100%;
+            background: var(--sand-light);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-sm);
+            padding: 13px 15px;
+            font-size: 14px;
+            font-family: var(--font-body);
+            color: var(--text);
+        }
+
+        .form-field select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24'%3E%3Cpath fill='%236B5F52' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 36px;
+        }
+
+        .form-field textarea {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        .form-field input:focus,
+        .form-field select:focus,
+        .form-field textarea:focus {
+            border-color: var(--gold);
+            outline: none;
+        }
+
+        .contact-form-card button[type="submit"] {
+            width: 100%;
+            justify-content: center;
+            margin-top: 6px;
+        }
+
+        .contact-form-card .form-note {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            margin-top: 14px;
+            text-align: center;
+        }
+
+        .studio-card {
+            background: var(--emerald-deep);
+            color: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 46px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .studio-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(219, 181, 106, .06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(219, 181, 106, .06) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(ellipse at 20% 10%, black 0%, transparent 65%);
+        }
+
+        .studio-card>* {
+            position: relative;
+        }
+
+        .studio-card h3 {
+            font-size: 21px;
+            color: var(--white);
+            margin-bottom: 24px;
+        }
+
+        .studio-detail {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 22px;
+            align-items: flex-start;
+        }
+
+        .studio-detail__icon {
+            flex-shrink: 0;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid rgba(219, 181, 106, .35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+        }
+
+        .studio-detail h5 {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            color: rgba(255, 255, 255, .5);
+            margin-bottom: 4px;
+        }
+
+        .studio-detail p,
+        .studio-detail a {
+            font-size: 14.5px;
+            color: var(--white);
+        }
+
+        .studio-detail a:hover {
+            color: var(--gold);
+        }
+
+        .studio-card__copy-btn {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, .4);
+            cursor: pointer;
+            margin-left: 8px;
+            vertical-align: middle;
+            transition: color .2s;
+        }
+
+        .studio-card__copy-btn:hover {
+            color: var(--gold);
+        }
+
+        .studio-card__copy-btn.is-copied {
+            color: #6fd39a;
+        }
+
+        .studio-card__divider {
+            border-top: 1px solid rgba(255, 255, 255, .12);
+            margin: 26px 0;
+        }
+
+        .studio-card__social {
+            display: flex;
+            gap: 10px;
+        }
+
+        .studio-card__social a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, .18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, .75);
+            transition: border-color .3s, color .3s, transform .3s;
+        }
+
+        .studio-card__social a:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-3px);
+        }
+
+        /* ---------- What happens next ---------- */
+        .next-steps__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .next-step {
+            position: relative;
+            padding-top: 34px;
+        }
+
+        .next-step-num {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-family: var(--font-display);
+            font-size: 13px;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .next-step-num::after {
+            content: "";
+            height: 1px;
+            width: 50px;
+            background: var(--line-gold);
+        }
+
+        .next-step h4 {
+            font-size: 18px;
+            margin: 14px 0 10px;
+        }
+
+        .next-step p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ---------- Map ---------- */
+        .map-section {
+            padding: 0;
+        }
+
+        .map-frame {
+            position: relative;
+            width: 100%;
+            height: 460px;
+            border: none;
+            filter: grayscale(15%);
+        }
+
+        /* ---------- Responsive (Contact page only) ---------- */
+        @media (max-width: 1024px) {
+            .contact-form-card {
+                padding: 36px;
+            }
+
+            .studio-card {
+                padding: 36px 30px;
+            }
+        }
+
+        @media (max-width: 899px) {
+            .page-header {
+                padding-top: 84px;
+            }
+
+            .quick-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .studio-card {
+                order: -1;
+            }
+
+            .next-steps__grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .map-frame {
+                height: 380px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .page-header {
+                min-height: 340px;
+                padding-top: 76px;
+            }
+
+            .page-header__content h1 {
+                max-width: 16ch;
+            }
+
+            .quick-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form-card {
+                padding: 26px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+
+            .studio-card {
+                padding: 30px 24px;
+            }
+
+            .map-frame {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body data-page="contact">
+
+    <div data-include="fragments/navbar.html"></div>
+
+    <!-- ============ PAGE HEADER ============ -->
+    <section class="page-header">
+        <div class="page-header__media">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=80"
+                alt="InterioArty studio - contact us for your interior design project">
+        </div>
+        <div class="page-header__scrim"></div>
+        <div class="page-header__content">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a><span class="sep">/</span><span class="current">Contact</span>
+            </div>
+            <p class="eyebrow" style="margin-top:18px;">Contact Us</p>
+            <h1>Let's start <em>the conversation.</em></h1>
+            <p class="sub">Tell us about your space, your budget and your timeline - we usually call back within a few
+                hours.</p>
+        </div>
+    </section>
+
+    <!-- ============ QUICK CONTACT TILES ============ -->
+    <section class="section section--tight">
+        <div class="container">
+            <div class="quick-grid reveal">
+                <a href="tel:+917838653501" class="quick-card">
+                    <span class="quick-card__icon"><svg viewBox="0 0 24 24" width="18" height="18">
+                            <path fill="currentColor"
+                                d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.7 21 3 13.3 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.2 1L6.6 10.8z" />
+                        </svg></span>
+                    <h4>Call Us</h4>
+                    <p>+91 78386 53501</p>
+                </a>
+                <a href="https://wa.me/917838653501" target="_blank" rel="noopener" class="quick-card">
+                    <span class="quick-card__icon"><svg viewBox="0 0 24 24" width="18" height="18">
+                            <path fill="currentColor"
+                                d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5C10 9 9.4 7.6 9.2 7c-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.2-1.3-.1-.2-.3-.2-.5-.3zM12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2z" />
+                        </svg></span>
+                    <h4>WhatsApp Us</h4>
+                    <p>Chat instantly</p>
+                </a>
+                <a href="mailto:connect@interioarty.com" class="quick-card">
+                    <span class="quick-card__icon"><svg viewBox="0 0 24 24" width="18" height="18">
+                            <path fill="currentColor"
+                                d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm0 2v.01L12 12l8-5.99V6H4zm16 12V8.24l-8 6-8-6V18h16z" />
+                        </svg></span>
+                    <h4>Email Us</h4>
+                    <p>connect@interioarty.com</p>
+                </a>
+                <a href="https://www.google.com/maps/search/?api=1&query=InterioArty+10+Biz+Park+Viman+Nagar+Pune"
+                    target="_blank" rel="noopener" class="quick-card">
+                    <span class="quick-card__icon"><svg viewBox="0 0 24 24" width="18" height="18">
+                            <path fill="currentColor"
+                                d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z" />
+                        </svg></span>
+                    <h4>Visit the Studio</h4>
+                    <p>Viman Nagar, Pune</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ CONTACT FORM + STUDIO INFO ============ -->
+    <section class="section section--tight">
+        <div class="container contact-grid">
+            <div class="contact-form-card reveal">
+                <h3>Send us an enquiry</h3>
+                <p>Fill this in and our design team will call you back - usually within a few hours.</p>
+                <form id="ctaForm">
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="cf-name">Full Name</label>
+                            <input type="text" id="cf-name" placeholder="Your name" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="cf-phone">Phone Number</label>
+                            <input type="tel" id="cf-phone" placeholder="+91 00000 00000" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="cf-email">Email</label>
+                            <input type="email" id="cf-email" placeholder="you@email.com">
+                        </div>
+                        <div class="form-field">
+                            <label for="cf-locality">Locality / Project Area</label>
+                            <input type="text" id="cf-locality" placeholder="e.g. Kharadi, Pune">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="cf-service">What Are You Looking For?</label>
+                            <select id="cf-service">
+                                <option value="">Select a service</option>
+                                <option>Full Home Interior</option>
+                                <option>Modular Kitchen</option>
+                                <option>Office Interior</option>
+                                <option>Renovation</option>
+                                <option>Not sure yet</option>
+                            </select>
+                        </div>
+                        <div class="form-field">
+                            <label for="cf-budget">Estimated Budget</label>
+                            <select id="cf-budget">
+                                <option value="">Select a range</option>
+                                <option>Under ₹5L</option>
+                                <option>₹5L – ₹10L</option>
+                                <option>₹10L – ₹20L</option>
+                                <option>₹20L+</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-field form-field--full">
+                            <label for="cf-message">Tell Us About Your Space</label>
+                            <textarea id="cf-message"
+                                placeholder="e.g. 2BHK, need a modular kitchen and living room done by December"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn--gold">Send Enquiry</button>
+                    <p class="form-note">We usually call back within a few hours, Mon–Sat.</p>
+                </form>
+            </div>
+
+            <div class="studio-card reveal">
+                <h3>InterioArty Studio</h3>
+
+                <div class="studio-detail">
+                    <span class="studio-detail__icon"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z" />
+                        </svg></span>
+                    <div>
+                        <h5>Experience Centre</h5>
+                        <p>Office No. 103, First Floor, 10 Biz Park,<br>Viman Nagar, Pune – 411014</p>
+                    </div>
+                </div>
+
+                <div class="studio-detail">
+                    <span class="studio-detail__icon"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.7 21 3 13.3 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.2 1L6.6 10.8z" />
+                        </svg></span>
+                    <div>
+                        <h5>Phone</h5>
+                        <p><a href="tel:+917838653501">+91 78386 53501</a>
+                            <button class="studio-card__copy-btn" data-copy="+91 78386 53501"
+                                aria-label="Copy phone number" title="Copy">
+                                <svg viewBox="0 0 24 24" width="14" height="14">
+                                    <path fill="currentColor"
+                                        d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z" />
+                                </svg>
+                            </button>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="studio-detail">
+                    <span class="studio-detail__icon"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm0 2v.01L12 12l8-5.99V6H4zm16 12V8.24l-8 6-8-6V18h16z" />
+                        </svg></span>
+                    <div>
+                        <h5>Email</h5>
+                        <p><a href="mailto:connect@interioarty.com">connect@interioarty.com</a>
+                            <button class="studio-card__copy-btn" data-copy="connect@interioarty.com"
+                                aria-label="Copy email address" title="Copy">
+                                <svg viewBox="0 0 24 24" width="14" height="14">
+                                    <path fill="currentColor"
+                                        d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z" />
+                                </svg>
+                            </button>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="studio-detail">
+                    <span class="studio-detail__icon"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm.75 5v5.4l4.2 2.5-.75 1.3-5-3V7h1.55z" />
+                        </svg></span>
+                    <div>
+                        <h5>Studio Hours</h5>
+                        <p>Mon – Sat: 10:00 AM – 7:00 PM<br>Sunday: By appointment</p>
+                    </div>
+                </div>
+
+                <div class="studio-card__divider"></div>
+
+                <div class="studio-card__social">
+                    <a href="https://www.facebook.com/interioarty/" aria-label="Facebook" target="_blank"
+                        rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M13.5 21v-8.1h2.7l.4-3.2h-3.1V7.6c0-.9.3-1.6 1.6-1.6h1.7V3.1C16.5 3 15.4 3 14.2 3c-2.5 0-4.2 1.5-4.2 4.3v2.4H7.3v3.2h2.7V21h3.5z" />
+                        </svg></a>
+                    <a href="https://www.instagram.com/interioarty/" aria-label="Instagram" target="_blank"
+                        rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M12 2.2c2.7 0 3 0 4 .1 1 .1 1.7.2 2.3.5.6.3 1.1.6 1.6 1.1.5.5.8 1 1.1 1.6.3.6.4 1.3.5 2.3.1 1 .1 1.3.1 4s0 3-.1 4c-.1 1-.2 1.7-.5 2.3-.3.6-.6 1.1-1.1 1.6-.5.5-1 .8-1.6 1.1-.6.3-1.3.4-2.3.5-1 .1-1.3.1-4 .1s-3 0-4-.1c-1-.1-1.7-.2-2.3-.5-.6-.3-1.1-.6-1.6-1.1-.5-.5-.8-1-1.1-1.6-.3-.6-.4-1.3-.5-2.3-.1-1-.1-1.3-.1-4s0-3 .1-4c.1-1 .2-1.7.5-2.3.3-.6.6-1.1 1.1-1.6.5-.5 1-.8 1.6-1.1.6-.3 1.3-.4 2.3-.5 1-.1 1.3-.1 4-.1zM12 5.8A6.2 6.2 0 1 0 12 18.2 6.2 6.2 0 0 0 12 5.8zm0 10.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM18.4 5.6a1.4 1.4 0 1 1-2.8 0 1.4 1.4 0 0 1 2.8 0z" />
+                        </svg></a>
+                    <a href="https://www.linkedin.com/company/interioarty" aria-label="LinkedIn" target="_blank"
+                        rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.6c0-1.35-.02-3.08-1.88-3.08-1.88 0-2.17 1.47-2.17 2.98V21h-4V9z" />
+                        </svg></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ WHAT HAPPENS NEXT ============ -->
+    <section class="section section--tight" style="background:var(--sand);">
+        <div class="container">
+            <div class="section-head section-head--center reveal">
+                <p class="eyebrow">After You Reach Out</p>
+                <h2>What happens <em style="color:var(--gold);font-style:italic;">next.</em></h2>
+            </div>
+            <div class="next-steps__grid reveal">
+                <div class="next-step">
+                    <p class="next-step-num">01 - You Enquire</p>
+                    <h4>Tell us about your space.</h4>
+                    <p>Fill in the form or call/WhatsApp us directly - takes under two minutes.</p>
+                </div>
+                <div class="next-step">
+                    <p class="next-step-num">02 - We Call You</p>
+                    <h4>A quick understanding call.</h4>
+                    <p>Our team calls within a few hours to understand your space, budget and timeline.</p>
+                </div>
+                <div class="next-step">
+                    <p class="next-step-num">03 - Free Consultation</p>
+                    <h4>Site visit &amp; VR walkthrough begins.</h4>
+                    <p>We visit your space, then build your first VR walkthrough - no obligation to proceed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ MAP ============ -->
+    <section class="map-section">
+        <iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=10+Biz+Park,+Viman+Nagar,+Pune,+411014&output=embed"
+            title="InterioArty studio location - Viman Nagar, Pune">
+        </iframe>
+    </section>
+
+    <div data-include="fragments/footer.html"></div>
+    <div data-include="fragments/chat-widget.html"></div>
+
+    <script src="js/script.js" defer></script>
+
+    <!-- =========================================================
+     Contact page - page-only JS (kept in this file, not script.js).
+     Copy-to-clipboard for phone/email. Form submission itself is
+     handled by the shared initCtaForm() in js/script.js via #ctaForm.
+     ========================================================= -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.studio-card__copy-btn').forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    const value = btn.dataset.copy;
+                    try {
+                        await navigator.clipboard.writeText(value);
+                        btn.classList.add('is-copied');
+                        const original = btn.getAttribute('title');
+                        btn.setAttribute('title', 'Copied!');
+                        setTimeout(() => {
+                            btn.classList.remove('is-copied');
+                            btn.setAttribute('title', original);
+                        }, 1600);
+                    } catch (err) {
+                        console.warn('Copy failed:', err);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
