@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initFaqAccordion();
     initTestimonialCarousel();
     initVrParallax();
+    initServicesIndex();
     initCtaForm();
 });
 
@@ -157,6 +158,25 @@ function initVrParallax() {
     });
     stage.addEventListener('mouseleave', () => {
         img.style.transform = 'translate(0,0) scale(1)';
+    });
+}
+
+function initServicesIndex() {
+    const items = document.querySelectorAll('.services-index__item');
+    const stageImgs = document.querySelectorAll('.services-index__stage-img');
+    const label = document.getElementById('servicesStageLabel');
+    if (!items.length || !stageImgs.length) return;
+
+    items.forEach(item => {
+        const activate = () => {
+            items.forEach(i => i.classList.remove('is-active'));
+            item.classList.add('is-active');
+            const target = item.dataset.image;
+            stageImgs.forEach(img => img.classList.toggle('is-active', img.dataset.image === target));
+            if (label) label.textContent = item.dataset.label;
+        };
+        item.addEventListener('mouseenter', activate);
+        item.addEventListener('focus', activate);
     });
 }
 

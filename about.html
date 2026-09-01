@@ -256,11 +256,11 @@
             color: var(--white);
         }
 
-        .founders {
+        .founder {
             background: var(--sand);
         }
 
-        .founders__card {
+        .founder__card {
             display: flex;
             align-items: center;
             gap: 36px;
@@ -268,38 +268,33 @@
             border: 1px solid var(--line);
             border-radius: var(--radius-lg);
             padding: 40px 44px;
-            flex-wrap: wrap;
         }
 
-        .founders__avatars {
-            display: flex;
+        .founder__avatar {
             flex-shrink: 0;
         }
 
-        .founders__avatars img {
-            width: 84px;
-            height: 84px;
+        .founder__avatar img {
+            width: 110px;
+            height: 110px;
+            display: block;
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid var(--sand-light);
             box-shadow: 0 6px 18px rgba(43, 33, 24, .12);
         }
 
-        .founders__avatars img:last-child {
-            margin-left: -22px;
-        }
-
-        .founders__text {
+        .founder__text {
             flex: 1;
-            min-width: 240px;
+            min-width: 0;
         }
 
-        .founders__text h3 {
+        .founder__text h3 {
             font-size: 21px;
             margin-bottom: 6px;
         }
 
-        .founders__text p.role {
+        .founder__text p.role {
             font-size: 12px;
             letter-spacing: .08em;
             text-transform: uppercase;
@@ -307,7 +302,7 @@
             margin-bottom: 12px;
         }
 
-        .founders__text p.quote {
+        .founder__text p.quote {
             font-family: var(--font-display);
             font-style: italic;
             font-size: 17px;
@@ -467,12 +462,17 @@
                 padding: 32px 26px;
             }
 
-            .founders__card {
+            .founder__card {
                 padding: 30px 26px;
                 gap: 24px;
             }
 
-            .founders__text p.quote {
+            .founder__avatar img {
+                width: 90px;
+                height: 90px;
+            }
+
+            .founder__text p.quote {
                 font-size: 15px;
             }
 
@@ -596,24 +596,25 @@
         </div>
     </section>
 
-    <section class="section section--tight founders">
+    <section class="section section--tight founder">
         <div class="container">
             <div class="section-head reveal">
-                <p class="eyebrow">The People Behind It</p>
-                <h2>Meet the <em style="color:var(--gold);font-style:italic;">founders.</em></h2>
+                <p class="eyebrow">The Person Behind It</p>
+                <h2>Meet the <em style="color:var(--gold);font-style:italic;">founder.</em></h2>
             </div>
-            <div class="founders__card reveal">
-                <div class="founders__avatars">
-                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&w=200&q=80"
-                        alt="Saurabh Aneja, Co-Founder of InterioArty">
-                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80"
-                        alt="Manu Aneja, Co-Founder of InterioArty">
+
+            <div class="founder__card reveal">
+                <div class="founder__avatar">
+                    <img src="/images/founder/saurabh.jpg?auto=format&fit=crop&w=300&q=80"
+                        alt="Saurabh Aneja, Founder of InterioArty">
                 </div>
-                <div class="founders__text">
-                    <h3>Saurabh &amp; Manu Aneja</h3>
-                    <p class="role">Co-Founders, InterioArty</p>
-                    <p class="quote">"What started as fixing up our own home became a mission to bring clarity, honesty
-                        and better organisation to interior design in Pune."</p>
+                <div class="founder__text">
+                    <h3>Saurabh Aneja</h3>
+                    <p class="role">Founder, InterioArty</p>
+                    <p class="quote">
+                        "What started as fixing up my own home became a mission to bring clarity,
+                        honesty and better organisation to interior design in Pune."
+                    </p>
                 </div>
             </div>
         </div>
