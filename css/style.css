@@ -1,11 +1,6 @@
-/* =========================================================
-   InterioArty — Design Tokens
-   ========================================================= */
 :root {
-  /* Brand palette */
   --emerald: #0F3D33;
   --emerald-deep: #061c16;
-  /* Primary brand color — matches the logo mark exactly */
   --emerald-deep-rgb: 6, 28, 22;
   --emerald-soft: #1D5A4B;
   --sand: #EBE3D6;
@@ -15,27 +10,19 @@
   --gold-light: #F0D9A3;
   --espresso: #2B2118;
   --white: #FFFFFF;
-
-  /* Semantic */
   --bg: var(--sand-light);
   --surface: var(--white);
   --text: var(--espresso);
   --text-muted: #6B5F52;
   --line: rgba(43, 33, 24, 0.12);
   --line-gold: rgba(219, 181, 106, 0.5);
-
-  /* Type */
   --font-display: 'Playfair Display', 'Georgia', serif;
   --font-body: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
-
-  /* Layout */
   --container: 1200px;
   --radius-sm: 4px;
   --radius-md: 10px;
   --radius-lg: 22px;
   --nav-h: 94px;
-
-  /* Motion */
   --ease: cubic-bezier(.22, .61, .36, 1);
 }
 

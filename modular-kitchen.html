@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modular Kitchen Interior Designers in Pune | InterioArty</title>
+    <meta name="description"
+        content="L-shaped, U-shaped, island, parallel and more — InterioArty designs modular kitchens across Pune that combine functionality with style. Free consultation.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* ---------- Service hero ---------- */
+        .service-hero {
+            position: relative;
+            min-height: clamp(420px, 64vh, 620px);
+            display: flex;
+            align-items: flex-end;
+            overflow: hidden;
+            padding-top: var(--nav-h);
+            background: var(--emerald-deep);
+        }
+
+        .service-hero__media {
+            position: absolute;
+            inset: 0;
+        }
+
+        .service-hero__media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.05);
+        }
+
+        .service-hero__scrim {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,
+                    rgba(var(--emerald-deep-rgb), .45) 0%,
+                    rgba(var(--emerald-deep-rgb), .3) 40%,
+                    rgba(var(--emerald-deep-rgb), .92) 100%);
+        }
+
+        .service-hero__frame {
+            position: absolute;
+            inset: 22px;
+            border: 1px solid rgba(219, 181, 106, .3);
+            pointer-events: none;
+        }
+
+        .service-hero__corner {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-color: var(--gold);
+            border-style: solid;
+        }
+
+        .service-hero__corner--tl {
+            top: -1px;
+            left: -1px;
+            border-width: 2px 0 0 2px;
+        }
+
+        .service-hero__corner--br {
+            bottom: -1px;
+            right: -1px;
+            border-width: 0 2px 2px 0;
+        }
+
+        .service-hero__content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding: 0 32px clamp(30px, 5vh, 56px);
+            max-width: var(--container);
+            margin: 0 auto;
+            color: var(--white);
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .6);
+            margin-bottom: 18px;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+
+        .breadcrumb .sep {
+            opacity: .5;
+        }
+
+        .breadcrumb .current {
+            color: var(--gold-light);
+        }
+
+        .service-hero__content h1 {
+            font-size: clamp(30px, 4.6vw, 52px);
+            color: var(--white);
+            max-width: 100%;
+            margin-bottom: 18px;
+        }
+
+        .service-hero__content h1 em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .service-hero__content p.sub {
+            color: rgba(255, 255, 255, .78);
+            font-size: 16px;
+            max-width: 100%;
+            margin-bottom: 34px;
+        }
+
+        .service-hero__actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: clamp(24px, 4vh, 44px);
+        }
+
+        .service-hero__stats {
+            display: flex;
+            gap: 0;
+            border-top: 1px solid rgba(255, 255, 255, .18);
+            padding-top: 20px;
+            max-width: 560px;
+        }
+
+        .service-hero__stat {
+            flex: 1;
+            padding-right: 20px;
+            border-right: 1px solid rgba(255, 255, 255, .18);
+        }
+
+        .service-hero__stat:last-child {
+            border-right: none;
+        }
+
+        .service-hero__stat b {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 24px;
+            color: var(--gold);
+        }
+
+        .service-hero__stat span {
+            font-size: 11.5px;
+            letter-spacing: .05em;
+            color: rgba(255, 255, 255, .6);
+            text-transform: uppercase;
+        }
+
+        /* ---------- About service (image + copy) ---------- */
+        .about-service {
+            display: grid;
+            grid-template-columns: 0.95fr 1.05fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .about-service__figure {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .about-service__figure img {
+            border-radius: var(--radius-lg);
+            aspect-ratio: 4/4.6;
+            object-fit: cover;
+        }
+
+        .about-service__frame {
+            position: absolute;
+            inset: 14px;
+            border: 1px solid rgba(219, 181, 106, .4);
+            border-radius: calc(var(--radius-lg) - 10px);
+            pointer-events: none;
+        }
+
+        .about-service__corner {
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            border-color: var(--gold);
+            border-style: solid;
+        }
+
+        .about-service__corner--tl {
+            top: -1px;
+            left: -1px;
+            border-width: 2px 0 0 2px;
+        }
+
+        .about-service__corner--br {
+            bottom: -1px;
+            right: -1px;
+            border-width: 0 2px 2px 0;
+        }
+
+        .about-service__copy p {
+            color: var(--text-muted);
+            font-size: 16px;
+            margin-bottom: 26px;
+        }
+
+        /* ---------- Why choose us ---------- */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: var(--line);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .why-card {
+            background: var(--surface);
+            padding: 38px 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .why-card__icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--sand);
+            color: var(--emerald);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .why-card h4 {
+            font-size: 14.5px;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            color: var(--espresso);
+        }
+
+        .why-card p {
+            font-size: 13.5px;
+            color: var(--text-muted);
+        }
+
+        /* ---------- Types of kitchen layout ---------- */
+        .layout-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 26px;
+        }
+
+        .layout-card {
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+        }
+
+        .layout-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 22px 44px rgba(43, 33, 24, .12);
+        }
+
+        .layout-card__figure {
+            aspect-ratio: 4/3;
+            overflow: hidden;
+        }
+
+        .layout-card__figure img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .6s var(--ease);
+        }
+
+        .layout-card:hover .layout-card__figure img {
+            transform: scale(1.07);
+        }
+
+        .layout-card__body {
+            padding: 22px 20px 26px;
+        }
+
+        .layout-card__body h4 {
+            font-size: 16.5px;
+            margin-bottom: 10px;
+        }
+
+        .layout-card__body p {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.55;
+        }
+
+        /* ---------- Our work slider ---------- */
+        .work-slider {
+            position: relative;
+        }
+
+        .work-track {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            padding-bottom: 10px;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .work-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .work-item {
+            position: relative;
+            flex: 0 0 clamp(240px, 30vw, 340px);
+            aspect-ratio: 4/3.2;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            scroll-snap-align: start;
+        }
+
+        .work-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .6s var(--ease);
+        }
+
+        .work-item:hover img {
+            transform: scale(1.06);
+        }
+
+        .work-item__overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: flex-end;
+            padding: 18px;
+            background: linear-gradient(180deg, transparent 55%, rgba(var(--emerald-deep-rgb), .85) 100%);
+        }
+
+        .work-item__overlay span {
+            color: var(--white);
+            font-family: var(--font-display);
+            font-size: 15px;
+        }
+
+        .work-slider__controls {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .work-arrow {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            border: 1px solid var(--line);
+            background: var(--surface);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: border-color .3s, background .3s, color .3s;
+        }
+
+        .work-arrow:hover {
+            border-color: var(--gold);
+            background: var(--gold);
+            color: var(--espresso);
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 1024px) {
+            .about-service {
+                gap: 45px;
+            }
+
+            .layout-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 899px) {
+            .service-hero {
+                padding-top: 84px;
+            }
+
+            .about-service {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-service__figure {
+                order: -1;
+                max-width: 460px;
+                margin: 0 auto;
+            }
+
+            .why-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .layout-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .service-hero {
+                min-height: 460px;
+                padding-top: 76px;
+            }
+
+            .service-hero__content h1 {
+                max-width: 15ch;
+            }
+
+            .service-hero__stats {
+                flex-wrap: wrap;
+                gap: 14px;
+            }
+
+            .service-hero__stat {
+                flex: 1 1 30%;
+                border-right: none;
+                padding-right: 0;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .layout-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .work-item {
+                flex-basis: 78vw;
+            }
+
+            .work-slider__controls {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body data-page="services">
+
+    <div data-include="fragments/navbar.html"></div>
+
+    <!-- ============ SERVICE HERO ============ -->
+    <section class="service-hero">
+        <div class="service-hero__media">
+            <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?auto=format&fit=crop&w=2000&q=80"
+                alt="Modular kitchen interior design by InterioArty in Pune">
+        </div>
+        <div class="service-hero__scrim"></div>
+        <div class="service-hero__frame">
+            <span class="service-hero__corner service-hero__corner--tl"></span>
+            <span class="service-hero__corner service-hero__corner--br"></span>
+        </div>
+        <div class="service-hero__content">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a><span class="sep">/</span><a href="services.html">Services</a><span
+                    class="sep">/</span><span class="current">Modular Kitchen</span>
+            </div>
+            <p class="eyebrow">Modular Kitchen</p>
+            <h1 style="margin-top:18px;">Modular Kitchen Interior <em>Designers in Pune.</em></h1>
+            <p class="sub">L-shaped, U-shaped, island, parallel and open layouts — designed around how you actually
+                cook, with premium finishes and honest timelines.</p>
+            <div class="service-hero__actions">
+                <a href="contact.html" class="btn btn--gold">Book a Free Consultation</a>
+                <a href="#our-work" class="btn btn--outline">See Our Kitchens</a>
+            </div>
+            <div class="service-hero__stats">
+                <div class="service-hero__stat"><b>150+</b><span>Kitchens Designed</span></div>
+                <div class="service-hero__stat"><b>8</b><span>Layout Styles</span></div>
+                <div class="service-hero__stat"><b>10 Yr</b><span>Warranty</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ ABOUT MODULAR KITCHEN ============ -->
+    <section class="section">
+        <div class="container about-service">
+            <div class="about-service__copy reveal">
+                <p class="eyebrow">About Modular Kitchen</p>
+                <h2 style="margin-top:18px;margin-bottom:26px;">Kitchens built <em
+                        style="color:var(--gold);font-style:italic;">around how you cook.</em></h2>
+                <p>Efficient and inviting kitchens are desirable to modern homeowners, and we offer only those that
+                    combine functionality with style. From simple interiors to extravagant modules, we present an array
+                    of L-shaped, U-shaped, parallel, and open kitchen designs that make your cooking experience a hit.
+                </p>
+                <p>Relish sweet coffee dates or prep yourself for gala house parties with seamless decor that ultimately
+                    blends with smooth countertops and practical storage solutions. Besides, you can enjoy absolute
+                    freedom in choosing the materials, finishes, and colours of walls that fit your budget and floor
+                    space to seek comfort unapologetically.</p>
+                <a href="contact.html" class="btn btn--gold">Contact Us Now!</a>
+            </div>
+            <div class="about-service__figure reveal">
+                <img src="https://images.unsplash.com/photo-1556909212-d5b604d0c90d?auto=format&fit=crop&w=1000&q=80"
+                    alt="Modern modular kitchen with island by InterioArty">
+                <div class="about-service__frame">
+                    <span class="about-service__corner about-service__corner--tl"></span>
+                    <span class="about-service__corner about-service__corner--br"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ WHY CHOOSE US ============ -->
+    <section class="section section--tight" style="background:var(--sand);">
+        <div class="container">
+            <div class="section-head section-head--center reveal">
+                <p class="eyebrow">Why Choose Us</p>
+                <h2>Every kitchen, <em style="color:var(--gold);font-style:italic;">built to last.</em></h2>
+            </div>
+            <div class="why-grid reveal">
+                <div class="why-card">
+                    <span class="why-card__icon"><svg viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor"
+                                d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3zm0 2.2 6 2.2v4.6c0 3.9-2.5 7.4-6 8.8-3.5-1.4-6-4.9-6-8.8V6.4l6-2.2z" />
+                        </svg></span>
+                    <h4>Up To 10 Year's Warranty</h4>
+                    <p>Long-term coverage on cabinetry, hardware and finishes.</p>
+                </div>
+                <div class="why-card">
+                    <span class="why-card__icon"><svg viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor"
+                                d="M12 1a4 4 0 0 1 4 4v3h1a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2h1V5a4 4 0 0 1 4-4zm0 2a2 2 0 0 0-2 2v3h4V5a2 2 0 0 0-2-2z" />
+                        </svg></span>
+                    <h4>No Hidden Costs</h4>
+                    <p>Transparent quotes — the price you're told is the price you pay.</p>
+                </div>
+                <div class="why-card">
+                    <span class="why-card__icon"><svg viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor"
+                                d="M12 2 2 7v2h20V7l-10-5zM4 11v8H2v2h20v-2h-2v-8h-2v8h-3v-8h-2v8h-2v-8H9v8H6v-8H4z" />
+                        </svg></span>
+                    <h4>Post-Installation Services</h4>
+                    <p>We stay on call after handover for any snags or tweaks.</p>
+                </div>
+                <div class="why-card">
+                    <span class="why-card__icon"><svg viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor"
+                                d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm.75 5v5.4l4.2 2.5-.75 1.3-5-3V7h1.55z" />
+                        </svg></span>
+                    <h4>Stress-Free Service</h4>
+                    <p>One point of contact manages your whole kitchen project.</p>
+                </div>
+                <div class="why-card">
+                    <span class="why-card__icon"><svg viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor"
+                                d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z" />
+                        </svg></span>
+                    <h4>On-Time Delivery</h4>
+                    <p>Clear timelines with milestone tracking, so your date holds.</p>
+                </div>
+                <div class="why-card">
+                    <span class="why-card__icon"><svg viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor"
+                                d="m12 2 2.4 6.6L21 10l-5 4.4L17.4 21 12 17.3 6.6 21 8 14.4 3 10l6.6-1.4L12 2z" />
+                        </svg></span>
+                    <h4>Super Quality Products</h4>
+                    <p>Only vetted, branded hardware and fittings — no substitutes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ TYPES OF KITCHEN LAYOUT ============ -->
+    <section class="section">
+        <div class="container">
+            <div class="section-head section-head--center reveal">
+                <p class="eyebrow">Layouts We Design</p>
+                <h2>Types of <em style="color:var(--gold);font-style:italic;">kitchen layout.</em></h2>
+            </div>
+            <div class="layout-grid reveal">
+                <div class="layout-card">
+                    <div class="layout-card__figure"><img
+                            src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?auto=format&fit=crop&w=600&q=80"
+                            alt="L-Shaped kitchen layout"></div>
+                    <div class="layout-card__body">
+                        <h4>L-Shaped Kitchen</h4>
+                        <p>Maximise corner spaces with an L-shaped kitchen, offering a seamless workflow and spacious
+                            feel for modern interiors.</p>
+                    </div>
+                </div>
+                <div class="layout-card">
+                    <div class="layout-card__figure"><img
+                            src="https://images.unsplash.com/photo-1556909212-d5b604d0c90d?auto=format&fit=crop&w=600&q=80"
+                            alt="U-Shaped kitchen layout"></div>
+                    <div class="layout-card__body">
+                        <h4>U-Shaped Kitchen Layout</h4>
+                        <p>A U-shaped kitchen provides ample storage and countertop space, perfect for large kitchens
+                            and efficient cooking.</p>
+                    </div>
+                </div>
+                <div class="layout-card">
+                    <div class="layout-card__figure"><img
+                            src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=600&q=80"
+                            alt="Island kitchen design"></div>
+                    <div class="layout-card__body">
+                        <h4>Island Kitchen Design</h4>
+                        <p>The island kitchen adds extra workspace, storage, and seating, creating a focal point ideal
+                            for open-plan kitchens.</p>
+                    </div>
+                </div>
+                <div class="layout-card">
+                    <div class="layout-card__figure"><img
+                            src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=600&q=80"
+                            alt="Peninsula kitchen layout"></div>
+                    <div class="layout-card__body">
+                        <h4>Peninsula Kitchen Layout</h4>
+                        <p>A peninsula kitchen offers additional counter space, combining functionality with a compact
+                            design for smaller spaces.</p>
+                    </div>
+                </div>
+                <div class="layout-card">
+                    <div class="layout-card__figure"><img
+                            src="https://images.unsplash.com/photo-1524230507669-5ff97982bb5e?auto=format&fit=crop&w=600&q=80"
+                            alt="Galley kitchen design"></div>
+                    <div class="layout-card__body">
+                        <h4>Galley Kitchen Design</h4>
+                        <p>The galley kitchen is a streamlined, efficient layout with two parallel countertops, perfect
+                            for small or narrow kitchens.</p>
+                    </div>
+                </div>
+                <div class="layout-card">
+                    <div class="layout-card__figure"><img
+                            src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=600&q=80"
+                            alt="One-wall kitchen layout"></div>
+                    <div class="layout-card__body">
+                        <h4>One-Wall Kitchen Layout</h4>
+                        <p>A one-wall kitchen is a minimalist design with everything arranged along a single wall, ideal
+                            for compact spaces and simplicity.</p>
+                    </div>
+                </div>
+                <div class="layout-card">
+                    <div class="layout-card__figure"><img
+                            src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=600&q=80"
+                            alt="G-Shaped kitchen design"></div>
+                    <div class="layout-card__body">
+                        <h4>G-Shaped Kitchen Design</h4>
+                        <p>A G-shaped kitchen offers extended counter space and storage, ideal for larger, open
+                            kitchens.</p>
+                    </div>
+                </div>
+                <div class="layout-card">
+                    <div class="layout-card__figure"><img
+                            src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=600&q=80"
+                            alt="Parallel kitchen layout"></div>
+                    <div class="layout-card__body">
+                        <h4>Parallel Kitchen Layout</h4>
+                        <p>A parallel kitchen provides two facing counters, perfect for efficient cooking in compact
+                            spaces.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ OUR WORK — sliding gallery ============ -->
+    <section class="section section--tight" id="our-work">
+        <div class="container">
+            <div class="section-head reveal">
+                <p class="eyebrow">Our Work</p>
+                <h2>Kitchens we've <em style="color:var(--gold);font-style:italic;">brought to life.</em></h2>
+            </div>
+            <div class="work-slider reveal">
+                <div class="work-track" id="workTrack">
+                    <div class="work-item"><img
+                            src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?auto=format&fit=crop&w=700&q=80"
+                            alt="Wagholi modular kitchen">
+                        <div class="work-item__overlay"><span>Wagholi — L-Shaped Kitchen</span></div>
+                    </div>
+                    <div class="work-item"><img
+                            src="https://images.unsplash.com/photo-1556909212-d5b604d0c90d?auto=format&fit=crop&w=700&q=80"
+                            alt="Viman Nagar kitchen island">
+                        <div class="work-item__overlay"><span>Viman Nagar — Island Kitchen</span></div>
+                    </div>
+                    <div class="work-item"><img
+                            src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=700&q=80"
+                            alt="Baner modular kitchen">
+                        <div class="work-item__overlay"><span>Baner — U-Shaped Kitchen</span></div>
+                    </div>
+                    <div class="work-item"><img
+                            src="https://images.unsplash.com/photo-1524230507669-5ff97982bb5e?auto=format&fit=crop&w=700&q=80"
+                            alt="Kalyani Nagar kitchen">
+                        <div class="work-item__overlay"><span>Kalyani Nagar — Parallel Kitchen</span></div>
+                    </div>
+                    <div class="work-item"><img
+                            src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=700&q=80"
+                            alt="Kothrud kitchen renovation">
+                        <div class="work-item__overlay"><span>Kothrud — Galley Kitchen</span></div>
+                    </div>
+                    <div class="work-item"><img
+                            src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=700&q=80"
+                            alt="Wakad kitchen">
+                        <div class="work-item__overlay"><span>Wakad — Peninsula Kitchen</span></div>
+                    </div>
+                </div>
+                <div class="work-slider__controls">
+                    <button class="work-arrow" id="workPrev" aria-label="Scroll left"><svg viewBox="0 0 24 24"
+                            width="16" height="16">
+                            <path stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
+                                stroke-linejoin="round" d="M15 18l-6-6 6-6" />
+                        </svg></button>
+                    <button class="work-arrow" id="workNext" aria-label="Scroll right"><svg viewBox="0 0 24 24"
+                            width="16" height="16">
+                            <path stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
+                                stroke-linejoin="round" d="M9 18l6-6-6-6" />
+                        </svg></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ CTA / CONTACT (reuses shared .cta-band + #ctaForm from style.css / script.js) ============ -->
+    <section class="section cta-band" id="contact">
+        <div class="container cta-band__inner">
+            <div class="reveal">
+                <p class="eyebrow">Ready to Start?</p>
+                <h2>Let's design <em>your kitchen.</em></h2>
+                <p>Tell us your kitchen size and budget — our design team usually calls back within a few hours.</p>
+                <p style="margin-top:30px;"><a href="tel:+917838653501" class="btn btn--outline">+91 78386 53501</a></p>
+            </div>
+            <form class="cta-form reveal" id="ctaForm">
+                <input type="text" placeholder="Full name" required aria-label="Full name">
+                <input type="tel" placeholder="Phone number" required aria-label="Phone number">
+                <input type="text" placeholder="Kitchen size (e.g. 10x8 ft)" aria-label="Kitchen size">
+                <button type="submit" class="btn btn--gold">Request a Call</button>
+                <p class="cta-form__note">We usually call back within a few hours.</p>
+            </form>
+        </div>
+    </section>
+
+    <div data-include="fragments/footer.html"></div>
+    <div data-include="fragments/chat-widget.html"></div>
+
+    <script src="js/script.js" defer></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const track = document.getElementById('workTrack');
+            const prevBtn = document.getElementById('workPrev');
+            const nextBtn = document.getElementById('workNext');
+            if (!track || !prevBtn || !nextBtn) return;
+
+            function scrollAmount() {
+                const item = track.querySelector('.work-item');
+                return item ? item.getBoundingClientRect().width + 20 : 300;
+            }
+            prevBtn.addEventListener('click', () => track.scrollBy({ left: -scrollAmount(), behavior: 'smooth' }));
+            nextBtn.addEventListener('click', () => track.scrollBy({ left: scrollAmount(), behavior: 'smooth' }));
+        });
+    </script>
+</body>
+
+</html>

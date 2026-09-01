@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Home Interior Designers in Pune | InterioArty</title>
+    <meta name="description"
+        content="End-to-end full home interior design in Pune. living room, bedrooms, kitchen, dining and more, designed as one cohesive story. Free consultation.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- =========================================================
+     Full Home Interiors service page — page-only CSS (kept in
+     this file, not style.css). Same structure/classes as
+     modular-kitchen.html (service-hero, about-service, why-grid,
+     spaces-grid, work-slider) so all service pages feel identical.
+     ========================================================= -->
+    <style>
+        /* ---------- Service hero ---------- */
+        .service-hero {
+            position: relative;
+            min-height: clamp(420px, 64vh, 620px);
+            display: flex;
+            align-items: flex-end;
+            overflow: hidden;
+            padding-top: var(--nav-h);
+            background: var(--emerald-deep);
+        }
+
+        .service-hero__media {
+            position: absolute;
+            inset: 0;
+        }
+
+        .service-hero__media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.05);
+        }
+
+        .service-hero__scrim {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,
+                    rgba(var(--emerald-deep-rgb), .45) 0%,
+                    rgba(var(--emerald-deep-rgb), .3) 40%,
+                    rgba(var(--emerald-deep-rgb), .92) 100%);
+        }
+
+        .service-hero__frame {
+            position: absolute;
+            inset: 22px;
+            border: 1px solid rgba(219, 181, 106, .3);
+            pointer-events: none;
+        }
+
+        .service-hero__corner {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-color: var(--gold);
+            border-style: solid;
+        }
+
+        .service-hero__corner--tl {
+            top: -1px;
+            left: -1px;
+            border-width: 2px 0 0 2px;
+        }
+
+        .service-hero__corner--br {
+            bottom: -1px;
+            right: -1px;
+            border-width: 0 2px 2px 0;
+        }
+
+        .service-hero__content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding: 0 32px clamp(30px, 5vh, 56px);
+            max-width: var(--container);
+            margin: 0 auto;
+            color: var(--white);
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .6);
+            margin-bottom: 18px;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+
+        .breadcrumb .sep {
+            opacity: .5;
+        }
+
+        .breadcrumb .current {
+            color: var(--gold-light);
+        }
+
+        .service-hero__content h1 {
+            font-size: clamp(30px, 4.6vw, 52px);
+            color: var(--white);
+            max-width: 100%;
+            margin-bottom: 18px;
+        }
+
+        .service-hero__content h1 em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .service-hero__content p.sub {
+            color: rgba(255, 255, 255, .78);
+            font-size: 16px;
+            max-width: 100%;
+            margin-bottom: 34px;
+        }
+
+        .service-hero__actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: clamp(24px, 4vh, 44px);
+        }
+
+        .service-hero__stats {
+            display: flex;
+            gap: 0;
+            border-top: 1px solid rgba(255, 255, 255, .18);
+            padding-top: 20px;
+            max-width: 560px;
+        }
+
+        .service-hero__stat {
+            flex: 1;
+            padding-right: 20px;
+            border-right: 1px solid rgba(255, 255, 255, .18);
+        }
+
+        .service-hero__stat:last-child {
+            border-right: none;
+        }
+
+        .service-hero__stat b {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 24px;
+            color: var(--gold);
+        }
+
+        .service-hero__stat span {
+            font-size: 11.5px;
+            letter-spacing: .05em;
+            color: rgba(255, 255, 255, .6);
+            text-transform: uppercase;
+        }
+
+        /* ---------- About service (image + copy) ---------- */
+        .about-service {
+            display: grid;
+            grid-template-columns: 0.95fr 1.05fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .about-service__figure {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .about-service__figure img {
+            border-radius: var(--radius-lg);
+            aspect-ratio: 4/4.6;
+            object-fit: cover;
+        }
+
+        .about-service__frame {
+            position: absolute;
+            inset: 14px;
+            border: 1px solid rgba(219, 181, 106, .4);
+            border-radius: calc(var(--radius-lg) - 10px);
+            pointer-events: none;
+        }
+
+        .about-service__corner {
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            border-color: var(--gold);
+            border-style: solid;
+        }
+
+        .about-service__corner--tl {
+            top: -1px;
+            left: -1px;
+            border-width: 2px 0 0 2px;
+        }
+
+        .about-service__corner--br {
+            bottom: -1px;
+            right: -1px;
+            border-width: 0 2px 2px 0;
+        }
+
+        .about-service__copy p {
+            color: var(--text-muted);
+            font-size: 16px;
+            margin-bottom: 26px;
+        }
+
+        /* ---------- Why choose us ---------- */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: var(--line);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .why-card {
+            background: var(--surface);
+            padding: 38px 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .why-card__icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--sand);
+            color: var(--emerald);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .why-card h4 {
+            font-size: 14.5px;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            color: var(--espresso);
+        }
+
+        .why-card p {
+            font-size: 13.5px;
+            color: var(--text-muted);
+        }
+
+        /* ---------- Spaces we design (types grid) ---------- */
+        .spaces-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 26px;
+        }
+
+        .space-card {
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+        }
+
+        .space-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 22px 44px rgba(43, 33, 24, .12);
+        }
+
+        .space-card__figure {
+            aspect-ratio: 4/3;
+            overflow: hidden;
+        }
+
+        .space-card__figure img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .6s var(--ease);
+        }
+
+        .space-card:hover .space-card__figure img {
+            transform: scale(1.07);
+        }
+
+        .space-card__body {
+            padding: 22px 20px 26px;
+        }
+
+        .space-card__body h4 {
+            font-size: 16.5px;
+            margin-bottom: 10px;
+        }
+
+        .space-card__body p {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.55;
+        }
+
+        /* ---------- Our work slider ---------- */
+        .work-slider {
+            position: relative;
+        }
+
+        .work-track {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            padding-bottom: 10px;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .work-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .work-item {
+            position: relative;
+            flex: 0 0 clamp(240px, 30vw, 340px);
+            aspect-ratio: 4/3.2;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            scroll-snap-align: start;
+        }
+
+        .work-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .6s var(--ease);
+        }
+
+        .work-item:hover img {
+            transform: scale(1.06);
+        }
+
+        .work-item__overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: flex-end;
+            padding: 18px;
+            background: linear-gradient(180deg, transparent 55%, rgba(var(--emerald-deep-rgb), .85) 100%);
+        }
+
+        .work-item__overlay span {
+            color: var(--white);
+            font-family: var(--font-display);
+            font-size: 15px;
+        }
+
+        .work-slider__controls {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .work-arrow {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            border: 1px solid var(--line);
+            background: var(--surface);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: border-color .3s, background .3s, color .3s;
+        }
+
+        .work-arrow:hover {
+            border-color: var(--gold);
+            background: var(--gold);
+            color: var(--espresso);
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 1024px) {
+            .about-service {
+                gap: 45px;
+            }
+
+            .spaces-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 899px) {
+            .service-hero {
+                padding-top: 84px;
+            }
+
+            .about-service {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-service__figure {
+                order: -1;
+                max-width: 460px;
+                margin: 0 auto;
+            }
+
+            .why-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .spaces-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .service-hero {
+                min-height: 460px;
+                padding-top: 76px;
+            }
+
+            .service-hero__content h1 {
+                max-width: 15ch;
+            }
+
+            .service-hero__stats {
+                flex-wrap: wrap;
+                gap: 14px;
+            }
+
+            .service-hero__stat {
+                flex: 1 1 30%;
+                border-right: none;
+                padding-right: 0;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .spaces-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .work-item {
+                flex-basis: 78vw;
+            }
+
+            .work-slider__controls {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body data-page="services">
+
+    <div data-include="fragments/navbar.html"></div>
+
+    <!-- ============ SERVICE HERO ============ -->
+    <section class="service-hero">
+        <div class="service-hero__media">
+            <img src="https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=2000&q=80"
+                alt="Full home interior design by InterioArty in Pune">
+        </div>
+        <div class="service-hero__scrim"></div>
+        <div class="service-hero__frame">
+            <span class="service-hero__corner service-hero__corner--tl"></span>
+            <span class="service-hero__corner service-hero__corner--br"></span>
+        </div>
+        <div class="service-hero__content">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a><span class="sep">/</span><a href="services.html">Services</a><span
+                    class="sep">/</span><span class="current">Full Home Interiors</span>
+            </div>
+            <p class="eyebrow">Full Home Interiors</p>
+            <h1 style="margin-top:18px;">Full Home Interior <em>Designers in Pune.</em></h1>
+            <p class="sub">Every room designed as one cohesive story, from the living room to the last wardrobe handle, managed end to end by a single team.</p>
+            <div class="service-hero__actions">
+                <a href="contact.html" class="btn btn--gold">Book a Free Consultation</a>
+                <a href="#our-work" class="btn btn--outline">See Our Homes</a>
+            </div>
+            <div class="service-hero__stats">
+                <div class="service-hero__stat"><b>300+</b><span>Full Homes Designed</span></div>
+                <div class="service-hero__stat"><b>8</b><span>Spaces We Design</span></div>
+                <div class="service-hero__stat"><b>10 Yr</b><span>Warranty</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ ABOUT FULL HOME INTERIORS ============ -->
+    <section class="section">
+        <div class="container about-service">
+            <div class="about-service__copy reveal">
+                <p class="eyebrow">About Full Home Interiors</p>
+                <h2 style="margin-top:18px;margin-bottom:26px;">One home, <em
+                        style="color:var(--gold);font-style:italic;">one cohesive story.</em></h2>
+                <p>Embark on a luxurious journey where every corner of your home becomes an outstanding design marvel —
+                    from the cozy warmth of your bedroom retreat to the heart of your home, the kitchen, and everything
+                    in between. We design full homes so that nothing feels disconnected or half-finished, room to room.
+                </p>
+                <p>Our full home interior solutions cover everything from space planning and design consultation through
+                    execution and final styling, managed by a single point of contact, so you're never chasing multiple
+                    vendors. You get a cohesive design theme, honest budgeting, premium materials and a stress-free
+                    experience from concept to handover.</p>
+                <a href="contact.html" class="btn btn--gold">Contact Us Now!</a>
+            </div>
+            <div class="about-service__figure reveal">
+                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&q=80"
+                    alt="Full home living room interior by InterioArty">
+                <div class="about-service__frame">
+                    <span class="about-service__corner about-service__corner--tl"></span>
+                    <span class="about-service__corner about-service__corner--br"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ WHY CHOOSE US ============ -->
+    <section class="section section--tight" style="background:var(--sand);">
+        <div class="container">
+            <div class="section-head section-head--center reveal">
+                <p class="eyebrow">Why Choose Us</p>
+                <h2>Every home, <em style="color:var(--gold);font-style:italic;">built to last.</em></h2>
+            </div>
+            <div class="why-grid reveal">
+                <div class="why-card">
+                    <span class="why-card__icon"><svg viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor"
+                                d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3zm0 2.2 6 2.2v4.6c0 3.9-2.5 7.4-6 8.8-3.5-1.4-6-4.9-6-8.8V6.4l6-2.2z" />
+                        </svg></span>
+                    <h4>Up To 10 Year's Warranty</h4>
+                    <p>Long-term coverage on furniture, finishes and fittings.</p>
+                </div>
+                <div class="why-card">
+                    <span class="why-card__icon"><svg viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor"
+                                d="M12 1a4 4 0 0 1 4 4v3h1a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2h1V5a4 4 0 0 1 4-4zm0 2a2 2 0 0 0-2 2v3h4V5a2 2 0 0 0-2-2z" />
+                        </svg></span>
+                    <h4>No Hidden Costs</h4>
+                    <p>Transparent quotes, the price you're told is the price you pay.</p>
+                </div>
+                <div class="why-card">
+                    <span class="why-card__icon"><svg viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor"
+                                d="M12 2 2 7v2h20V7l-10-5zM4 11v8H2v2h20v-2h-2v-8h-2v8h-3v-8h-2v8h-2v-8H9v8H6v-8H4z" />
+                        </svg></span>
+                    <h4>Post-Installation Services</h4>
+                    <p>We stay on call after handover for any snags or tweaks.</p>
+                </div>
+                <div class="why-card">
+                    <span class="why-card__icon"><svg viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor"
+                                d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm.75 5v5.4l4.2 2.5-.75 1.3-5-3V7h1.55z" />
+                        </svg></span>
+                    <h4>Stress-Free Service</h4>
+                    <p>One point of contact manages your entire home project.</p>
+                </div>
+                <div class="why-card">
+                    <span class="why-card__icon"><svg viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor"
+                                d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z" />
+                        </svg></span>
+                    <h4>On-Time Delivery</h4>
+                    <p>Clear timelines with milestone tracking, so your date holds.</p>
+                </div>
+                <div class="why-card">
+                    <span class="why-card__icon"><svg viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor"
+                                d="m12 2 2.4 6.6L21 10l-5 4.4L17.4 21 12 17.3 6.6 21 8 14.4 3 10l6.6-1.4L12 2z" />
+                        </svg></span>
+                    <h4>Super Quality Products</h4>
+                    <p>Only vetted, branded materials and fittings, no substitutes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SPACES WE DESIGN ============ -->
+    <section class="section">
+        <div class="container">
+            <div class="section-head section-head--center reveal">
+                <p class="eyebrow">Room by Room</p>
+                <h2>Spaces we <em style="color:var(--gold);font-style:italic;">design.</em></h2>
+            </div>
+            <div class="spaces-grid reveal">
+                <div class="space-card">
+                    <div class="space-card__figure"><img
+                            src="https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=600&q=80"
+                            alt="Living room interior design"></div>
+                    <div class="space-card__body">
+                        <h4>Living Room</h4>
+                        <p>A welcoming space that balances comfort and style, designed around how your family actually
+                            spends time together.</p>
+                    </div>
+                </div>
+                <div class="space-card">
+                    <div class="space-card__figure"><img
+                            src="https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=600&q=80"
+                            alt="Master bedroom interior design"></div>
+                    <div class="space-card__body">
+                        <h4>Master Bedroom</h4>
+                        <p>A calm, restful retreat with smart wardrobe storage and lighting that adapts from morning to
+                            night.</p>
+                    </div>
+                </div>
+                <div class="space-card">
+                    <div class="space-card__figure"><img
+                            src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=600&q=80"
+                            alt="Kids bedroom interior design"></div>
+                    <div class="space-card__body">
+                        <h4>Kids Bedroom</h4>
+                        <p>Playful yet practical, durable finishes and smart storage that gives room to grow with your
+                            child.</p>
+                    </div>
+                </div>
+                <div class="space-card">
+                    <a href="modular-kitchen.html" style="display:contents;">
+                        <div class="space-card__figure"><img
+                                src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?auto=format&fit=crop&w=600&q=80"
+                                alt="Modular kitchen interior design"></div>
+                        <div class="space-card__body">
+                            <h4>Modular Kitchen</h4>
+                            <p>An efficient, beautiful kitchen at the heart of your home, tailored to your cooking
+                                style.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="space-card">
+                    <div class="space-card__figure"><img
+                            src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=600&q=80"
+                            alt="Dining area interior design"></div>
+                    <div class="space-card__body">
+                        <h4>Dining Area</h4>
+                        <p>A dining space that moves easily from everyday meals to hosting family and friends.</p>
+                    </div>
+                </div>
+                <div class="space-card">
+                    <div class="space-card__figure"><img
+                            src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=600&q=80"
+                            alt="Pooja room interior design"></div>
+                    <div class="space-card__body">
+                        <h4>Pooja Room</h4>
+                        <p>A serene, dedicated space designed with the right materials, lighting and orientation.</p>
+                    </div>
+                </div>
+                <div class="space-card">
+                    <div class="space-card__figure"><img
+                            src="https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=600&q=80"
+                            alt="Home office interior design"></div>
+                    <div class="space-card__body">
+                        <h4>Study / Home Office</h4>
+                        <p>A quiet, focused corner built for productivity, tucked neatly into your home.</p>
+                    </div>
+                </div>
+                <div class="space-card">
+                    <div class="space-card__figure"><img
+                            src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=600&q=80"
+                            alt="Balcony and utility area interior design"></div>
+                    <div class="space-card__body">
+                        <h4>Balcony &amp; Utility</h4>
+                        <p>Functional outdoor and utility spaces, styled to feel like an extension of your home.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ OUR WORK — sliding gallery ============ -->
+    <section class="section section--tight" id="our-work">
+        <div class="container">
+            <div class="section-head reveal">
+                <p class="eyebrow">Our Work</p>
+                <h2>Homes we've <em style="color:var(--gold);font-style:italic;">brought to life.</em></h2>
+            </div>
+            <div class="work-slider reveal">
+                <div class="work-track" id="workTrack">
+                    <div class="work-item"><img
+                            src="https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=700&q=80"
+                            alt="Amorapolis living room">
+                        <div class="work-item__overlay"><span>Amorapolis — 3BHK Living Room</span></div>
+                    </div>
+                    <div class="work-item"><img
+                            src="https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=700&q=80"
+                            alt="Hadapsar bedroom">
+                        <div class="work-item__overlay"><span>Hadapsar — Master Bedroom</span></div>
+                    </div>
+                    <div class="work-item"><img
+                            src="https://images.unsplash.com/photo-1615529182904-14819c35db37?auto=format&fit=crop&w=700&q=80"
+                            alt="Amorapolis final handover">
+                        <div class="work-item__overlay"><span>Amorapolis — Final Handover</span></div>
+                    </div>
+                    <div class="work-item"><img
+                            src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=700&q=80"
+                            alt="Koregaon Park living room">
+                        <div class="work-item__overlay"><span>Koregaon Park — Duplex Living</span></div>
+                    </div>
+                    <div class="work-item"><img
+                            src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=700&q=80"
+                            alt="Magarpatta interiors">
+                        <div class="work-item__overlay"><span>Magarpatta — 2BHK Interiors</span></div>
+                    </div>
+                    <div class="work-item"><img
+                            src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=700&q=80"
+                            alt="Aundh penthouse">
+                        <div class="work-item__overlay"><span>Aundh — Penthouse Living</span></div>
+                    </div>
+                </div>
+                <div class="work-slider__controls">
+                    <button class="work-arrow" id="workPrev" aria-label="Scroll left"><svg viewBox="0 0 24 24"
+                            width="16" height="16">
+                            <path stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
+                                stroke-linejoin="round" d="M15 18l-6-6 6-6" />
+                        </svg></button>
+                    <button class="work-arrow" id="workNext" aria-label="Scroll right"><svg viewBox="0 0 24 24"
+                            width="16" height="16">
+                            <path stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
+                                stroke-linejoin="round" d="M9 18l6-6-6-6" />
+                        </svg></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ CTA / CONTACT (reuses shared .cta-band + #ctaForm from style.css / script.js) ============ -->
+    <section class="section cta-band" id="contact">
+        <div class="container cta-band__inner">
+            <div class="reveal">
+                <p class="eyebrow">Ready to Start?</p>
+                <h2>Let's design <em>your home.</em></h2>
+                <p>Tell us your home size and budget, our design team usually calls back within a few hours.</p>
+                <p style="margin-top:30px;"><a href="tel:+917838653501" class="btn btn--outline">+91 78386 53501</a></p>
+            </div>
+            <form class="cta-form reveal" id="ctaForm">
+                <input type="text" placeholder="Full name" required aria-label="Full name">
+                <input type="tel" placeholder="Phone number" required aria-label="Phone number">
+                <input type="text" placeholder="Home size (e.g. 2BHK, 3BHK)" aria-label="Home size">
+                <button type="submit" class="btn btn--gold">Request a Call</button>
+                <p class="cta-form__note">We usually call back within a few hours.</p>
+            </form>
+        </div>
+    </section>
+
+    <div data-include="fragments/footer.html"></div>
+    <div data-include="fragments/chat-widget.html"></div>
+
+    <script src="js/script.js" defer></script>
+
+    <!-- =========================================================
+     Full Home Interiors page — page-only JS (kept in this file).
+     "Our Work" slider prev/next buttons.
+     ========================================================= -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const track = document.getElementById('workTrack');
+            const prevBtn = document.getElementById('workPrev');
+            const nextBtn = document.getElementById('workNext');
+            if (!track || !prevBtn || !nextBtn) return;
+
+            function scrollAmount() {
+                const item = track.querySelector('.work-item');
+                return item ? item.getBoundingClientRect().width + 20 : 300;
+            }
+            prevBtn.addEventListener('click', () => track.scrollBy({ left: -scrollAmount(), behavior: 'smooth' }));
+            nextBtn.addEventListener('click', () => track.scrollBy({ left: scrollAmount(), behavior: 'smooth' }));
+        });
+    </script>
+</body>
+
+</html>
