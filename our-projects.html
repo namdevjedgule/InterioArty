@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Projects - InterioArty | Detailed Project Portfolio, Pune</title>
+    <link rel="icon" type="image/x-icon" href="/favicon_io/favicon.ico" />
+    <meta name="description"
+        content="Explore InterioArty's completed projects across Pune - modular kitchens, full home interiors, office spaces and renovations, with real area, budget and timeline details.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* ---------- Page header (shared pattern from services.html) ---------- */
+        .page-header {
+            position: relative;
+            min-height: clamp(360px, 46vh, 520px);
+            display: flex;
+            align-items: flex-end;
+            overflow: hidden;
+            padding-top: var(--nav-h);
+            background: var(--emerald-deep);
+        }
+
+        .page-header__media {
+            position: absolute;
+            inset: 0;
+        }
+
+        .page-header__media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.05);
+        }
+
+        .page-header__scrim {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,
+                    rgba(var(--emerald-deep-rgb), .5) 0%,
+                    rgba(var(--emerald-deep-rgb), .3) 40%,
+                    rgba(var(--emerald-deep-rgb), .92) 100%);
+        }
+
+        .page-header__content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding: 0 32px clamp(32px, 6vh, 56px);
+            max-width: var(--container);
+            margin: 0 auto;
+            color: var(--white);
+        }
+
+        .page-header__content h1 {
+            font-size: clamp(32px, 5vw, 54px);
+            color: var(--white);
+            margin: 14px 0 18px;
+            max-width: 20ch;
+        }
+
+        .page-header__content h1 em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .page-header__content p.sub {
+            color: rgba(255, 255, 255, .75);
+            font-size: 16px;
+            max-width: 52ch;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .6);
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+
+        .breadcrumb .sep {
+            opacity: .5;
+        }
+
+        .breadcrumb .current {
+            color: var(--gold-light);
+        }
+
+        /* ---------- Stats bar ---------- */
+        .stats-bar {
+            background: var(--emerald);
+            padding: 46px 0;
+        }
+
+        .stats-bar__row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .stats-bar__item {
+            text-align: center;
+            padding: 0 20px;
+            border-right: 1px solid rgba(255, 255, 255, .14);
+        }
+
+        .stats-bar__item:last-child {
+            border-right: none;
+        }
+
+        .stats-bar__item b {
+            display: block;
+            font-family: var(--font-display);
+            font-size: clamp(26px, 3vw, 38px);
+            color: var(--gold);
+        }
+
+        .stats-bar__item span {
+            font-size: 12px;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .65);
+        }
+
+        /* ---------- Filter tabs ---------- */
+        .project-filter {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 56px;
+        }
+
+        .project-filter__btn {
+            font-size: 12.5px;
+            font-weight: 600;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            padding: 12px 24px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: var(--surface);
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: background .3s, color .3s, border-color .3s, transform .3s var(--ease);
+        }
+
+        .project-filter__btn:hover {
+            transform: translateY(-2px);
+            border-color: var(--gold);
+            color: var(--emerald);
+        }
+
+        .project-filter__btn.is-active {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--espresso);
+        }
+
+        /* ---------- Portfolio grid ---------- */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .portfolio-card {
+            display: flex;
+            flex-direction: column;
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--line);
+            transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 24px 50px rgba(43, 33, 24, .12);
+        }
+
+        .portfolio-card__img {
+            position: relative;
+            aspect-ratio: 4/3.1;
+            overflow: hidden;
+        }
+
+        .portfolio-card__img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .6s var(--ease);
+        }
+
+        .portfolio-card:hover .portfolio-card__img img {
+            transform: scale(1.06);
+        }
+
+        .portfolio-card__tag {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: rgba(var(--emerald-deep-rgb), .85);
+            backdrop-filter: blur(6px);
+            color: var(--gold-light);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            padding: 8px 14px;
+            border-radius: 999px;
+        }
+
+        .portfolio-card__body {
+            padding: 26px 26px 28px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .portfolio-card__loc {
+            font-size: 12px;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+
+        .portfolio-card__body h3 {
+            font-size: 21px;
+            margin-bottom: 14px;
+        }
+
+        .portfolio-card__meta {
+            display: flex;
+            gap: 18px;
+            font-size: 12.5px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .portfolio-card__meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .portfolio-card__meta svg {
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+
+        .portfolio-card__cta {
+            margin-top: auto;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: var(--emerald);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .portfolio-card:hover .portfolio-card__cta {
+            color: var(--gold);
+        }
+
+        .portfolio-card__cta svg {
+            transition: transform .3s var(--ease);
+        }
+
+        .portfolio-card:hover .portfolio-card__cta svg {
+            transform: translateX(4px);
+        }
+
+        .portfolio-grid.is-filtering .portfolio-card {
+            transition: opacity .3s var(--ease);
+        }
+
+        .portfolio-card.is-hidden {
+            display: none;
+        }
+
+        /* ---------- Case study detail rows (extends service-detail pattern) ---------- */
+        .case-study {
+            border-top: 1px solid var(--line);
+            padding: 90px 0;
+        }
+
+        .case-study:first-of-type {
+            border-top: none;
+        }
+
+        .case-study__row {
+            display: grid;
+            grid-template-columns: 0.95fr 1.05fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .case-study__row--reverse .case-study__media {
+            order: 2;
+        }
+
+        .case-study__row--reverse .case-study__copy {
+            order: 1;
+        }
+
+        .case-study__media {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .case-study__media img {
+            border-radius: var(--radius-lg);
+            aspect-ratio: 4/3.3;
+            object-fit: cover;
+        }
+
+        .case-study__frame {
+            position: absolute;
+            inset: 14px;
+            border: 1px solid rgba(219, 181, 106, .4);
+            border-radius: calc(var(--radius-lg) - 10px);
+            pointer-events: none;
+        }
+
+        .case-study__corner {
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            border-color: var(--gold);
+            border-style: solid;
+        }
+
+        .case-study__corner--tl {
+            top: -1px;
+            left: -1px;
+            border-width: 2px 0 0 2px;
+        }
+
+        .case-study__corner--br {
+            bottom: -1px;
+            right: -1px;
+            border-width: 0 2px 2px 0;
+        }
+
+        .case-study__num {
+            font-family: var(--font-display);
+            font-size: 13px;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .case-study__num::after {
+            content: "";
+            height: 1px;
+            width: 44px;
+            background: var(--line-gold);
+        }
+
+        .case-study__copy h2 {
+            font-size: clamp(26px, 3vw, 36px);
+            margin-bottom: 18px;
+        }
+
+        .case-study__copy h2 em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .case-study__copy>p {
+            color: var(--text-muted);
+            font-size: 16px;
+            margin-bottom: 28px;
+            max-width: 54ch;
+        }
+
+        .case-study__stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 30px;
+            padding: 24px 0;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .case-study__stats div b {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 20px;
+            color: var(--espresso);
+            margin-bottom: 4px;
+        }
+
+        .case-study__stats div span {
+            font-size: 11px;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .explore--btn--outline {
+            background: transparent;
+            border-color: var(--espresso);
+            color: var(--espresso);
+        }
+
+        .explore--btn--outline:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        /* ---------- Trust strip (shared pattern) ---------- */
+        .trust-strip {
+            background: var(--sand);
+        }
+
+        .trust-strip__row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+        }
+
+        .trust-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            padding: 12px 22px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--espresso);
+        }
+
+        .trust-badge svg {
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+
+        /* ---------- Responsive (Our Projects page only) ---------- */
+        @media (max-width: 1024px) {
+            .portfolio-grid {
+                gap: 24px;
+            }
+
+            .case-study__row {
+                gap: 44px;
+            }
+
+            .stats-bar__item {
+                padding: 0 10px;
+            }
+        }
+
+        @media (max-width: 899px) {
+            .page-header {
+                padding-top: 84px;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats-bar__row {
+                grid-template-columns: repeat(2, 1fr);
+                row-gap: 26px;
+            }
+
+            .stats-bar__item:nth-child(2) {
+                border-right: none;
+            }
+
+            .case-study {
+                padding: 70px 0;
+            }
+
+            .case-study__row,
+            .case-study__row--reverse {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+
+            .case-study__row--reverse .case-study__media {
+                order: -1;
+            }
+
+            .case-study__row--reverse .case-study__copy {
+                order: 2;
+            }
+
+            .case-study__media {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .page-header {
+                min-height: 400px;
+                padding-top: 76px;
+            }
+
+            .page-header__content h1 {
+                max-width: 16ch;
+            }
+
+            .project-filter {
+                gap: 8px;
+                margin-bottom: 40px;
+            }
+
+            .project-filter__btn {
+                padding: 10px 18px;
+                font-size: 11.5px;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 22px;
+            }
+
+            .stats-bar__row {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .case-study {
+                padding: 55px 0;
+            }
+
+            .case-study__stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .trust-badge {
+                padding: 10px 16px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body data-page="projects">
+
+    <div data-include="fragments/navbar.html"></div>
+
+    <!-- ============ PAGE HEADER ============ -->
+    <section class="page-header">
+        <div class="page-header__media">
+            <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=2000&q=80"
+                alt="InterioArty completed interior design project">
+        </div>
+        <div class="page-header__scrim"></div>
+        <div class="page-header__content">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a><span class="sep">/</span><span class="current">Our Projects</span>
+            </div>
+            <p class="eyebrow" style="margin-top:18px;">Our Projects</p>
+            <h1>Real homes, real offices, <em>real numbers.</em></h1>
+            <p class="sub">A closer look at what we've delivered - the area, the timeline, the budget and the people
+                behind each space. No stock photography, no guesswork.</p>
+        </div>
+    </section>
+
+    <!-- ============ STATS BAR ============ -->
+    <section class="stats-bar">
+        <div class="container">
+            <div class="stats-bar__row reveal">
+                <div class="stats-bar__item">
+                    <b>180+</b>
+                    <span>Projects Delivered</span>
+                </div>
+                <div class="stats-bar__item">
+                    <b>9+</b>
+                    <span>Years in Pune</span>
+                </div>
+                <div class="stats-bar__item">
+                    <b>4.9/5</b>
+                    <span>Average Client Rating</span>
+                </div>
+                <div class="stats-bar__item">
+                    <b>10-Yr</b>
+                    <span>Warranty on Every Job</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ PORTFOLIO GRID ============ -->
+    <section class="section section--tight">
+        <div class="container">
+            <div class="section-head section-head--center reveal">
+                <p class="eyebrow">Detailed Project Portfolio</p>
+                <h2>Browse by <em style="color:var(--gold);font-style:italic;">what you're building.</em></h2>
+            </div>
+
+            <div class="project-filter reveal">
+                <button class="project-filter__btn is-active" data-filter="all">All Projects</button>
+                <button class="project-filter__btn" data-filter="kitchen">Modular Kitchen</button>
+                <button class="project-filter__btn" data-filter="home">Full Home</button>
+                <button class="project-filter__btn" data-filter="office">Office</button>
+                <button class="project-filter__btn" data-filter="renovation">Renovation</button>
+            </div>
+
+            <div class="portfolio-grid reveal" id="portfolioGrid">
+
+                <a href="oxy-kitchen-baner.html" class="portfolio-card" data-category="kitchen">
+                    <div class="portfolio-card__img">
+                        <img src="/images/kitchen/OXY-12.png?auto=format&fit=crop&w=900&q=80"
+                            alt="Modular kitchen project in Baner, Pune">
+                        <span class="portfolio-card__tag">Modular Kitchen</span>
+                    </div>
+                    <div class="portfolio-card__body">
+                        <p class="portfolio-card__loc">Baner, Pune</p>
+                        <h3>The Oxy Residence Kitchen</h3>
+                        <div class="portfolio-card__meta">
+                            <span><svg viewBox="0 0 24 24" width="14" height="14">
+                                    <path fill="currentColor" d="M3 3h18v18H3V3zm2 2v14h14V5H5z" />
+                                </svg>210 sq.ft</span>
+                            <span><svg viewBox="0 0 24 24" width="14" height="14">
+                                    <path fill="currentColor"
+                                        d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm.75 5v5.4l4.2 2.5-.75 1.3-5-3V7h1.55z" />
+                                </svg>25 Days</span>
+                        </div>
+                        <span class="portfolio-card__cta">View Details <svg viewBox="0 0 24 24" width="14" height="14">
+                                <path fill="currentColor" d="M4 12h15m0 0-6-6m6 6-6 6" stroke="currentColor"
+                                    stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg></span>
+                    </div>
+                </a>
+
+                <a href="wellington-vista.html" class="portfolio-card" data-category="home">
+                    <div class="portfolio-card__img">
+                        <img src="/images/homeInterior/WELLINGTON6.png?auto=format&fit=crop&w=900&q=80"
+                            alt="Full home interior project at Wellington Vista, Pune">
+                        <span class="portfolio-card__tag">Full Home</span>
+                    </div>
+                    <div class="portfolio-card__body">
+                        <p class="portfolio-card__loc">Wellington Vista, Pune</p>
+                        <h3>A Contemporary 3BHK</h3>
+                        <div class="portfolio-card__meta">
+                            <span><svg viewBox="0 0 24 24" width="14" height="14">
+                                    <path fill="currentColor" d="M3 3h18v18H3V3zm2 2v14h14V5H5z" />
+                                </svg>1,450 sq.ft</span>
+                            <span><svg viewBox="0 0 24 24" width="14" height="14">
+                                    <path fill="currentColor"
+                                        d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm.75 5v5.4l4.2 2.5-.75 1.3-5-3V7h1.55z" />
+                                </svg>60 Days</span>
+                        </div>
+                        <span class="portfolio-card__cta">View Details <svg viewBox="0 0 24 24" width="14" height="14">
+                                <path fill="currentColor" d="M4 12h15m0 0-6-6m6 6-6 6" stroke="currentColor"
+                                    stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg></span>
+                    </div>
+                </a>
+
+                <a href="anup-enterprises.html" class="portfolio-card" data-category="office">
+                    <div class="portfolio-card__img">
+                        <img src="/images/officeInterior/ANUP07.png?auto=format&fit=crop&w=900&q=80"
+                            alt="Office interior project for Anup Enterprises, Pune">
+                        <span class="portfolio-card__tag">Office</span>
+                    </div>
+                    <div class="portfolio-card__body">
+                        <p class="portfolio-card__loc">Kharadi, Pune</p>
+                        <h3>Anup Enterprises HQ</h3>
+                        <div class="portfolio-card__meta">
+                            <span><svg viewBox="0 0 24 24" width="14" height="14">
+                                    <path fill="currentColor" d="M3 3h18v18H3V3zm2 2v14h14V5H5z" />
+                                </svg>3,200 sq.ft</span>
+                            <span><svg viewBox="0 0 24 24" width="14" height="14">
+                                    <path fill="currentColor"
+                                        d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm.75 5v5.4l4.2 2.5-.75 1.3-5-3V7h1.55z" />
+                                </svg>45 Days</span>
+                        </div>
+                        <span class="portfolio-card__cta">View Details <svg viewBox="0 0 24 24" width="14" height="14">
+                                <path fill="currentColor" d="M4 12h15m0 0-6-6m6 6-6 6" stroke="currentColor"
+                                    stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg></span>
+                    </div>
+                </a>
+
+                <a href="patil-residence.html" class="portfolio-card" data-category="renovation">
+                    <div class="portfolio-card__img">
+                        <img src="/images/homeInterior/PATIL-09.png?auto=format&fit=crop&w=900&q=80"
+                            alt="Home renovation project for the Patil residence, Pune">
+                        <span class="portfolio-card__tag">Renovation</span>
+                    </div>
+                    <div class="portfolio-card__body">
+                        <p class="portfolio-card__loc">Kothrud, Pune</p>
+                        <h3>The Patil Residence Refresh</h3>
+                        <div class="portfolio-card__meta">
+                            <span><svg viewBox="0 0 24 24" width="14" height="14">
+                                    <path fill="currentColor" d="M3 3h18v18H3V3zm2 2v14h14V5H5z" />
+                                </svg>980 sq.ft</span>
+                            <span><svg viewBox="0 0 24 24" width="14" height="14">
+                                    <path fill="currentColor"
+                                        d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm.75 5v5.4l4.2 2.5-.75 1.3-5-3V7h1.55z" />
+                                </svg>40 Days</span>
+                        </div>
+                        <span class="portfolio-card__cta">View Details <svg viewBox="0 0 24 24" width="14" height="14">
+                                <path fill="currentColor" d="M4 12h15m0 0-6-6m6 6-6 6" stroke="currentColor"
+                                    stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg></span>
+                    </div>
+                </a>
+
+                <a href="lshape-kitchen-kharadi.html" class="portfolio-card" data-category="kitchen">
+                    <div class="portfolio-card__img">
+                        <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=900&q=80"
+                            alt="L-shaped modular kitchen project in Kharadi, Pune">
+                        <span class="portfolio-card__tag">Modular Kitchen</span>
+                    </div>
+                    <div class="portfolio-card__body">
+                        <p class="portfolio-card__loc">Kharadi, Pune</p>
+                        <h3>An L-Shape Kitchen, Reimagined</h3>
+                        <div class="portfolio-card__meta">
+                            <span><svg viewBox="0 0 24 24" width="14" height="14">
+                                    <path fill="currentColor" d="M3 3h18v18H3V3zm2 2v14h14V5H5z" />
+                                </svg>165 sq.ft</span>
+                            <span><svg viewBox="0 0 24 24" width="14" height="14">
+                                    <path fill="currentColor"
+                                        d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm.75 5v5.4l4.2 2.5-.75 1.3-5-3V7h1.55z" />
+                                </svg>18 Days</span>
+                        </div>
+                        <span class="portfolio-card__cta">View Details <svg viewBox="0 0 24 24" width="14" height="14">
+                                <path fill="currentColor" d="M4 12h15m0 0-6-6m6 6-6 6" stroke="currentColor"
+                                    stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg></span>
+                    </div>
+                </a>
+
+                <a href="coworking-vimannagar.html" class="portfolio-card" data-category="office">
+                    <div class="portfolio-card__img">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80"
+                            alt="Co-working office studio project in Viman Nagar, Pune">
+                        <span class="portfolio-card__tag">Office</span>
+                    </div>
+                    <div class="portfolio-card__body">
+                        <p class="portfolio-card__loc">Viman Nagar, Pune</p>
+                        <h3>A Co-Working Studio Fit-Out</h3>
+                        <div class="portfolio-card__meta">
+                            <span><svg viewBox="0 0 24 24" width="14" height="14">
+                                    <path fill="currentColor" d="M3 3h18v18H3V3zm2 2v14h14V5H5z" />
+                                </svg>2,100 sq.ft</span>
+                            <span><svg viewBox="0 0 24 24" width="14" height="14">
+                                    <path fill="currentColor"
+                                        d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm.75 5v5.4l4.2 2.5-.75 1.3-5-3V7h1.55z" />
+                                </svg>32 Days</span>
+                        </div>
+                        <span class="portfolio-card__cta">View Details <svg viewBox="0 0 24 24" width="14" height="14">
+                                <path fill="currentColor" d="M4 12h15m0 0-6-6m6 6-6 6" stroke="currentColor"
+                                    stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg></span>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FEATURED CASE STUDY: WELLINGTON VISTA ============ -->
+    <section class="case-study" id="wellington-vista">
+        <div class="container">
+            <div class="case-study__row reveal">
+                <div class="case-study__media">
+                    <img src="/images/homeInterior/WELLINGTON6.png?auto=format&fit=crop&w=1200&q=80"
+                        alt="Wellington Vista full home interior case study">
+                    <div class="case-study__frame"><span class="case-study__corner case-study__corner--tl"></span><span
+                            class="case-study__corner case-study__corner--br"></span></div>
+                </div>
+                <div class="case-study__copy">
+                    <p class="case-study__num">Case Study - Full Home Interiors</p>
+                    <h2>Wellington Vista, <em>a 3BHK transformation.</em></h2>
+                    <p>The brief was simple: a young family wanted a home that felt calm, contemporary and easy to
+                        maintain. We reworked the layout for better light and flow, then carried one material palette
+                        through every room so the whole home reads as a single, considered space.</p>
+                    <div class="case-study__stats">
+                        <div>
+                            <b>1,450</b>
+                            <span>Sq.Ft Area</span>
+                        </div>
+                        <div>
+                            <b>60</b>
+                            <span>Days to Deliver</span>
+                        </div>
+                        <div>
+                            <b>Contemporary</b>
+                            <span>Design Style</span>
+                        </div>
+                        <div>
+                            <b>₹18L</b>
+                            <span>Project Value</span>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="btn btn--gold">Get a Quote Like This</a>
+                    <a href="wellington-vista.html" class="btn explore--btn--outline">View Full Case Study</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FEATURED CASE STUDY: ANUP ENTERPRISES ============ -->
+    <section class="case-study" id="anup-enterprises">
+        <div class="container">
+            <div class="case-study__row case-study__row--reverse reveal">
+                <div class="case-study__media">
+                    <img src="/images/officeInterior/ANUP02.png?auto=format&fit=crop&w=1200&q=80"
+                        alt="Anup Enterprises office interior case study">
+                    <div class="case-study__frame"><span class="case-study__corner case-study__corner--tl"></span><span
+                            class="case-study__corner case-study__corner--br"></span></div>
+                </div>
+                <div class="case-study__copy">
+                    <p class="case-study__num">Case Study - Office Interiors</p>
+                    <h2>Anup Enterprises, <em>a workspace with identity.</em></h2>
+                    <p>A growing team had outgrown a generic office fit-out. We planned workstations, private cabins
+                        and a conference room around how the team actually works, and built the brand's colours and
+                        materials into the space itself rather than treating them as an afterthought.</p>
+                    <div class="case-study__stats">
+                        <div>
+                            <b>3,200</b>
+                            <span>Sq.Ft Area</span>
+                        </div>
+                        <div>
+                            <b>45</b>
+                            <span>Days to Deliver</span>
+                        </div>
+                        <div>
+                            <b>Minimal</b>
+                            <span>Design Style</span>
+                        </div>
+                        <div>
+                            <b>₹32L</b>
+                            <span>Project Value</span>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="btn btn--gold">Get a Quote Like This</a>
+                    <a href="anup-enterprises.html" class="btn explore--btn--outline">View Full Case Study</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ CLIENT QUOTE ============ -->
+    <section class="section section--tight" style="padding-top:0;">
+        <div class="container">
+            <div class="project__quote reveal">
+                <blockquote>"They didn't just design our kitchen, they redesigned how we cook. Every drawer has a
+                    purpose now."
+                    <span>— Client, Baner Residence, Modular Kitchen Project</span>
+                </blockquote>
+                <a href="contact.html" class="btn btn--outline"
+                    style="color:var(--white);border-color:rgba(255,255,255,.4);">Start Your Project</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ TRUST STRIP ============ -->
+    <section class="section section--tight trust-strip">
+        <div class="container">
+            <div class="section-head section-head--center reveal">
+                <p class="eyebrow">Why It Works</p>
+                <h2>Every project, <em style="color:var(--gold);font-style:italic;">the same standard.</em></h2>
+            </div>
+            <div class="trust-strip__row reveal">
+                <span class="trust-badge"><svg viewBox="0 0 24 24" width="16" height="16">
+                        <path fill="currentColor"
+                            d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3zm0 2.2 6 2.2v4.6c0 3.9-2.5 7.4-6 8.8-3.5-1.4-6-4.9-6-8.8V6.4l6-2.2z" />
+                    </svg>Up-to 10 Year's Warranty</span>
+                <span class="trust-badge"><svg viewBox="0 0 24 24" width="16" height="16">
+                        <path fill="currentColor"
+                            d="M12 1a4 4 0 0 1 4 4v3h1a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2h1V5a4 4 0 0 1 4-4zm0 2a2 2 0 0 0-2 2v3h4V5a2 2 0 0 0-2-2z" />
+                    </svg>No Hidden Costs</span>
+                <span class="trust-badge"><svg viewBox="0 0 24 24" width="16" height="16">
+                        <path fill="currentColor"
+                            d="M12 2 2 7v2h20V7l-10-5zM4 11v8H2v2h20v-2h-2v-8h-2v8h-3v-8h-2v8h-2v-8H9v8H6v-8H4z" />
+                    </svg>Post-Installation Services</span>
+                <span class="trust-badge"><svg viewBox="0 0 24 24" width="16" height="16">
+                        <path fill="currentColor"
+                            d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z" />
+                    </svg>On-Time Delivery</span>
+                <span class="trust-badge"><svg viewBox="0 0 24 24" width="16" height="16">
+                        <path fill="currentColor"
+                            d="m12 2 2.4 6.6L21 10l-5 4.4L17.4 21 12 17.3 6.6 21 8 14.4 3 10l6.6-1.4L12 2z" />
+                    </svg>Super Quality Products</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ CTA / CONTACT (shared .cta-band + #ctaForm handled by script.js) ============ -->
+    <section class="section cta-band" id="contact">
+        <div class="container cta-band__inner">
+            <div class="reveal">
+                <p class="eyebrow">Start Your Project</p>
+                <h2>Want a project page <em>like these?</em></h2>
+                <p>Tell us about your space and we'll walk you through a similar breakdown - area, timeline and a
+                    real cost estimate.</p>
+                <p style="margin-top:30px;"><a href="tel:+917838653501" class="btn btn--outline">+91 78386 53501</a>
+                </p>
+            </div>
+            <form class="cta-form reveal" id="ctaForm">
+                <input type="text" placeholder="Full name" required aria-label="Full name">
+                <input type="tel" placeholder="Phone number" required aria-label="Phone number">
+                <input type="text" placeholder="Which project type? (Kitchen, Full Home, Office, Renovation)"
+                    aria-label="Project type">
+                <button type="submit" class="btn btn--gold">Request a Call</button>
+                <p class="cta-form__note">We usually call back within a few hours.</p>
+            </form>
+        </div>
+    </section>
+
+    <div data-include="fragments/footer.html"></div>
+    <div data-include="fragments/chat-widget.html"></div>
+
+    <script src="js/script.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterBtns = document.querySelectorAll('.project-filter__btn');
+            const cards = document.querySelectorAll('#portfolioGrid .portfolio-card');
+            if (!filterBtns.length || !cards.length) return;
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('is-active'));
+                    btn.classList.add('is-active');
+                    const filter = btn.dataset.filter;
+
+                    cards.forEach(card => {
+                        const match = filter === 'all' || card.dataset.category === filter;
+                        card.classList.toggle('is-hidden', !match);
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

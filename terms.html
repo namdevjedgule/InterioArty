@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms &amp; Conditions - InterioArty</title>
+    <link rel="icon" type="image/x-icon" href="/favicon_io/favicon.ico" />
+    <meta name="description"
+        content="The terms and conditions that apply when you engage InterioArty for modular kitchen, home, office interior or renovation projects.">
+    <meta name="robots" content="noindex, follow">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* ---------- Page header (compact variant, shared pattern) ---------- */
+        .page-header {
+            position: relative;
+            min-height: clamp(260px, 34vh, 380px);
+            display: flex;
+            align-items: flex-end;
+            overflow: hidden;
+            padding-top: var(--nav-h);
+            background: var(--emerald-deep);
+        }
+
+        .page-header__scrim-solid {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(rgba(219, 181, 106, .08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(219, 181, 106, .08) 1px, transparent 1px);
+            background-size: 42px 42px;
+            mask-image: radial-gradient(ellipse at 30% 40%, black 10%, transparent 70%);
+        }
+
+        .page-header__content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding: 0 32px clamp(28px, 5vh, 48px);
+            max-width: var(--container);
+            margin: 0 auto;
+            color: var(--white);
+        }
+
+        .page-header__content h1 {
+            font-size: clamp(30px, 4vw, 44px);
+            color: var(--white);
+            margin: 14px 0 10px;
+        }
+
+        .page-header__content p.sub {
+            color: rgba(255, 255, 255, .65);
+            font-size: 13.5px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .6);
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+
+        .breadcrumb .sep {
+            opacity: .5;
+        }
+
+        .breadcrumb .current {
+            color: var(--gold-light);
+        }
+
+        /* ---------- Legal layout: sticky TOC + content ---------- */
+        .legal-layout {
+            display: grid;
+            grid-template-columns: 0.8fr 2.2fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .legal-toc {
+            position: sticky;
+            top: calc(var(--nav-h) + 24px);
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-lg);
+            padding: 26px 24px;
+        }
+
+        .legal-toc h3 {
+            font-size: 12px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 18px;
+        }
+
+        .legal-toc ul {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .legal-toc a {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            transition: color .25s;
+        }
+
+        .legal-toc a:hover,
+        .legal-toc a.is-active {
+            color: var(--emerald);
+        }
+
+        .legal-content h2 {
+            font-size: clamp(20px, 2.4vw, 26px);
+            margin-bottom: 16px;
+            padding-top: 6px;
+            scroll-margin-top: calc(var(--nav-h) + 20px);
+        }
+
+        .legal-content section {
+            padding-bottom: 40px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .legal-content section:last-child {
+            border-bottom: none;
+        }
+
+        .legal-content p {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-bottom: 16px;
+            max-width: 68ch;
+        }
+
+        .legal-content ul.legal-list {
+            margin: 0 0 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .legal-content ul.legal-list li {
+            position: relative;
+            padding-left: 22px;
+            color: var(--text-muted);
+            font-size: 15px;
+            max-width: 66ch;
+        }
+
+        .legal-content ul.legal-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 8px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        .legal-content strong {
+            color: var(--espresso);
+        }
+
+        .legal-meta {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 12.5px;
+            color: var(--text-muted);
+            margin-bottom: 44px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .legal-meta b {
+            color: var(--espresso);
+        }
+
+        .legal-contact-box {
+            background: var(--sand);
+            border-radius: var(--radius-lg);
+            padding: 28px 30px;
+        }
+
+        .legal-contact-box p {
+            margin-bottom: 8px;
+        }
+
+        .legal-contact-box a {
+            color: var(--emerald);
+            font-weight: 600;
+        }
+
+        .legal-contact-box a:hover {
+            color: var(--gold);
+        }
+
+        @media (max-width: 899px) {
+            .legal-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .legal-toc {
+                position: static;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .page-header {
+                min-height: 260px;
+            }
+        }
+    </style>
+</head>
+
+<body data-page="terms">
+
+    <div data-include="fragments/navbar.html"></div>
+
+    <!-- ============ PAGE HEADER ============ -->
+    <section class="page-header">
+        <div class="page-header__scrim-solid"></div>
+        <div class="page-header__content">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a><span class="sep">/</span><span class="current">Terms &amp;
+                    Conditions</span>
+            </div>
+            <p class="eyebrow" style="margin-top:18px;">Legal</p>
+            <h1>Terms &amp; <em style="color:var(--gold);font-style:italic;">Conditions.</em></h1>
+            <p class="sub">The agreement between you and InterioArty for any project we undertake together.</p>
+        </div>
+    </section>
+
+    <!-- ============ LEGAL CONTENT ============ -->
+    <section class="section">
+        <div class="container">
+
+            <div class="legal-meta">
+                <span><b>Last updated:</b> September 5, 2026</span>
+                <span><b>Applies to:</b> interioarty.com and all InterioArty project engagements</span>
+            </div>
+
+            <div class="legal-layout">
+
+                <nav class="legal-toc" aria-label="Table of contents">
+                    <h3>On This Page</h3>
+                    <ul>
+                        <li><a href="#introduction">1. Introduction</a></li>
+                        <li><a href="#services">2. Our Services</a></li>
+                        <li><a href="#quotes">3. Quotes &amp; Estimates</a></li>
+                        <li><a href="#payment">4. Payment Terms</a></li>
+                        <li><a href="#timeline">5. Project Timeline</a></li>
+                        <li><a href="#client-responsibilities">6. Client Responsibilities</a></li>
+                        <li><a href="#changes-scope">7. Changes to Scope</a></li>
+                        <li><a href="#warranty">8. Warranty</a></li>
+                        <li><a href="#cancellation">9. Cancellation &amp; Refunds</a></li>
+                        <li><a href="#intellectual-property">10. Intellectual Property</a></li>
+                        <li><a href="#liability">11. Limitation of Liability</a></li>
+                        <li><a href="#website-use">12. Website Use</a></li>
+                        <li><a href="#dispute">13. Dispute Resolution</a></li>
+                        <li><a href="#governing-law">14. Governing Law</a></li>
+                        <li><a href="#changes-terms">15. Changes to These Terms</a></li>
+                        <li><a href="#contact">16. Contact Us</a></li>
+                    </ul>
+                </nav>
+
+                <div class="legal-content">
+
+                    <section id="introduction">
+                        <h2>1. Introduction</h2>
+                        <p>These Terms &amp; Conditions ("Terms") govern your use of the InterioArty website and any
+                            interior design, modular kitchen, office fit-out, or renovation services ("Services")
+                            provided by InterioArty ("we", "us", "our"). By enquiring about, booking, or engaging our
+                            Services, you ("Client") agree to be bound by these Terms.</p>
+                        <p>Where a separate signed project agreement or work order exists for your specific project,
+                            the terms of that document will take precedence over this page in the event of a
+                            conflict.</p>
+                    </section>
+
+                    <section id="services">
+                        <h2>2. Our Services</h2>
+                        <p>InterioArty provides design and execution services across four categories: modular
+                            kitchens, full home interiors, office interiors, and home/office renovation. The exact
+                            scope of work for your project - including materials, finishes, fixtures, and areas
+                            covered - will be defined in your project quote or agreement, not on this website.</p>
+                        <p>Images and descriptions on our website (including the Our Projects portfolio) are
+                            representative of past work and are provided for illustration only; they do not
+                            constitute a guarantee of identical outcomes for future projects.</p>
+                    </section>
+
+                    <section id="quotes">
+                        <h2>3. Quotes &amp; Estimates</h2>
+                        <p>Quotes provided through our website, over the phone, or during an initial consultation are
+                            estimates based on the information available at that time and are subject to change
+                            following a detailed site visit and finalised design. A quote is only binding once
+                            confirmed in writing and accepted by both parties.</p>
+                        <ul class="legal-list">
+                            <li>Estimates may vary based on site conditions discovered after measurement.</li>
+                            <li>Material, hardware, or fixture substitutions may affect the final price.</li>
+                            <li>Government taxes and levies applicable at the time of billing will apply.</li>
+                        </ul>
+                    </section>
+
+                    <section id="payment">
+                        <h2>4. Payment Terms</h2>
+                        <p>Unless otherwise agreed in writing, projects follow a milestone-based payment schedule
+                            (for example: booking advance, design confirmation, material procurement, and
+                            handover). Specific milestone amounts and due dates will be outlined in your project
+                            agreement.</p>
+                        <p>Work may be paused if a payment milestone is not met within the agreed timeframe, and
+                            delivery timelines will be adjusted accordingly.</p>
+                    </section>
+
+                    <section id="timeline">
+                        <h2>5. Project Timeline</h2>
+                        <p>Estimated project durations (as referenced on our website and in quotes) are typical
+                            timelines under normal working conditions. Actual timelines may be affected by factors
+                            outside our control, including but not limited to material availability, site access
+                            restrictions, third-party approvals, weather, or client-requested changes.</p>
+                    </section>
+
+                    <section id="client-responsibilities">
+                        <h2>6. Client Responsibilities</h2>
+                        <p>To help us deliver your project on schedule, the Client agrees to:</p>
+                        <ul class="legal-list">
+                            <li>Provide timely access to the site during agreed working hours.</li>
+                            <li>Respond to design approvals, material selections, and queries within a reasonable
+                                time.</li>
+                            <li>Ensure electricity, water, and other utilities are available on-site where required
+                                for installation.</li>
+                            <li>Settle payment milestones as per the agreed schedule.</li>
+                        </ul>
+                    </section>
+
+                    <section id="changes-scope">
+                        <h2>7. Changes to Scope</h2>
+                        <p>Any changes requested after design finalisation - including layout changes, material
+                            upgrades, or additional work - will be treated as a change order. Change orders may
+                            affect the project cost and timeline and will be confirmed with the Client in writing
+                            before proceeding.</p>
+                    </section>
+
+                    <section id="warranty">
+                        <h2>8. Warranty</h2>
+                        <p>InterioArty offers a warranty of up to 10 years on select modular products and
+                            workmanship, as specified in your project agreement. This warranty covers manufacturing
+                            and installation defects under normal use and does not cover damage caused by misuse,
+                            unauthorised repairs, natural wear and tear, or force majeure events.</p>
+                    </section>
+
+                    <section id="cancellation">
+                        <h2>9. Cancellation &amp; Refunds</h2>
+                        <p>Cancellation requests must be submitted in writing. Any amount already spent on design
+                            work, custom-ordered materials, or fabrication that has commenced at the time of
+                            cancellation is non-refundable. Refunds for undelivered, unstarted portions of work, if
+                            applicable, will be assessed on a case-by-case basis and processed within a reasonable
+                            period.</p>
+                    </section>
+
+                    <section id="intellectual-property">
+                        <h2>10. Intellectual Property</h2>
+                        <p>All design concepts, drawings, 3D renders, and VR walkthroughs created by InterioArty
+                            remain our intellectual property until the project is fully paid for and handed over.
+                            Clients may not reproduce, resell, or share design files with third parties (including
+                            other contractors) without our written consent.</p>
+                        <p>Photographs of completed projects may be used by InterioArty for marketing and portfolio
+                            purposes unless the Client requests otherwise in writing prior to project handover.</p>
+                    </section>
+
+                    <section id="liability">
+                        <h2>11. Limitation of Liability</h2>
+                        <p>To the fullest extent permitted by law, InterioArty's liability for any claim arising from
+                            a project is limited to the value of the services provided for that specific project. We
+                            are not liable for indirect, incidental, or consequential damages, including loss of use
+                            or delays caused by factors outside our reasonable control.</p>
+                    </section>
+
+                    <section id="website-use">
+                        <h2>12. Website Use</h2>
+                        <p>You agree to use interioarty.com only for lawful purposes. You may not attempt to copy,
+                            scrape, or reproduce substantial portions of our website content, images, or portfolio
+                            without permission, or use the site in any way that could damage, disable, or impair its
+                            functioning.</p>
+                    </section>
+
+                    <section id="dispute">
+                        <h2>13. Dispute Resolution</h2>
+                        <p>In the event of a dispute, both parties agree to first attempt to resolve the matter
+                            through good-faith discussion. If a resolution cannot be reached, either party may pursue
+                            the matter through the appropriate legal channels as outlined in Section 14.</p>
+                    </section>
+
+                    <section id="governing-law">
+                        <h2>14. Governing Law</h2>
+                        <p>These Terms are governed by the laws of India, and any disputes arising from them will be
+                            subject to the exclusive jurisdiction of the courts in Pune, Maharashtra.</p>
+                    </section>
+
+                    <section id="changes-terms">
+                        <h2>15. Changes to These Terms</h2>
+                        <p>We may revise these Terms from time to time to reflect changes in our services, business
+                            practices, or legal requirements. The "Last updated" date at the top of this page
+                            indicates when it was last revised. Continued use of our website or services after
+                            changes are posted constitutes acceptance of the revised Terms.</p>
+                    </section>
+
+                    <section id="contact" style="border-bottom:none;">
+                        <h2>16. Contact Us</h2>
+                        <p>If you have questions about these Terms &amp; Conditions, reach out to us:</p>
+                        <div class="legal-contact-box">
+                            <p><strong>InterioArty</strong></p>
+                            <p>Phone: <a href="tel:+917838653501">+91 78386 53501</a></p>
+                            <p>Or use our <a href="contact.html">Contact page</a> to send us a message directly.</p>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div data-include="fragments/footer.html"></div>
+    <div data-include="fragments/chat-widget.html"></div>
+
+    <script src="js/script.js" defer></script>
+</body>
+
+</html>

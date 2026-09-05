@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - InterioArty</title>
+    <link rel="icon" type="image/x-icon" href="/favicon_io/favicon.ico" />
+    <meta name="description"
+        content="How InterioArty collects, uses and protects your personal information when you use our website or enquire about our interior design services.">
+    <meta name="robots" content="noindex, follow">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* ---------- Page header (compact variant, shared pattern) ---------- */
+        .page-header {
+            position: relative;
+            min-height: clamp(260px, 34vh, 380px);
+            display: flex;
+            align-items: flex-end;
+            overflow: hidden;
+            padding-top: var(--nav-h);
+            background: var(--emerald-deep);
+        }
+
+        .page-header__scrim-solid {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(rgba(219, 181, 106, .08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(219, 181, 106, .08) 1px, transparent 1px);
+            background-size: 42px 42px;
+            mask-image: radial-gradient(ellipse at 30% 40%, black 10%, transparent 70%);
+        }
+
+        .page-header__content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding: 0 32px clamp(28px, 5vh, 48px);
+            max-width: var(--container);
+            margin: 0 auto;
+            color: var(--white);
+        }
+
+        .page-header__content h1 {
+            font-size: clamp(30px, 4vw, 44px);
+            color: var(--white);
+            margin: 14px 0 10px;
+        }
+
+        .page-header__content p.sub {
+            color: rgba(255, 255, 255, .65);
+            font-size: 13.5px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .6);
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+
+        .breadcrumb .sep {
+            opacity: .5;
+        }
+
+        .breadcrumb .current {
+            color: var(--gold-light);
+        }
+
+        /* ---------- Legal layout: sticky TOC + content ---------- */
+        .legal-layout {
+            display: grid;
+            grid-template-columns: 0.8fr 2.2fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .legal-toc {
+            position: sticky;
+            top: calc(var(--nav-h) + 24px);
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-lg);
+            padding: 26px 24px;
+        }
+
+        .legal-toc h3 {
+            font-size: 12px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 18px;
+        }
+
+        .legal-toc ul {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .legal-toc a {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            transition: color .25s;
+        }
+
+        .legal-toc a:hover,
+        .legal-toc a.is-active {
+            color: var(--emerald);
+        }
+
+        .legal-content h2 {
+            font-size: clamp(20px, 2.4vw, 26px);
+            margin-bottom: 16px;
+            padding-top: 6px;
+            scroll-margin-top: calc(var(--nav-h) + 20px);
+        }
+
+        .legal-content section {
+            padding-bottom: 40px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .legal-content section:last-child {
+            border-bottom: none;
+        }
+
+        .legal-content p {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-bottom: 16px;
+            max-width: 68ch;
+        }
+
+        .legal-content ul.legal-list {
+            margin: 0 0 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .legal-content ul.legal-list li {
+            position: relative;
+            padding-left: 22px;
+            color: var(--text-muted);
+            font-size: 15px;
+            max-width: 66ch;
+        }
+
+        .legal-content ul.legal-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 8px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        .legal-content strong {
+            color: var(--espresso);
+        }
+
+        .legal-meta {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 12.5px;
+            color: var(--text-muted);
+            margin-bottom: 44px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .legal-meta b {
+            color: var(--espresso);
+        }
+
+        .legal-contact-box {
+            background: var(--sand);
+            border-radius: var(--radius-lg);
+            padding: 28px 30px;
+        }
+
+        .legal-contact-box p {
+            margin-bottom: 8px;
+        }
+
+        .legal-contact-box a {
+            color: var(--emerald);
+            font-weight: 600;
+        }
+
+        .legal-contact-box a:hover {
+            color: var(--gold);
+        }
+
+        @media (max-width: 899px) {
+            .legal-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .legal-toc {
+                position: static;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .page-header {
+                min-height: 260px;
+            }
+        }
+    </style>
+</head>
+
+<body data-page="privacy">
+
+    <div data-include="fragments/navbar.html"></div>
+
+    <!-- ============ PAGE HEADER ============ -->
+    <section class="page-header">
+        <div class="page-header__scrim-solid"></div>
+        <div class="page-header__content">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a><span class="sep">/</span><span class="current">Privacy Policy</span>
+            </div>
+            <p class="eyebrow" style="margin-top:18px;">Legal</p>
+            <h1>Privacy <em style="color:var(--gold);font-style:italic;">Policy.</em></h1>
+            <p class="sub">How we collect, use and protect your information.</p>
+        </div>
+    </section>
+
+    <!-- ============ LEGAL CONTENT ============ -->
+    <section class="section">
+        <div class="container">
+
+            <div class="legal-meta">
+                <span><b>Last updated:</b> September 5, 2026</span>
+                <span><b>Applies to:</b> interioarty.com and all InterioArty enquiry channels</span>
+            </div>
+
+            <div class="legal-layout">
+
+                <nav class="legal-toc" aria-label="Table of contents">
+                    <h3>On This Page</h3>
+                    <ul>
+                        <li><a href="#introduction">1. Introduction</a></li>
+                        <li><a href="#information-we-collect">2. Information We Collect</a></li>
+                        <li><a href="#how-we-use-it">3. How We Use Your Information</a></li>
+                        <li><a href="#cookies">4. Cookies &amp; Tracking</a></li>
+                        <li><a href="#sharing">5. How We Share Information</a></li>
+                        <li><a href="#security">6. Data Security</a></li>
+                        <li><a href="#retention">7. Data Retention</a></li>
+                        <li><a href="#your-rights">8. Your Rights &amp; Choices</a></li>
+                        <li><a href="#childrens-privacy">9. Children's Privacy</a></li>
+                        <li><a href="#changes">10. Changes to This Policy</a></li>
+                        <li><a href="#contact">11. Contact Us</a></li>
+                    </ul>
+                </nav>
+
+                <div class="legal-content">
+
+                    <section id="introduction">
+                        <h2>1. Introduction</h2>
+                        <p>InterioArty ("we", "us", "our") designs and delivers modular kitchens, full home
+                            interiors, office interiors and renovation projects across Pune. This Privacy Policy
+                            explains what information we collect when you visit our website or enquire about our
+                            services, how we use it, and the choices you have.</p>
+                        <p>By using our website or submitting an enquiry form, you agree to the collection and use of
+                            information in line with this policy.</p>
+                    </section>
+
+                    <section id="information-we-collect">
+                        <h2>2. Information We Collect</h2>
+                        <p>We collect information in the following ways:</p>
+                        <ul class="legal-list">
+                            <li><strong>Information you provide directly</strong> - your name, phone number, email
+                                address, project type, and any details you share through our enquiry forms, chat
+                                widget, or phone calls.</li>
+                            <li><strong>Information collected automatically</strong> - your IP address, browser type,
+                                device information, pages visited, and how you interact with our site, collected via
+                                cookies and similar technologies.</li>
+                            <li><strong>Information from third parties</strong> - if you reach us through a partner
+                                platform, referral, or advertising channel, we may receive limited information about
+                                that referral source.</li>
+                        </ul>
+                    </section>
+
+                    <section id="how-we-use-it">
+                        <h2>3. How We Use Your Information</h2>
+                        <p>We use the information we collect to:</p>
+                        <ul class="legal-list">
+                            <li>Respond to your enquiries and schedule consultations or site visits.</li>
+                            <li>Prepare quotes, design proposals, and project timelines.</li>
+                            <li>Improve our website, services, and customer experience.</li>
+                            <li>Send you project updates, offers, or newsletters (only if you've opted in).</li>
+                            <li>Comply with legal obligations and protect against fraud or misuse.</li>
+                        </ul>
+                        <p>We do not sell your personal information to third parties.</p>
+                    </section>
+
+                    <section id="cookies">
+                        <h2>4. Cookies &amp; Tracking</h2>
+                        <p>Our website uses cookies and similar technologies to remember your preferences, understand
+                            site traffic, and improve performance. You can disable cookies through your browser
+                            settings, though some parts of the site (like the enquiry form) may not work as intended
+                            without them.</p>
+                    </section>
+
+                    <section id="sharing">
+                        <h2>5. How We Share Information</h2>
+                        <p>We may share your information with:</p>
+                        <ul class="legal-list">
+                            <li><strong>Our internal design and execution teams</strong>, so they can plan and deliver
+                                your project.</li>
+                            <li><strong>Trusted vendors and contractors</strong> involved in fabrication, installation,
+                                or logistics for your project.</li>
+                            <li><strong>Service providers</strong> who help us operate our website, send
+                                communications, or process payments, under confidentiality obligations.</li>
+                            <li><strong>Legal or regulatory authorities</strong>, if required by law.</li>
+                        </ul>
+                    </section>
+
+                    <section id="security">
+                        <h2>6. Data Security</h2>
+                        <p>We use reasonable administrative, technical, and physical safeguards to protect your
+                            information from unauthorised access, disclosure, alteration, or destruction. No method of
+                            transmission or storage is completely secure, so we cannot guarantee absolute security.</p>
+                    </section>
+
+                    <section id="retention">
+                        <h2>7. Data Retention</h2>
+                        <p>We retain your information for as long as necessary to fulfil the purposes described in
+                            this policy - including ongoing project support and warranty obligations - unless a
+                            longer retention period is required by law.</p>
+                    </section>
+
+                    <section id="your-rights">
+                        <h2>8. Your Rights &amp; Choices</h2>
+                        <p>Depending on applicable law, you may have the right to:</p>
+                        <ul class="legal-list">
+                            <li>Request access to the personal information we hold about you.</li>
+                            <li>Request correction of inaccurate or incomplete information.</li>
+                            <li>Request deletion of your information, subject to legal or contractual limits.</li>
+                            <li>Opt out of marketing communications at any time.</li>
+                        </ul>
+                        <p>To exercise any of these rights, contact us using the details in Section 11.</p>
+                    </section>
+
+                    <section id="childrens-privacy">
+                        <h2>9. Children's Privacy</h2>
+                        <p>Our website and services are intended for adults seeking interior design and renovation
+                            services. We do not knowingly collect personal information from children under 18.</p>
+                    </section>
+
+                    <section id="changes">
+                        <h2>10. Changes to This Policy</h2>
+                        <p>We may update this Privacy Policy from time to time to reflect changes in our practices or
+                            for legal, operational, or regulatory reasons. The "Last updated" date at the top of this
+                            page indicates when it was last revised.</p>
+                    </section>
+
+                    <section id="contact" style="border-bottom:none;">
+                        <h2>11. Contact Us</h2>
+                        <p>If you have any questions about this Privacy Policy or how we handle your information,
+                            reach out to us:</p>
+                        <div class="legal-contact-box">
+                            <p><strong>InterioArty</strong></p>
+                            <p>Phone: <a href="tel:+917838653501">+91 78386 53501</a></p>
+                            <p>Or use our <a href="contact.html">Contact page</a> to send us a message directly.</p>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div data-include="fragments/footer.html"></div>
+    <div data-include="fragments/chat-widget.html"></div>
+
+    <script src="js/script.js" defer></script>
+</body>
+
+</html>

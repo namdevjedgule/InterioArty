@@ -1,0 +1,368 @@
+/* =========================================================
+   InterioArty - Project Detail Page styles
+   Shared by every individual project page (e.g. wellington-vista.html).
+   Load AFTER css/style.css.
+   ========================================================= */
+
+/* ---------- Page header (shared pattern, same as services.html / our-projects.html) ---------- */
+.page-header {
+    position: relative;
+    min-height: clamp(360px, 46vh, 520px);
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    padding-top: var(--nav-h);
+    background: var(--emerald-deep);
+}
+
+.page-header__media {
+    position: absolute;
+    inset: 0;
+}
+
+.page-header__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.05);
+}
+
+.page-header__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+            rgba(var(--emerald-deep-rgb), .5) 0%,
+            rgba(var(--emerald-deep-rgb), .3) 40%,
+            rgba(var(--emerald-deep-rgb), .92) 100%);
+}
+
+.page-header__content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 0 32px clamp(32px, 6vh, 56px);
+    max-width: var(--container);
+    margin: 0 auto;
+    color: var(--white);
+}
+
+.page-header__content h1 {
+    font-size: clamp(30px, 4.4vw, 48px);
+    color: var(--white);
+    margin: 14px 0 12px;
+    max-width: 24ch;
+}
+
+.page-header__content p.sub {
+    color: rgba(255, 255, 255, .75);
+    font-size: 15px;
+    max-width: 52ch;
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 12px;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, .6);
+}
+
+.breadcrumb a:hover {
+    color: var(--gold);
+}
+
+.breadcrumb .sep {
+    opacity: .5;
+}
+
+.breadcrumb .current {
+    color: var(--gold-light);
+}
+
+/* ---------- Main two-column layout ---------- */
+.pd-layout {
+    display: grid;
+    grid-template-columns: 1.6fr 0.9fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.pd-main p {
+    color: var(--text-muted);
+    font-size: 16px;
+    margin-bottom: 26px;
+    max-width: 62ch;
+}
+
+.pd-main h2 {
+    font-size: clamp(22px, 2.6vw, 30px);
+    margin-bottom: 20px;
+}
+
+.pd-main h2 em {
+    color: var(--gold);
+    font-style: italic;
+}
+
+/* Feature checklist */
+.pd-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 20px;
+    margin: 0 0 40px;
+}
+
+.pd-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text);
+}
+
+.pd-features svg {
+    flex-shrink: 0;
+    color: var(--gold);
+    margin-top: 3px;
+}
+
+/* Gallery grid */
+.pd-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-bottom: 10px;
+}
+
+.pd-gallery a {
+    display: block;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    aspect-ratio: 4/3.1;
+}
+
+.pd-gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .5s var(--ease);
+}
+
+.pd-gallery a:hover img {
+    transform: scale(1.06);
+}
+
+/* ---------- Sidebar quick-facts card ---------- */
+.pd-sidebar {
+    position: sticky;
+    top: calc(var(--nav-h) + 24px);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 32px 28px;
+}
+
+.pd-sidebar h3 {
+    font-size: 13px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 22px;
+}
+
+.pd-facts {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 26px;
+}
+
+.pd-fact {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--line);
+}
+
+.pd-fact:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.pd-fact span {
+    font-size: 12px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.pd-fact b {
+    font-family: var(--font-display);
+    font-size: 17px;
+    color: var(--espresso);
+}
+
+.pd-sidebar .btn {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.pd-sidebar__phone {
+    display: block;
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+.pd-sidebar__phone:hover {
+    color: var(--gold);
+}
+
+/* ---------- Related projects (mirrors our-projects.html portfolio-card) ---------- */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+.portfolio-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+}
+
+.portfolio-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 50px rgba(43, 33, 24, .12);
+}
+
+.portfolio-card__img {
+    position: relative;
+    aspect-ratio: 4/3.1;
+    overflow: hidden;
+}
+
+.portfolio-card__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .6s var(--ease);
+}
+
+.portfolio-card:hover .portfolio-card__img img {
+    transform: scale(1.06);
+}
+
+.portfolio-card__tag {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: rgba(var(--emerald-deep-rgb), .85);
+    backdrop-filter: blur(6px);
+    color: var(--gold-light);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    border-radius: 999px;
+}
+
+.portfolio-card__body {
+    padding: 24px 24px 26px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.portfolio-card__loc {
+    font-size: 12px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+}
+
+.portfolio-card__body h3 {
+    font-size: 19px;
+    margin-bottom: 16px;
+}
+
+.portfolio-card__cta {
+    margin-top: auto;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: var(--emerald);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.portfolio-card:hover .portfolio-card__cta {
+    color: var(--gold);
+}
+
+.portfolio-card__cta svg {
+    transition: transform .3s var(--ease);
+}
+
+.portfolio-card:hover .portfolio-card__cta svg {
+    transform: translateX(4px);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+    .pd-layout {
+        gap: 44px;
+    }
+}
+
+@media (max-width: 899px) {
+    .page-header {
+        padding-top: 84px;
+    }
+
+    .pd-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .pd-sidebar {
+        position: static;
+        order: -1;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .page-header {
+        min-height: 380px;
+        padding-top: 76px;
+    }
+
+    .pd-features {
+        grid-template-columns: 1fr;
+    }
+
+    .pd-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+}
