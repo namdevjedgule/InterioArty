@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonials - InterioArty | What Our Clients Say</title>
+    <link rel="icon" type="image/x-icon" href="/favicon_io/favicon.ico" />
+    <meta name="description"
+        content="Hear directly from InterioArty clients across Pune - video stories and written reviews from real homeowners.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .page-header {
+            position: relative;
+            min-height: clamp(320px, 40vh, 440px);
+            display: flex;
+            align-items: flex-end;
+            overflow: hidden;
+            padding-top: var(--nav-h);
+            background: var(--emerald-deep);
+        }
+
+        .page-header__media { position: absolute; inset: 0; }
+
+        .page-header__media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.05);
+        }
+
+        .page-header__scrim {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,
+                    rgba(var(--emerald-deep-rgb), .5) 0%,
+                    rgba(var(--emerald-deep-rgb), .3) 40%,
+                    rgba(var(--emerald-deep-rgb), .92) 100%);
+        }
+
+        .page-header__content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding: 0 32px clamp(32px, 6vh, 56px);
+            max-width: var(--container);
+            margin: 0 auto;
+            color: var(--white);
+        }
+
+        .page-header__content h1 {
+            font-size: clamp(32px, 5vw, 50px);
+            color: var(--white);
+            margin: 14px 0 16px;
+            max-width: 20ch;
+        }
+
+        .page-header__content h1 em { color: var(--gold); font-style: italic; }
+
+        .page-header__content p.sub {
+            color: rgba(255, 255, 255, .75);
+            font-size: 16px;
+            max-width: 54ch;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .6);
+        }
+
+        .breadcrumb a:hover { color: var(--gold); }
+        .breadcrumb .sep { opacity: .5; }
+        .breadcrumb .current { color: var(--gold-light); }
+
+        /* ---------- Trust strip ---------- */
+        .trust-strip {
+            background: var(--sand);
+            border-bottom: 1px solid var(--line);
+            padding: 26px 0;
+        }
+
+        .trust-strip__row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .trust-strip__item {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        .trust-strip__item strong {
+            font-family: var(--font-display);
+            font-size: 22px;
+            color: var(--espresso);
+        }
+
+        .trust-strip__stars { color: var(--gold); letter-spacing: 2px; font-size: 13px; }
+
+        /* ---------- Video testimonials ---------- */
+        .video-hero {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .video-hero__player {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            background: var(--emerald-deep);
+            box-shadow: 0 24px 60px rgba(43, 33, 24, .18);
+        }
+
+        .video-hero__player iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
+        }
+
+        .video-hero__side {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .video-hero__side h3 {
+            font-size: 21px;
+            margin-bottom: 4px;
+        }
+
+        .video-hero__side p {
+            color: var(--text-muted);
+            font-size: 14.5px;
+            margin-bottom: 8px;
+        }
+
+        .video-hero__cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--emerald);
+        }
+
+        .video-hero__cta i { color: #ff0000; font-size: 17px; }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 26px;
+        }
+
+        .video-card {
+            display: block;
+            border: none;
+            background: none;
+            text-align: left;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .video-card__thumb {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            background: var(--sand);
+        }
+
+        .video-card__thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .5s ease;
+        }
+
+        .video-card:hover .video-card__thumb img { transform: scale(1.06); }
+
+        .video-card__thumb::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(11, 43, 34, 0) 40%, rgba(11, 43, 34, .55) 100%);
+        }
+
+        .video-card__play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .92);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            transition: transform .25s ease, background .25s ease;
+        }
+
+        .video-card:hover .video-card__play {
+            transform: translate(-50%, -50%) scale(1.08);
+            background: var(--gold);
+        }
+
+        .video-card__play svg { width: 16px; height: 16px; color: var(--emerald-deep); margin-left: 2px; }
+
+        .video-card__duration {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            z-index: 2;
+            background: rgba(11, 43, 34, .75);
+            color: var(--white);
+            font-size: 11px;
+            padding: 2px 7px;
+            border-radius: 4px;
+        }
+
+        .video-card__meta { padding: 14px 2px 0; }
+
+        .video-card__meta h4 {
+            font-size: 15px;
+            color: var(--espresso);
+            margin-bottom: 4px;
+            line-height: 1.35;
+        }
+
+        .video-card__meta p {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .video-card__meta p i { color: #ff0000; }
+
+        /* ---------- Video lightbox ---------- */
+        .video-lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 999;
+            background: rgba(11, 43, 34, .92);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .video-lightbox.is-open { display: flex; }
+
+        .video-lightbox__inner {
+            position: relative;
+            width: 100%;
+            max-width: 960px;
+            aspect-ratio: 16/9;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, .5);
+        }
+
+        .video-lightbox__inner iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .video-lightbox__close {
+            position: absolute;
+            top: -46px;
+            right: 0;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, .3);
+            background: transparent;
+            color: var(--white);
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-lightbox__close:hover { background: var(--gold); border-color: var(--gold); color: var(--emerald-deep); }
+
+        /* ---------- Text testimonials ---------- */
+        .text-testimonials {
+            background: var(--sand);
+        }
+
+        .tt-grid {
+            columns: 3 320px;
+            column-gap: 26px;
+        }
+
+        .tt-card {
+            break-inside: avoid;
+            margin-bottom: 26px;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-lg);
+            padding: 32px 30px;
+        }
+
+        .tt-card__stars {
+            color: var(--gold);
+            font-size: 13px;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+
+        .tt-card__quote {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 15.5px;
+            line-height: 1.65;
+            color: var(--espresso);
+            margin-bottom: 22px;
+        }
+
+        .tt-card__person {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .tt-card__avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--emerald);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .tt-card__person h5 {
+            font-size: 14px;
+            color: var(--espresso);
+            margin-bottom: 2px;
+        }
+
+        .tt-card__person span {
+            font-size: 11.5px;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .tt-more {
+            text-align: center;
+            margin-top: 46px;
+        }
+
+        @media (max-width: 1024px) {
+            .video-hero { grid-template-columns: 1fr; }
+            .video-grid { grid-template-columns: repeat(2, 1fr); }
+            .tt-grid { columns: 2 280px; }
+        }
+
+        @media (max-width: 640px) {
+            .page-header { min-height: 340px; padding-top: 76px; }
+            .trust-strip__row { gap: 24px; }
+            .video-grid { grid-template-columns: 1fr; }
+            .tt-grid { columns: 1; }
+            .video-lightbox__close { top: -40px; }
+        }
+    </style>
+</head>
+
+<body data-page="testimonials">
+
+    <div data-include="fragments/navbar.html"></div>
+
+    <section class="page-header">
+        <div class="page-header__media">
+            <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=2000&q=80"
+                alt="InterioArty happy client interior">
+        </div>
+        <div class="page-header__scrim"></div>
+        <div class="page-header__content">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a><span class="sep">/</span><span class="current">Testimonials</span>
+            </div>
+            <p class="eyebrow" style="margin-top:18px;">Client Stories</p>
+            <h1>Real homes, <em>real stories.</em></h1>
+            <p class="sub">400+ families have trusted us with their spaces. Here's what they have to say - in their
+                own words and on camera.</p>
+        </div>
+    </section>
+
+    <section class="trust-strip">
+        <div class="container">
+            <div class="trust-strip__row">
+                <div class="trust-strip__item"><strong>400+</strong>&nbsp;Happy Clients</div>
+                <div class="trust-strip__item"><strong>4.8</strong>&nbsp;<span class="trust-strip__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+                <div class="trust-strip__item"><strong>300+</strong>&nbsp;Homes Delivered</div>
+                <div class="trust-strip__item"><strong>12+</strong>&nbsp;Years in Pune</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= VIDEO TESTIMONIALS ================= -->
+    <section class="section">
+        <div class="container">
+            <div class="section-head reveal">
+                <p class="eyebrow">Hear It From Them</p>
+                <h2>Video <em style="color:var(--gold);font-style:italic;">testimonials.</em></h2>
+            </div>
+
+            <div class="video-hero reveal">
+                <div class="video-hero__player">
+                    <iframe
+                        src="https://www.youtube.com/embed/videoseries?list=UUwJ64NhBjuWwHJV3ufGN-bw"
+                        title="InterioArty video testimonials"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+                <div class="video-hero__side">
+                    <p class="eyebrow" style="margin-bottom:10px;">Straight From Our Channel</p>
+                    <h3>Watch our clients tell it best.</h3>
+                    <p>From first consult to move-in day - real reactions, real homes, real families across Pune.
+                        This player streams directly from our official YouTube channel, so it's always up to date.</p>
+                    <a href="https://www.youtube.com/@interioarty" target="_blank" rel="noopener"
+                        class="video-hero__cta">
+                        <i class="fa-brands fa-youtube"></i> Subscribe on YouTube &nbsp;&rarr;
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section--tight" style="padding-top:0;">
+        <div class="container">
+            <!--
+                VIDEO GRID — replace data-yt with the real testimonial video IDs,
+                and each thumb image with https://img.youtube.com/vi/VIDEO_ID/hqdefault.jpg
+            -->
+            <div class="video-grid reveal">
+                <button class="video-card" data-yt="VIDEO_ID_1">
+                    <div class="video-card__thumb">
+                        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80"
+                            alt="2BHK renovation testimonial thumbnail">
+                        <span class="video-card__play">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+                        </span>
+                        <span class="video-card__duration">1:24</span>
+                    </div>
+                    <div class="video-card__meta">
+                        <h4>"They understood exactly what we wanted" - Kothrud 2BHK</h4>
+                        <p><i class="fa-brands fa-youtube"></i> InterioArty</p>
+                    </div>
+                </button>
+
+                <button class="video-card" data-yt="VIDEO_ID_2">
+                    <div class="video-card__thumb">
+                        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80"
+                            alt="Full home interior testimonial thumbnail">
+                        <span class="video-card__play">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+                        </span>
+                        <span class="video-card__duration">2:10</span>
+                    </div>
+                    <div class="video-card__meta">
+                        <h4>"On time, on budget, zero stress" - Baner 3BHK</h4>
+                        <p><i class="fa-brands fa-youtube"></i> InterioArty</p>
+                    </div>
+                </button>
+
+                <button class="video-card" data-yt="VIDEO_ID_3">
+                    <div class="video-card__thumb">
+                        <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=800&q=80"
+                            alt="Modular kitchen testimonial thumbnail">
+                        <span class="video-card__play">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+                        </span>
+                        <span class="video-card__duration">1:47</span>
+                    </div>
+                    <div class="video-card__meta">
+                        <h4>"The VR walkthrough sold us instantly" - Wakad Kitchen</h4>
+                        <p><i class="fa-brands fa-youtube"></i> InterioArty</p>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= TEXT TESTIMONIALS ================= -->
+    <section class="section text-testimonials">
+        <div class="container">
+            <div class="section-head section-head--center reveal">
+                <p class="eyebrow">In Their Words</p>
+                <h2>What clients <em style="color:var(--gold);font-style:italic;">are saying.</em></h2>
+            </div>
+
+            <!-- Sample placeholder reviews — replace with real client testimonials before publishing -->
+            <div class="tt-grid reveal">
+                <div class="tt-card">
+                    <div class="tt-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="tt-card__quote">"From the first meeting to the final handover, everything was
+                        transparent. No hidden costs, no surprises - exactly what they promised on paper is what we
+                        got in our home."</p>
+                    <div class="tt-card__person">
+                        <span class="tt-card__avatar">RP</span>
+                        <div>
+                            <h5>Riya &amp; Prashant Deshmukh</h5>
+                            <span>3BHK, Baner</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tt-card">
+                    <div class="tt-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="tt-card__quote">"The VR walkthrough was a game changer. We could actually see our
+                        kitchen before a single tile was laid, and change the colours right there in the meeting."</p>
+                    <div class="tt-card__person">
+                        <span class="tt-card__avatar">SK</span>
+                        <div>
+                            <h5>Sameer Kulkarni</h5>
+                            <span>Modular Kitchen, Wakad</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tt-card">
+                    <div class="tt-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="tt-card__quote">"We had one point of contact for the entire project - no chasing
+                        different vendors ourselves. It genuinely was a stress-free experience, delivered on
+                        schedule."</p>
+                    <div class="tt-card__person">
+                        <span class="tt-card__avatar">AN</span>
+                        <div>
+                            <h5>Anjali Nair</h5>
+                            <span>2BHK, Kothrud</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tt-card">
+                    <div class="tt-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="tt-card__quote">"Quality of materials was noticeably better than the previous
+                        contractor we'd worked with. Everything feels solid, not like it'll need redoing in two
+                        years."</p>
+                    <div class="tt-card__person">
+                        <span class="tt-card__avatar">VJ</span>
+                        <div>
+                            <h5>Vikram Joshi</h5>
+                            <span>Full Home, Hinjewadi</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tt-card">
+                    <div class="tt-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="tt-card__quote">"They stayed on call for weeks after handover to fix a couple of minor
+                        snags. That post-installation support is rare to find these days."</p>
+                    <div class="tt-card__person">
+                        <span class="tt-card__avatar">MP</span>
+                        <div>
+                            <h5>Meera Patil</h5>
+                            <span>Makeover, Aundh</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tt-card">
+                    <div class="tt-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="tt-card__quote">"Our designer really listened - the final space feels like us, not a
+                        showroom catalogue copy-pasted into our flat."</p>
+                    <div class="tt-card__person">
+                        <span class="tt-card__avatar">TS</span>
+                        <div>
+                            <h5>Tanvi Shah</h5>
+                            <span>1BHK, Viman Nagar</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tt-more reveal">
+                <a href="contact.html" class="btn btn--gold">Start Your Own Story</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="section cta-band" id="contact">
+        <div class="container cta-band__inner">
+            <div class="reveal">
+                <p class="eyebrow">Let's Talk</p>
+                <h2>Ready to start <em>your story?</em></h2>
+                <p>Tell us about your space and budget - our design team usually calls back within a few hours.</p>
+                <p style="margin-top:30px;"><a href="tel:+917838653501" class="btn btn--outline">+91 78386 53501</a></p>
+            </div>
+            <form class="cta-form reveal" id="ctaForm">
+                <input type="text" placeholder="Full name" required aria-label="Full name">
+                <input type="tel" placeholder="Phone number" required aria-label="Phone number">
+                <input type="text" placeholder="What are you looking to design? (e.g. 2BHK, kitchen)"
+                    aria-label="Project type">
+                <button type="submit" class="btn btn--gold">Request a Call</button>
+                <p class="cta-form__note">We usually call back within a few hours.</p>
+            </form>
+        </div>
+    </section>
+
+    <!-- Video lightbox -->
+    <div class="video-lightbox" id="videoLightbox">
+        <div class="video-lightbox__inner">
+            <button class="video-lightbox__close" id="videoLightboxClose">&#10005;</button>
+            <iframe id="videoLightboxFrame" src="" title="Testimonial video" loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div data-include="fragments/footer.html"></div>
+    <div data-include="fragments/chat-widget.html"></div>
+
+    <script src="js/script.js" defer></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const lightbox = document.getElementById('videoLightbox');
+            const frame = document.getElementById('videoLightboxFrame');
+            const closeBtn = document.getElementById('videoLightboxClose');
+
+            document.querySelectorAll('.video-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const id = card.dataset.yt;
+                    if (!id || id.startsWith('VIDEO_ID')) return; // placeholder guard
+                    frame.src = `https://www.youtube.com/embed/${id}?autoplay=1`;
+                    lightbox.classList.add('is-open');
+                });
+            });
+
+            function closeLightbox() {
+                lightbox.classList.remove('is-open');
+                frame.src = '';
+            }
+
+            closeBtn.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeLightbox();
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -14,7 +14,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/style.css">
 
     <style>
@@ -257,57 +259,381 @@
         }
 
         .founder {
-            background: var(--sand);
+            background: var(--emerald-deep);
+            position: relative;
+            overflow: hidden;
+            padding: 90px 0;
         }
 
-        .founder__card {
+        .founder::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(219, 181, 106, .05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(219, 181, 106, .05) 1px, transparent 1px);
+            background-size: 46px 46px;
+            mask-image: radial-gradient(ellipse at 50% 40%, black 0%, transparent 72%);
+        }
+
+        .founder__grid {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1.05fr 1.5fr 0.42fr;
+            align-items: stretch;
+            gap: 0 26px;
+        }
+
+        /* ---------- LEFT: copy ---------- */
+        .founder__copy {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 20px 20px 20px 0;
+        }
+
+        .founder__eyebrow {
             display: flex;
             align-items: center;
-            gap: 36px;
-            background: var(--surface);
-            border: 1px solid var(--line);
-            border-radius: var(--radius-lg);
-            padding: 40px 44px;
+            gap: 12px;
+            font-size: 11.5px;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .55);
+            margin-bottom: 26px;
         }
 
-        .founder__avatar {
-            flex-shrink: 0;
+        .founder__eyebrow::before {
+            content: "";
+            width: 28px;
+            height: 1px;
+            background: var(--gold);
         }
 
-        .founder__avatar img {
-            width: 110px;
-            height: 110px;
+        .founder__copy h2 {
+            font-size: clamp(34px, 3.6vw, 48px);
+            line-height: 1.1;
+            color: var(--white);
+            margin-bottom: 30px;
+        }
+
+        .founder__copy h2 em {
             display: block;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--sand-light);
-            box-shadow: 0 6px 18px rgba(43, 33, 24, .12);
+            color: var(--gold-light);
+            font-style: italic;
         }
 
-        .founder__text {
-            flex: 1;
-            min-width: 0;
+        .founder__quote {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 26px;
         }
 
-        .founder__text h3 {
+        .founder__quote::before {
+            content: "\201C";
+            position: absolute;
+            left: -4px;
+            top: -18px;
+            font-family: var(--font-display);
+            font-size: 46px;
+            color: var(--gold);
+            opacity: .55;
+        }
+
+        .founder__quote p {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 18px;
+            line-height: 1.55;
+            color: rgba(255, 255, 255, .88);
+            max-width: 40ch;
+        }
+
+        .founder__divider {
+            width: 40px;
+            height: 1px;
+            background: rgba(219, 181, 106, .5);
+            margin-bottom: 18px;
+        }
+
+        .founder__name h3 {
             font-size: 21px;
+            color: var(--white);
             margin-bottom: 6px;
         }
 
-        .founder__text p.role {
-            font-size: 12px;
-            letter-spacing: .08em;
+        .founder__name p {
+            font-size: 11.5px;
+            letter-spacing: .1em;
             text-transform: uppercase;
             color: var(--gold);
-            margin-bottom: 12px;
         }
 
-        .founder__text p.quote {
+        .founder__video {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 34px;
+            text-decoration: none;
+        }
+
+        .founder__play {
+            flex-shrink: 0;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--emerald-deep);
+            transition: transform .25s ease;
+        }
+
+        .founder__video:hover .founder__play {
+            transform: scale(1.08);
+        }
+
+        .founder__play svg {
+            width: 14px;
+            height: 14px;
+            margin-left: 2px;
+        }
+
+        .founder__video-text {
+            font-size: 11px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .55);
+            line-height: 1.5;
+        }
+
+        .founder__video-text strong {
+            display: block;
+            color: var(--white);
+            font-size: 12.5px;
+            letter-spacing: .04em;
+            text-transform: none;
+            font-family: var(--font-body);
+            margin-top: 4px;
+        }
+
+        .founder__foot {
+            margin-top: 50px;
+            padding-top: 22px;
+            border-top: 1px solid rgba(255, 255, 255, .1);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 10.5px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .45);
+        }
+
+        .founder__foot span.sep {
+            color: rgba(219, 181, 106, .5);
+        }
+
+        /* ---------- CENTER: arch photo ---------- */
+        .founder__photo {
+            position: relative;
+        }
+
+        .founder__photo-frame {
+            position: relative;
+            height: 100%;
+            min-height: 520px;
+            border-radius: 260px 20px 20px 20px;
+            overflow: hidden;
+        }
+
+        .founder__photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+            display: block;
+        }
+
+        .founder__badge {
+            position: absolute;
+            top: 28px;
+            left: -54px;
+            width: 168px;
+            height: 168px;
+            border-radius: 50%;
+            background: linear-gradient(155deg, var(--gold-light), var(--gold));
+            color: var(--emerald-deep);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, .3);
+            z-index: 3;
+        }
+
+        .founder__badge span {
+            font-size: 10.5px;
+            font-weight: 600;
+            letter-spacing: .07em;
+            text-transform: uppercase;
+            line-height: 1.55;
+            padding: 0 18px;
+        }
+
+        .founder__badge::after {
+            content: "";
+            width: 24px;
+            height: 1px;
+            background: rgba(11, 43, 34, .4);
+            margin-top: 10px;
+        }
+
+        .founder__plate {
+            position: absolute;
+            right: -18px;
+            bottom: -18px;
+            width: 220px;
+            padding: 22px 26px;
+            background:
+                radial-gradient(circle at 30% 20%, rgba(219, 181, 106, .1), transparent 60%),
+                linear-gradient(155deg, #0f3a2c, #08201a);
+            border: 1px solid rgba(219, 181, 106, .3);
+            border-radius: 18px 18px 4px 18px;
+            z-index: 3;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, .35);
+        }
+
+        .founder__plate .sig {
             font-family: var(--font-display);
             font-style: italic;
-            font-size: 17px;
-            color: var(--espresso);
-            max-width: 56ch;
+            font-size: 24px;
+            color: var(--gold-light);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .founder__plate .role {
+            font-size: 10px;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .55);
+        }
+
+        /* ---------- RIGHT: capsule icon rail ---------- */
+        .founder__rail {
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(219, 181, 106, .18);
+            border-radius: 130px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 34px;
+            padding: 50px 14px;
+        }
+
+        .founder__rail-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 12px;
+        }
+
+        .founder__rail-item:not(:last-child) {
+            padding-bottom: 34px;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .founder__rail-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            border: 1px solid rgba(219, 181, 106, .35);
+        }
+
+        .founder__rail-icon svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .founder__rail-item p {
+            font-size: 10px;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, .7);
+        }
+
+        @media (max-width: 1100px) {
+            .founder__grid {
+                grid-template-columns: 1fr 1.5fr;
+            }
+
+            .founder__rail {
+                display: none;
+            }
+
+            .founder__plate {
+                right: 14px;
+            }
+        }
+
+        @media (max-width: 899px) {
+            .founder__grid {
+                grid-template-columns: 1fr;
+                gap: 46px;
+            }
+
+            .founder__copy {
+                padding: 0;
+                text-align: left;
+            }
+
+            .founder__photo-frame {
+                min-height: 440px;
+                border-radius: 24px;
+            }
+
+            .founder__badge {
+                left: 18px;
+                top: 18px;
+                width: 140px;
+                height: 140px;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .founder {
+                padding: 60px 0;
+            }
+
+            .founder__badge {
+                display: none;
+            }
+
+            .founder__badge span {
+                font-size: 9px;
+                padding: 0 12px;
+            }
+
+            .founder__plate {
+                width: 170px;
+                padding: 16px 18px;
+                right: 10px;
+                bottom: -14px;
+            }
+
+            .founder__plate .sig {
+                font-size: 19px;
+            }
         }
 
         .process__grid {
@@ -596,26 +922,95 @@
         </div>
     </section>
 
-    <section class="section section--tight founder">
+    <section class="founder">
         <div class="container">
-            <div class="section-head reveal">
-                <p class="eyebrow">The Person Behind It</p>
-                <h2>Meet the <em style="color:var(--gold);font-style:italic;">founder.</em></h2>
-            </div>
+            <div class="founder__grid reveal">
 
-            <div class="founder__card reveal">
-                <div class="founder__avatar">
-                    <img src="/images/founder/saurabh.jpg?auto=format&fit=crop&w=300&q=80"
-                        alt="Saurabh Aneja, Founder of InterioArty">
+                <!-- Left copy -->
+                <div class="founder__copy">
+                    <p class="founder__eyebrow">The Person Behind It</p>
+                    <h2>Meet the<em>Founder.</em></h2>
+
+                    <div class="founder__quote">
+                        <p>What started as fixing up my own home became a mission to bring
+                            clarity, honesty and better organisation to interior design</p>
+                    </div>
+
+                    <span class="founder__divider"></span>
+                    <div class="founder__name">
+                        <h3>Saurabh Aneja</h3>
+                        <p>Founder, InterioArty</p>
+                    </div>
+
+                    <a href="#" class="founder__video">
+                        <span class="founder__play">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
+                        </span>
+                        <span class="founder__video-text">
+                            A quick note<br>from our founder
+                            <strong>Watch Video &nbsp;&rarr;</strong>
+                        </span>
+                    </a>
+
+                    <div class="founder__foot">
+                        <span>Spaces</span><span class="sep">|</span>
+                        <span>People</span><span class="sep">|</span>
+                        <span>A Better Tomorrow</span>
+                    </div>
                 </div>
-                <div class="founder__text">
-                    <h3>Saurabh Aneja</h3>
-                    <p class="role">Founder, InterioArty</p>
-                    <p class="quote">
-                        "What started as fixing up my own home became a mission to bring clarity,
-                        honesty and better organisation to interior design in Pune."
-                    </p>
+
+                <!-- Center photo -->
+                <div class="founder__photo">
+                    <div class="founder__photo-frame">
+                        <img src="/images/founder/saurabh.jpg?auto=format&fit=crop&w=900&q=80"
+                            alt="Saurabh Aneja, Founder of InterioArty, at his desk">
+                    </div>
+
+                    <div class="founder__badge">
+                        <span>Interiors for a brighter tomorrow</span>
+                    </div>
+
+                    <div class="founder__plate">
+                        <p class="sig">Saurabh Aneja</p>
+                        <p class="role">Founder</p>
+                    </div>
                 </div>
+
+                <!-- Right icon rail -->
+                <div class="founder__rail">
+                    <div class="founder__rail-item">
+                        <span class="founder__rail-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                                <path d="M3 11.5 12 4l9 7.5" />
+                                <path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9" />
+                            </svg>
+                        </span>
+                        <p>Spaces<br>with Purpose</p>
+                    </div>
+                    <div class="founder__rail-item">
+                        <span class="founder__rail-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                                <circle cx="9" cy="8" r="3" />
+                                <path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6" />
+                                <circle cx="17" cy="8" r="2.4" />
+                                <path d="M15.5 14.2c2.6.4 4.5 2.7 4.5 5.8" />
+                            </svg>
+                        </span>
+                        <p>People<br>at the Centre</p>
+                    </div>
+                    <div class="founder__rail-item">
+                        <span class="founder__rail-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                                <path d="M12 3c4 2 7 2 7 2s.6 9-7 16C4.6 14 5 5 5 5s3-0 7-2Z" />
+                                <path d="M9 12c2 0 4-1 4-4" />
+                            </svg>
+                        </span>
+                        <p>A Better<br>Tomorrow</p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>

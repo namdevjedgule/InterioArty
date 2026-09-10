@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - InterioArty | Interior Design Tips, Trends &amp; Guides, Pune</title>
+    <link rel="icon" type="image/x-icon" href="/favicon_io/favicon.ico" />
+    <meta name="description"
+        content="Practical interior design advice from InterioArty - modular kitchen trends, budgeting guides, office design tips and renovation know-how for Pune homes and offices.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* ---------- Page header (shared pattern) ---------- */
+        .page-header {
+            position: relative;
+            min-height: clamp(360px, 46vh, 520px);
+            display: flex;
+            align-items: flex-end;
+            overflow: hidden;
+            padding-top: var(--nav-h);
+            background: var(--emerald-deep);
+        }
+
+        .page-header__media {
+            position: absolute;
+            inset: 0;
+        }
+
+        .page-header__media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.05);
+        }
+
+        .page-header__scrim {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,
+                    rgba(var(--emerald-deep-rgb), .5) 0%,
+                    rgba(var(--emerald-deep-rgb), .3) 40%,
+                    rgba(var(--emerald-deep-rgb), .92) 100%);
+        }
+
+        .page-header__content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding: 0 32px clamp(32px, 6vh, 56px);
+            max-width: var(--container);
+            margin: 0 auto;
+            color: var(--white);
+        }
+
+        .page-header__content h1 {
+            font-size: clamp(32px, 5vw, 54px);
+            color: var(--white);
+            margin: 14px 0 18px;
+            max-width: 18ch;
+        }
+
+        .page-header__content h1 em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .page-header__content p.sub {
+            color: rgba(255, 255, 255, .75);
+            font-size: 16px;
+            max-width: 52ch;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .6);
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+
+        .breadcrumb .sep {
+            opacity: .5;
+        }
+
+        .breadcrumb .current {
+            color: var(--gold-light);
+        }
+
+        /* ---------- Featured post ---------- */
+        .featured-post {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 60px;
+            align-items: center;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin-bottom: 70px;
+        }
+
+        .featured-post__media {
+            position: relative;
+            height: 100%;
+            min-height: 340px;
+        }
+
+        .featured-post__media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            inset: 0;
+        }
+
+        .featured-post__tag {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--gold);
+            color: var(--espresso);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            padding: 8px 16px;
+            border-radius: 999px;
+            z-index: 2;
+        }
+
+        .featured-post__body {
+            padding: 30px 44px 30px 0;
+        }
+
+        .featured-post__meta {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 12px;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+        }
+
+        .featured-post__meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .featured-post__meta svg {
+            color: var(--gold);
+        }
+
+        .featured-post__body h2 {
+            font-size: clamp(24px, 2.8vw, 32px);
+            margin-bottom: 16px;
+        }
+
+        .featured-post__body p {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-bottom: 26px;
+            max-width: 50ch;
+        }
+
+        .featured-post__cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: var(--emerald);
+        }
+
+        .featured-post__cta:hover {
+            color: var(--gold);
+        }
+
+        .featured-post__cta svg {
+            transition: transform .3s var(--ease);
+        }
+
+        .featured-post__cta:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* ---------- Category filter (shared pattern with Our Projects) ---------- */
+        .project-filter {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 56px;
+        }
+
+        .project-filter__btn {
+            font-size: 12.5px;
+            font-weight: 600;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            padding: 12px 24px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: var(--surface);
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: background .3s, color .3s, border-color .3s, transform .3s var(--ease);
+        }
+
+        .project-filter__btn:hover {
+            transform: translateY(-2px);
+            border-color: var(--gold);
+            color: var(--emerald);
+        }
+
+        .project-filter__btn.is-active {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--espresso);
+        }
+
+        /* ---------- Blog grid ---------- */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .blog-card {
+            display: flex;
+            flex-direction: column;
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--line);
+            transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 24px 50px rgba(43, 33, 24, .12);
+        }
+
+        .blog-card__img {
+            position: relative;
+            aspect-ratio: 4/2.7;
+            overflow: hidden;
+        }
+
+        .blog-card__img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .6s var(--ease);
+        }
+
+        .blog-card:hover .blog-card__img img {
+            transform: scale(1.06);
+        }
+
+        .blog-card__tag {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: rgba(var(--emerald-deep-rgb), .85);
+            backdrop-filter: blur(6px);
+            color: var(--gold-light);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            padding: 8px 14px;
+            border-radius: 999px;
+        }
+
+        .blog-card__body {
+            padding: 26px 26px 28px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .blog-card__meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 11.5px;
+            letter-spacing: .03em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+
+        .blog-card__meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .blog-card__meta svg {
+            color: var(--gold);
+        }
+
+        .blog-card__body h3 {
+            font-size: 19px;
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+
+        .blog-card__body p {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            flex: 1;
+        }
+
+        .blog-card__cta {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: var(--emerald);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .blog-card:hover .blog-card__cta {
+            color: var(--gold);
+        }
+
+        .blog-card__cta svg {
+            transition: transform .3s var(--ease);
+        }
+
+        .blog-card:hover .blog-card__cta svg {
+            transform: translateX(4px);
+        }
+
+        .blog-card.is-hidden {
+            display: none;
+        }
+
+        /* ---------- Newsletter band ---------- */
+        .newsletter-band {
+            position: relative;
+            background: var(--emerald);
+            color: var(--white);
+            overflow: hidden;
+        }
+
+        .newsletter-band::before {
+            content: "";
+            position: absolute;
+            inset: -40% auto auto -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(219, 181, 106, .16), transparent 65%);
+        }
+
+        .newsletter-band__inner {
+            position: relative;
+            text-align: center;
+            max-width: 620px;
+            margin: 0 auto;
+        }
+
+        .newsletter-band h2 {
+            color: var(--white);
+            font-size: clamp(26px, 3.4vw, 38px);
+            margin-top: 18px;
+            margin-bottom: 16px;
+        }
+
+        .newsletter-band h2 em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .newsletter-band p {
+            color: rgba(255, 255, 255, .7);
+            margin-bottom: 32px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 12px;
+            max-width: 440px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .2);
+            border-radius: 999px;
+            padding: 15px 22px;
+            color: var(--white);
+            font-size: 14px;
+        }
+
+        .newsletter-form input::placeholder {
+            color: rgba(255, 255, 255, .5);
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .newsletter-form button {
+            flex-shrink: 0;
+        }
+
+        /* ---------- Responsive (Blogs page only) ---------- */
+        @media (max-width: 1024px) {
+            .blog-grid {
+                gap: 24px;
+            }
+
+            .featured-post {
+                gap: 36px;
+            }
+
+            .featured-post__body {
+                padding: 26px 34px 26px 0;
+            }
+        }
+
+        @media (max-width: 899px) {
+            .page-header {
+                padding-top: 84px;
+            }
+
+            .featured-post {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-post__media {
+                min-height: 260px;
+            }
+
+            .featured-post__body {
+                padding: 8px 30px 34px;
+            }
+
+            .blog-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .page-header {
+                min-height: 400px;
+                padding-top: 76px;
+            }
+
+            .page-header__content h1 {
+                max-width: 16ch;
+            }
+
+            .featured-post {
+                margin-bottom: 50px;
+            }
+
+            .featured-post__body {
+                padding: 6px 22px 28px;
+            }
+
+            .project-filter {
+                gap: 8px;
+                margin-bottom: 40px;
+            }
+
+            .project-filter__btn {
+                padding: 10px 18px;
+                font-size: 11.5px;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+                gap: 22px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-form button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body data-page="blogs">
+
+    <div data-include="fragments/navbar.html"></div>
+
+    <!-- ============ PAGE HEADER ============ -->
+    <section class="page-header">
+        <div class="page-header__media">
+            <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=2000&q=80"
+                alt="Interior design blog by InterioArty">
+        </div>
+        <div class="page-header__scrim"></div>
+        <div class="page-header__content">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a><span class="sep">/</span><span class="current">Blog</span>
+            </div>
+            <p class="eyebrow" style="margin-top:18px;">The Journal</p>
+            <h1>Ideas, guides <em>and honest advice.</em></h1>
+            <p class="sub">Everything we've learned building kitchens, homes and offices across Pune - written down
+                so you can make better decisions before you spend a rupee.</p>
+        </div>
+    </section>
+
+    <!-- ============ FEATURED POST + FILTER + GRID ============ -->
+    <section class="section section--tight">
+        <div class="container">
+
+            <!-- Featured Post -->
+            <a href="blog-modular-kitchen-trends-2026.html" class="featured-post reveal" style="text-decoration:none;">
+                <div class="featured-post__media">
+                    <span class="featured-post__tag">Featured</span>
+                    <img src="/images/kitchen/OXY-12.png?auto=format&fit=crop&w=1200&q=80"
+                        alt="Modular kitchen trends in Pune homes 2026">
+                </div>
+                <div class="featured-post__body">
+                    <div class="featured-post__meta">
+                        <span><svg viewBox="0 0 24 24" width="14" height="14">
+                                <path fill="currentColor"
+                                    d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z" />
+                            </svg>Sep 2, 2026</span>
+                        <span><svg viewBox="0 0 24 24" width="14" height="14">
+                                <path fill="currentColor"
+                                    d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm.75 5v5.4l4.2 2.5-.75 1.3-5-3V7h1.55z" />
+                            </svg>7 min read</span>
+                    </div>
+                    <h2>10 Modular Kitchen Trends Taking Over Pune Homes in 2026</h2>
+                    <p>From handle-less cabinetry to smart storage that actually gets used - here's what we're
+                        specifying in almost every kitchen project this year, and which trends are worth skipping.</p>
+                    <span class="featured-post__cta">Read Full Article <svg viewBox="0 0 24 24" width="14"
+                            height="14">
+                            <path fill="currentColor" d="M4 12h15m0 0-6-6m6 6-6 6" stroke="currentColor"
+                                stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg></span>
+                </div>
+            </a>
+
+            <div class="section-head section-head--center reveal">
+                <p class="eyebrow">Browse The Journal</p>
+                <h2>Filter by <em style="color:var(--gold);font-style:italic;">what you're planning.</em></h2>
+            </div>
+
+            <div class="project-filter reveal">
+                <button class="project-filter__btn is-active" data-filter="all">All Articles</button>
+                <button class="project-filter__btn" data-filter="kitchen">Modular Kitchen</button>
+                <button class="project-filter__btn" data-filter="home">Full Home</button>
+                <button class="project-filter__btn" data-filter="office">Office</button>
+                <button class="project-filter__btn" data-filter="renovation">Renovation</button>
+                <button class="project-filter__btn" data-filter="tips">Design Tips</button>
+            </div>
+
+            <div class="blog-grid reveal" id="blogGrid">
+
+                <a href="blog-full-home-interior-cost-pune.html" class="blog-card" data-category="home"
+                    style="text-decoration:none;">
+                    <div class="blog-card__img">
+                        <img src="/images/homeInterior/WELLINGTON6.png?auto=format&fit=crop&w=800&q=80"
+                            alt="Full home interior cost guide for Pune homeowners">
+                        <span class="blog-card__tag">Full Home</span>
+                    </div>
+                    <div class="blog-card__body">
+                        <div class="blog-card__meta">
+                            <span><svg viewBox="0 0 24 24" width="12" height="12">
+                                    <path fill="currentColor"
+                                        d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z" />
+                                </svg>Aug 26, 2026</span>
+                            <span><svg viewBox="0 0 24 24" width="12" height="12">
+                                    <path fill="currentColor"
+                                        d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm.75 5v5.4l4.2 2.5-.75 1.3-5-3V7h1.55z" />
+                                </svg>9 min read</span>
+                        </div>
+                        <h3>How Much Does a Full Home Interior Really Cost in Pune?</h3>
+                        <p>A realistic, room-by-room breakdown of what 1BHK, 2BHK and 3BHK interiors actually cost in
+                            2026 - and where most budgets quietly go over.</p>
+                        <span class="blog-card__cta">Read More <svg viewBox="0 0 24 24" width="14" height="14">
+                                <path fill="currentColor" d="M4 12h15m0 0-6-6m6 6-6 6" stroke="currentColor"
+                                    stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg></span>
+                    </div>
+                </a>
+
+                <a href="blog-office-interior-refresh-signs.html" class="blog-card" data-category="office"
+                    style="text-decoration:none;">
+                    <div class="blog-card__img">
+                        <img src="/images/officeInterior/ANUP07.png?auto=format&fit=crop&w=800&q=80"
+                            alt="Signs your office interior needs a refresh">
+                        <span class="blog-card__tag">Office</span>
+                    </div>
+                    <div class="blog-card__body">
+                        <div class="blog-card__meta">
+                            <span><svg viewBox="0 0 24 24" width="12" height="12">
+                                    <path fill="currentColor"
+                                        d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z" />
+                                </svg>Aug 19, 2026</span>
+                            <span><svg viewBox="0 0 24 24" width="12" height="12">
+                                    <path fill="currentColor"
+                                        d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm.75 5v5.4l4.2 2.5-.75 1.3-5-3V7h1.55z" />
+                                </svg>5 min read</span>
+                        </div>
+                        <h3>5 Signs Your Office Interior Needs a Refresh</h3>
+                        <p>Beyond peeling paint - the quieter signals (like where people choose to sit) that tell you
+                            your workspace is working against your team, not for it.</p>
+                        <span class="blog-card__cta">Read More <svg viewBox="0 0 24 24" width="14" height="14">
+                                <path fill="currentColor" d="M4 12h15m0 0-6-6m6 6-6 6" stroke="currentColor"
+                                    stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg></span>
+                    </div>
+                </a>
+
+                <a href="blog-renovation-vs-rebuild.html" class="blog-card" data-category="renovation"
+                    style="text-decoration:none;">
+                    <div class="blog-card__img">
+                        <img src="/images/homeInterior/PATIL-09.png?auto=format&fit=crop&w=800&q=80"
+                            alt="Renovation versus rebuild decision guide">
+                        <span class="blog-card__tag">Renovation</span>
+                    </div>
+                    <div class="blog-card__body">
+                        <div class="blog-card__meta">
+                            <span><svg viewBox="0 0 24 24" width="12" height="12">
+                                    <path fill="currentColor"
+                                        d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z" />
+                                </svg>Aug 12, 2026</span>
+                            <span><svg viewBox="0 0 24 24" width="12" height="12">
+                                    <path fill="currentColor"
+                                        d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm.75 5v5.4l4.2 2.5-.75 1.3-5-3V7h1.55z" />
+                                </svg>6 min read</span>
+                        </div>
+                        <h3>Renovation vs Rebuild: How to Decide What Your Home Needs</h3>
+                        <p>A simple framework for figuring out whether your home needs a full renovation, a
+                            structural rebuild, or just a well-planned refresh.</p>
+                        <span class="blog-card__cta">Read More <svg viewBox="0 0 24 24" width="14" height="14">
+                                <path fill="currentColor" d="M4 12h15m0 0-6-6m6 6-6 6" stroke="currentColor"
+                                    stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg></span>
+                    </div>
+                </a>
+
+                <a href="blog-kitchen-cabinet-finishes-guide.html" class="blog-card" data-category="kitchen"
+                    style="text-decoration:none;">
+                    <div class="blog-card__img">
+                        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80"
+                            alt="Guide to choosing kitchen cabinet finishes">
+                        <span class="blog-card__tag">Modular Kitchen</span>
+                    </div>
+                    <div class="blog-card__body">
+                        <div class="blog-card__meta">
+                            <span><svg viewBox="0 0 24 24" width="12" height="12">
+                                    <path fill="currentColor"
+                                        d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z" />
+                                </svg>Aug 5, 2026</span>
+                            <span><svg viewBox="0 0 24 24" width="12" height="12">
+                                    <path fill="currentColor"
+                                        d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm.75 5v5.4l4.2 2.5-.75 1.3-5-3V7h1.55z" />
+                                </svg>8 min read</span>
+                        </div>
+                        <h3>The Ultimate Guide to Choosing Kitchen Cabinet Finishes</h3>
+                        <p>Laminate vs acrylic vs veneer, explained in plain language - what each one costs, how it
+                            wears over time, and which one actually suits your kitchen.</p>
+                        <span class="blog-card__cta">Read More <svg viewBox="0 0 24 24" width="14" height="14">
+                                <path fill="currentColor" d="M4 12h15m0 0-6-6m6 6-6 6" stroke="currentColor"
+                                    stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg></span>
+                    </div>
+                </a>
+
+                <a href="blog-small-space-design-tips.html" class="blog-card" data-category="tips"
+                    style="text-decoration:none;">
+                    <div class="blog-card__img">
+                        <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80"
+                            alt="Interior design tips for small compact apartments">
+                        <span class="blog-card__tag">Design Tips</span>
+                    </div>
+                    <div class="blog-card__body">
+                        <div class="blog-card__meta">
+                            <span><svg viewBox="0 0 24 24" width="12" height="12">
+                                    <path fill="currentColor"
+                                        d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z" />
+                                </svg>Jul 28, 2026</span>
+                            <span><svg viewBox="0 0 24 24" width="12" height="12">
+                                    <path fill="currentColor"
+                                        d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm.75 5v5.4l4.2 2.5-.75 1.3-5-3V7h1.55z" />
+                                </svg>6 min read</span>
+                        </div>
+                        <h3>Small Space, Big Style: Design Tips for Compact Apartments</h3>
+                        <p>Seven layout and material tricks we use in 1BHKs and studio apartments to make 400 sq.ft
+                            feel like double that.</p>
+                        <span class="blog-card__cta">Read More <svg viewBox="0 0 24 24" width="14" height="14">
+                                <path fill="currentColor" d="M4 12h15m0 0-6-6m6 6-6 6" stroke="currentColor"
+                                    stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg></span>
+                    </div>
+                </a>
+
+                <a href="blog-vr-walkthroughs-pune-homeowners.html" class="blog-card" data-category="tips"
+                    style="text-decoration:none;">
+                    <div class="blog-card__img">
+                        <img src="https://images.unsplash.com/photo-1633114127188-3b3e7c1c4f7a?auto=format&fit=crop&w=800&q=80"
+                            alt="VR walkthroughs for interior design projects">
+                        <span class="blog-card__tag">Trends</span>
+                    </div>
+                    <div class="blog-card__body">
+                        <div class="blog-card__meta">
+                            <span><svg viewBox="0 0 24 24" width="12" height="12">
+                                    <path fill="currentColor"
+                                        d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z" />
+                                </svg>Jul 20, 2026</span>
+                            <span><svg viewBox="0 0 24 24" width="12" height="12">
+                                    <path fill="currentColor"
+                                        d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm.75 5v5.4l4.2 2.5-.75 1.3-5-3V7h1.55z" />
+                                </svg>4 min read</span>
+                        </div>
+                        <h3>Why VR Walkthroughs Are Changing How Pune Homeowners Design</h3>
+                        <p>What it actually feels like to walk through your unbuilt home in VR - and why it stops so
+                            many expensive mid-project changes of mind.</p>
+                        <span class="blog-card__cta">Read More <svg viewBox="0 0 24 24" width="14" height="14">
+                                <path fill="currentColor" d="M4 12h15m0 0-6-6m6 6-6 6" stroke="currentColor"
+                                    stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg></span>
+                    </div>
+                </a>
+
+                <a href="blog-vastu-friendly-interior-design.html" class="blog-card" data-category="tips"
+                    style="text-decoration:none;">
+                    <div class="blog-card__img">
+                        <img src="https://images.unsplash.com/photo-1615529182904-14819c35db37?auto=format&fit=crop&w=800&q=80"
+                            alt="Vastu friendly interior design tips">
+                        <span class="blog-card__tag">Design Tips</span>
+                    </div>
+                    <div class="blog-card__body">
+                        <div class="blog-card__meta">
+                            <span><svg viewBox="0 0 24 24" width="12" height="12">
+                                    <path fill="currentColor"
+                                        d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z" />
+                                </svg>Jul 12, 2026</span>
+                            <span><svg viewBox="0 0 24 24" width="12" height="12">
+                                    <path fill="currentColor"
+                                        d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm.75 5v5.4l4.2 2.5-.75 1.3-5-3V7h1.55z" />
+                                </svg>7 min read</span>
+                        </div>
+                        <h3>Vastu-Friendly Interior Design: What Actually Matters</h3>
+                        <p>Separating the Vastu principles that genuinely affect light, flow and comfort from the
+                            ones that are just superstition dressed up as design rules.</p>
+                        <span class="blog-card__cta">Read More <svg viewBox="0 0 24 24" width="14" height="14">
+                                <path fill="currentColor" d="M4 12h15m0 0-6-6m6 6-6 6" stroke="currentColor"
+                                    stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg></span>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ NEWSLETTER ============ -->
+    <section class="section section--tight newsletter-band">
+        <div class="container newsletter-band__inner">
+            <p class="eyebrow" style="justify-content:center;">Stay In The Loop</p>
+            <h2>New articles, <em>straight to your inbox.</em></h2>
+            <p>One email a month - no spam, just the guides and trends worth your time.</p>
+            <form class="newsletter-form" id="blogNewsletterForm">
+                <input type="email" placeholder="Your email address" required aria-label="Email address">
+                <button type="submit" class="btn btn--gold">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ============ CTA / CONTACT (shared .cta-band + #ctaForm handled by script.js) ============ -->
+    <section class="section cta-band" id="contact">
+        <div class="container cta-band__inner">
+            <div class="reveal">
+                <p class="eyebrow">Get a Free Quote</p>
+                <h2>Rather talk to <em>a person?</em></h2>
+                <p>Skip the reading and tell us about your project directly - we'll recommend the right package for
+                    your space and budget.</p>
+                <p style="margin-top:30px;"><a href="tel:+917838653501" class="btn btn--outline">+91 78386 53501</a>
+                </p>
+            </div>
+            <form class="cta-form reveal" id="ctaForm">
+                <input type="text" placeholder="Full name" required aria-label="Full name">
+                <input type="tel" placeholder="Phone number" required aria-label="Phone number">
+                <input type="text" placeholder="Which service? (Kitchen, Full Home, Office, Renovation)"
+                    aria-label="Service type">
+                <button type="submit" class="btn btn--gold">Request a Call</button>
+                <p class="cta-form__note">We usually call back within a few hours.</p>
+            </form>
+        </div>
+    </section>
+
+    <div data-include="fragments/footer.html"></div>
+    <div data-include="fragments/chat-widget.html"></div>
+
+    <script src="js/script.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterBtns = document.querySelectorAll('.project-filter__btn');
+            const cards = document.querySelectorAll('#blogGrid .blog-card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('is-active'));
+                    btn.classList.add('is-active');
+                    const filter = btn.dataset.filter;
+
+                    cards.forEach(card => {
+                        const match = filter === 'all' || card.dataset.category === filter;
+                        card.classList.toggle('is-hidden', !match);
+                    });
+                });
+            });
+
+            const newsletterForm = document.getElementById('blogNewsletterForm');
+            newsletterForm?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const input = newsletterForm.querySelector('input');
+                const btn = newsletterForm.querySelector('button');
+                const originalText = btn.textContent;
+                btn.textContent = 'Subscribing…';
+                setTimeout(() => {
+                    btn.textContent = 'Subscribed ✓';
+                    input.value = '';
+                    setTimeout(() => { btn.textContent = originalText; }, 2200);
+                }, 800);
+            });
+        });
+    </script>
+</body>
+
+</html>
