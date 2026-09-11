@@ -1,0 +1,74 @@
+<a class="whatsapp-widget" id="whatsappWidget"
+  href="https://wa.me/917838653501?text=Hi%20InterioArty%2C%20I%27d%20like%20to%20know%20more%20about%20your%20interior%20design%20services."
+  target="_blank" rel="noopener" aria-label="Chat with InterioArty on WhatsApp">
+  <span class="whatsapp-widget__ring"></span>
+  <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
+    <path fill="currentColor"
+      d="M17.5 14.4c-.3-.15-1.75-.86-2-.96-.27-.1-.47-.15-.66.15-.2.3-.76.96-.93 1.16-.17.2-.34.22-.63.08-.3-.15-1.24-.46-2.36-1.46-.87-.78-1.46-1.74-1.63-2.03-.17-.3-.02-.46.13-.6.13-.13.3-.34.44-.5.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.66-1.6-.9-2.2-.24-.57-.48-.5-.66-.5h-.56c-.2 0-.53.07-.8.38-.27.3-1.05 1.02-1.05 2.5s1.08 2.9 1.23 3.1c.15.2 2.13 3.25 5.16 4.56.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.09 1.75-.72 2-1.4.24-.7.24-1.3.17-1.4-.07-.12-.27-.2-.57-.34z" />
+    <path fill="currentColor"
+      d="M12.04 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.5.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12.04 2zm0 18c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3C4.4 15 4 13.5 4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8z" />
+  </svg>
+</a>
+
+<style>
+  .whatsapp-widget {
+    position: fixed;
+    right: 24px;
+    bottom: 100px;
+    z-index: 400;
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--espresso);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 14px 34px rgba(15, 61, 51, .28);
+    transition: transform .35s var(--ease), background .3s;
+  }
+
+  .whatsapp-widget:hover {
+    background: var(--gold-light);
+    transform: translateY(-3px) scale(1.03);
+  }
+
+  .whatsapp-widget__ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(219, 181, 106, .55);
+    animation: whatsappPulse 2.6s ease-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes whatsappPulse {
+    0% {
+      transform: scale(1);
+      opacity: .7;
+    }
+
+    100% {
+      transform: scale(1.45);
+      opacity: 0;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .whatsapp-widget {
+      right: 14px;
+      bottom: 80px;
+      width: 56px;
+      height: 56px;
+    }
+  }
+
+  @media (max-width: 390px) {
+    .whatsapp-widget {
+      right: 14px;
+      bottom: 76px;
+      width: 52px;
+      height: 52px;
+    }
+  }
+</style>

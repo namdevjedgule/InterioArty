@@ -1924,6 +1924,67 @@ body.modal-open {
   background: var(--gold-light);
 }
 
+.whatsapp-widget {
+    position: fixed;
+    right: 100px;
+    bottom: 24px;
+    z-index: 400;
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--espresso);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 14px 34px rgba(15, 61, 51, .28);
+    transition: transform .35s var(--ease), background .3s;
+  }
+ 
+  .whatsapp-widget:hover {
+    background: var(--gold-light);
+    transform: translateY(-3px) scale(1.03);
+  }
+ 
+  .whatsapp-widget__ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(219, 181, 106, .55);
+    animation: whatsappPulse 2.6s ease-out infinite;
+    pointer-events: none;
+  }
+ 
+  @keyframes whatsappPulse {
+    0% {
+      transform: scale(1);
+      opacity: .7;
+    }
+ 
+    100% {
+      transform: scale(1.45);
+      opacity: 0;
+    }
+  }
+ 
+  @media (max-width: 640px) {
+    .whatsapp-widget {
+      right: 80px;
+      bottom: 14px;
+      width: 56px;
+      height: 56px;
+    }
+  }
+ 
+  @media (max-width: 390px) {
+    .whatsapp-widget {
+      right: 76px;
+      bottom: 14px;
+      width: 52px;
+      height: 52px;
+    }
+  }
+
 /* =========================================================
    Utilities
    ========================================================= */
