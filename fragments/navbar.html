@@ -15,10 +15,62 @@
     </nav>
 
     <div class="navbar__actions">
-      <a href="contact.html" class="btn btn--gold navbar__cta">Enquire</a>
+      <button type="button" class="btn btn--gold navbar__cta" id="enquireBtn">Enquire</button>
       <button class="navbar__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
   </div>
 </header>
+
+<!-- ============ Enquiry Modal (shared across all pages) ============ -->
+<div class="enquiry-modal" id="enquiryModal" aria-hidden="true">
+  <div class="enquiry-modal__backdrop" id="enquiryModalBackdrop"></div>
+
+  <div class="enquiry-modal__panel" role="dialog" aria-modal="true" aria-labelledby="enquiryModalTitle">
+    <button type="button" class="enquiry-modal__close" id="enquiryModalClose" aria-label="Close enquiry form">
+      &#10005;
+    </button>
+
+    <div class="enquiry-modal__head">
+      <p class="eyebrow" style="margin-bottom:10px;">Let's Talk</p>
+      <h3 id="enquiryModalTitle">Tell us about <em>your space.</em></h3>
+      <p class="enquiry-modal__sub">Share a few details and our design team will call you back within a few
+        hours.</p>
+    </div>
+
+    <form class="enquiry-modal__form" id="enquiryForm">
+      <div class="enquiry-modal__row">
+        <input type="text" name="name" placeholder="Full name" required aria-label="Full name">
+        <input type="tel" name="phone" placeholder="Phone number" required aria-label="Phone number">
+      </div>
+      <input type="email" name="email" placeholder="Email address" aria-label="Email address">
+      <div class="enquiry-modal__row">
+        <select name="service" aria-label="Service required">
+          <option value="" disabled selected>What do you need?</option>
+          <option value="full-home">Full Home Interior</option>
+          <option value="modular-kitchen">Modular Kitchen</option>
+          <option value="office">Office Interior</option>
+          <option value="renovation">Renovation</option>
+          <option value="other">Other</option>
+        </select>
+        <input type="text" name="city" placeholder="City" aria-label="City">
+      </div>
+      <textarea name="message" rows="3" placeholder="Anything else we should know? (optional)"
+        aria-label="Message"></textarea>
+
+      <button type="submit" class="btn btn--gold enquiry-modal__submit">Send Enquiry</button>
+      <p class="enquiry-modal__note">By submitting, you agree to be contacted about your enquiry.</p>
+    </form>
+
+    <div class="enquiry-modal__success" id="enquiryModalSuccess">
+      <span class="enquiry-modal__success-icon">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M20 6 9 17l-5-5" />
+        </svg>
+      </span>
+      <h4>Thank you!</h4>
+      <p>We've received your enquiry - our team will call you back shortly.</p>
+    </div>
+  </div>
+</div>

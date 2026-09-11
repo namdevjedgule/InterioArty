@@ -375,6 +375,204 @@ p {
 }
 
 /* =========================================================
+   Enquiry Modal
+   ========================================================= */
+.enquiry-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.enquiry-modal.is-open {
+  display: flex;
+}
+
+.enquiry-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(var(--emerald-deep-rgb), .72);
+  backdrop-filter: blur(4px);
+}
+
+.enquiry-modal__panel {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: 44px 40px 36px;
+  box-shadow: 0 40px 90px rgba(0, 0, 0, .35);
+  opacity: 0;
+  transform: translateY(18px) scale(.97);
+  transition: opacity .3s var(--ease), transform .3s var(--ease);
+}
+
+.enquiry-modal.is-open .enquiry-modal__panel {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.enquiry-modal__close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .25s, color .25s, border-color .25s;
+}
+
+.enquiry-modal__close:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--espresso);
+}
+
+.enquiry-modal__head h3 {
+  font-size: clamp(24px, 3vw, 30px);
+  margin-bottom: 10px;
+}
+
+.enquiry-modal__head h3 em {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.enquiry-modal__sub {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 26px;
+}
+
+.enquiry-modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.enquiry-modal__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.enquiry-modal__form input,
+.enquiry-modal__form select,
+.enquiry-modal__form textarea {
+  width: 100%;
+  background: var(--sand-light);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 14px 15px;
+  font-size: 14px;
+  color: var(--text);
+  font-family: var(--font-body);
+}
+
+.enquiry-modal__form select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath fill='%236B5F52' d='M0 0h12L6 8z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  color: var(--text);
+}
+
+.enquiry-modal__form select:invalid {
+  color: var(--text-muted);
+}
+
+.enquiry-modal__form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.enquiry-modal__form input:focus,
+.enquiry-modal__form select:focus,
+.enquiry-modal__form textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+.enquiry-modal__submit {
+  margin-top: 6px;
+  justify-content: center;
+}
+
+.enquiry-modal__note {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.enquiry-modal__success {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 30px 10px 10px;
+}
+
+.enquiry-modal.is-success .enquiry-modal__form,
+.enquiry-modal.is-success .enquiry-modal__head {
+  display: none;
+}
+
+.enquiry-modal.is-success .enquiry-modal__success {
+  display: flex;
+}
+
+.enquiry-modal__success-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--espresso);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.enquiry-modal__success h4 {
+  font-size: 21px;
+  margin-bottom: 8px;
+}
+
+.enquiry-modal__success p {
+  color: var(--text-muted);
+  font-size: 14px;
+  max-width: 34ch;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+@media (max-width: 560px) {
+  .enquiry-modal__panel {
+    padding: 34px 24px 28px;
+  }
+
+  .enquiry-modal__row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
    Hero — blueprint-framed, full bleed
    ========================================================= */
 .hero {

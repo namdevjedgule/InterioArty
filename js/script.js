@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadFragments().then(() => {
         initNavbar();
         initChatWidget();
+        initEnquiryModal();
     });
 
     initRevealOnScroll();
@@ -341,4 +342,65 @@ function initChatWidget() {
         }
         return "Thanks for reaching out! I'm a preview version of Arty right now — once our Spring Boot backend is connected, I'll be able to answer this from InterioArty's real services, pricing and project data. For now, tap 'Enquire' and our team will get right back to you.";
     }
+}
+
+function initEnquiryModal() {
+    const modal = document.getElementById('enquiryModal');
+    if (!modal) return;
+
+    const backdrop = document.getElementById('enquiryModalBackdrop');
+    const closeBtn = document.getElementById('enquiryModalClose');
+    const form = document.getElementById('enquiryForm');
+
+    const open = () => {
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('modal-open');
+        const firstInput = modal.querySelector('input');
+        if (firstInput) setTimeout(() => firstInput.focus(), 150);
+    };
+
+    const close = () => {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('modal-open');
+    };
+
+    // Open triggers: #enquireBtn in navbar, plus any [data-enquire] element anywhere on the page
+    document.querySelectorAll('#enquireBtn, [data-enquire]').forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            open();
+        });
+    });
+
+    closeBtn?.addEventListener('click', close);
+    backdrop?.addEventListener('click', close);
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('is-open')) close();
+    });
+
+    form?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const btn = form.querySelector('button[type="submit"]');
+        const originalText = btn.textContent;
+        btn.textContent = 'Sending…';
+        btn.disabled = true;
+
+        // TODO: replace with your real submission endpoint
+        // const formData = new FormData(form);
+
+        setTimeout(() => {
+            btn.textContent = originalText;
+            btn.disabled = false;
+            modal.classList.add('is-success');
+
+            setTimeout(() => {
+                close();
+                modal.classList.remove('is-success');
+                form.reset();
+            }, 2200);
+        }, 700);
+    });
 }
