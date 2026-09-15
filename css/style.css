@@ -197,9 +197,6 @@ p {
   background: var(--emerald-soft);
 }
 
-/* =========================================================
-   Navbar
-   ========================================================= */
 .navbar {
   position: fixed;
   top: 0;
@@ -560,6 +557,76 @@ p {
 
 body.modal-open {
   overflow: hidden;
+}
+
+.enquiry-modal__consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  padding-top: 2px;
+}
+
+.enquiry-modal__consent input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.enquiry-modal__consent-box {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--sand-light);
+  position: relative;
+  transition: background .2s, border-color .2s;
+}
+
+.enquiry-modal__consent-box::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  width: 5px;
+  height: 9px;
+  border: solid var(--espresso);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) scale(0);
+  transition: transform .15s var(--ease);
+}
+
+.enquiry-modal__consent input:checked ~ .enquiry-modal__consent-box {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+.enquiry-modal__consent input:checked ~ .enquiry-modal__consent-box::after {
+  transform: rotate(45deg) scale(1);
+}
+
+.enquiry-modal__consent input:focus-visible ~ .enquiry-modal__consent-box {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.enquiry-modal__consent-text {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.enquiry-modal__consent-text a {
+  color: var(--emerald);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.enquiry-modal__consent-text a:hover {
+  color: var(--gold);
 }
 
 @media (max-width: 560px) {
