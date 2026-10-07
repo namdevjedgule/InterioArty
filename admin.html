@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Admin - Interio Arty</title>
+    <link rel="icon" type="image/x-icon" href="/favicon_io/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        body { background: var(--espresso); color: var(--sand-light); font-family: var(--font-body); min-height: 100vh; }
+        [hidden] { display: none !important; }
+        .wrap { max-width: 1080px; margin: 0 auto; padding: 48px 24px 100px; }
+        .back { display: inline-block; margin-bottom: 28px; color: var(--gold); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; }
+        .back:hover { color: var(--gold-light); }
+
+        /* sign in */
+        .login { max-width: 380px; margin: 14vh auto 0; text-align: center; }
+        .login h1, .head h1 { color: var(--sand-light); }
+        .login h1 { font-family: var(--font-display); font-weight: 600; font-size: 2.2rem; margin-bottom: 8px; }
+        .login p { color: rgba(247, 243, 236, 0.6); font-size: 0.85rem; margin-bottom: 28px; }
+        .login input { width: 100%; padding: 14px 16px; background: rgba(247, 243, 236, 0.07); border: 1px solid rgba(247, 243, 236, 0.25); color: var(--sand-light); font: inherit; font-size: 0.95rem; border-radius: var(--radius-sm); margin-bottom: 12px; }
+        .login input:focus { outline: none; border-color: var(--gold); }
+        .login button { width: 100%; padding: 14px; border: 0; background: var(--gold); color: var(--espresso); font: inherit; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; font-size: 0.8rem; border-radius: var(--radius-sm); cursor: pointer; }
+        .login button:disabled { opacity: 0.6; cursor: wait; }
+        .login .err { color: #f0a29a; font-size: 0.82rem; min-height: 1.2em; margin-top: 12px; }
+
+        /* panel */
+        .head { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; margin-bottom: 28px; border-bottom: 1px solid var(--line-gold); padding-bottom: 20px; flex-wrap: wrap; }
+        .head h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(2rem, 4vw, 2.8rem); }
+        .head p { color: rgba(247, 243, 236, 0.6); margin-top: 8px; font-size: 0.85rem; max-width: 560px; line-height: 1.5; }
+        .head-right { display: flex; align-items: center; gap: 20px; }
+        .live-pill { display: flex; align-items: center; gap: 8px; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); white-space: nowrap; }
+        .live-pill .dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; animation: pulse 1.6s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        .link-btn { font: inherit; font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; background: none; border: 0; border-bottom: 1px solid var(--gold); color: var(--gold); padding: 6px 0; cursor: pointer; }
+        .link-btn:hover { color: var(--gold-light); border-bottom-color: var(--gold-light); }
+
+        .banner { padding: 14px 16px; margin-bottom: 24px; border: 1px solid #c9776c; color: #f0b7af; font-size: 0.85rem; line-height: 1.5; border-radius: var(--radius-sm); }
+
+        .stats-row { display: flex; gap: 40px; margin-bottom: 28px; flex-wrap: wrap; }
+        .stat b { display: block; font-family: var(--font-display); font-size: 2rem; font-weight: 600; color: var(--gold-light); }
+        .stat span { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(247, 243, 236, 0.5); }
+
+        .toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 12px; flex-wrap: wrap; }
+        .filters { display: flex; gap: 8px; flex-wrap: wrap; }
+        .filter-btn { font: inherit; font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; background: none; border: 1px solid rgba(247, 243, 236, 0.25); color: rgba(247, 243, 236, 0.6); padding: 8px 14px; cursor: pointer; border-radius: var(--radius-sm); transition: all 0.3s var(--ease); }
+        .filter-btn:hover { border-color: var(--gold); color: var(--sand-light); }
+        .filter-btn.active { background: var(--gold); color: var(--espresso); border-color: var(--gold); }
+        .tools-right { display: flex; align-items: center; gap: 18px; }
+        .search { padding: 8px 12px; background: rgba(247, 243, 236, 0.07); border: 1px solid rgba(247, 243, 236, 0.2); color: var(--sand-light); font: inherit; font-size: 0.8rem; border-radius: var(--radius-sm); width: 190px; }
+        .search:focus { outline: none; border-color: var(--gold); }
+
+        .lead-card { border-top: 1px solid rgba(247, 243, 236, 0.14); }
+        .lead-list .lead-card:last-child { border-bottom: 1px solid rgba(247, 243, 236, 0.14); }
+        .lead-row { padding: 20px 0; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr auto auto; gap: 16px; align-items: center; cursor: pointer; }
+        .lead-field label, .detail-block label { display: block; font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(247, 243, 236, 0.42); margin-bottom: 6px; }
+        .lead-field span { font-size: 0.92rem; overflow-wrap: anywhere; }
+        .lead-badge { font-size: 0.65rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--gold); white-space: nowrap; }
+        .lead-badge.pending { color: rgba(247, 243, 236, 0.4); }
+        .lead-chevron { color: rgba(247, 243, 236, 0.45); transition: transform 0.3s var(--ease); }
+        .lead-card.open .lead-chevron { transform: rotate(90deg); }
+
+        .lead-detail { display: none; }
+        .lead-card.open .lead-detail { display: block; }
+        .lead-detail-inner { padding: 0 0 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+        .detail-block .summary-text { font-weight: 300; font-size: 1rem; line-height: 1.6; }
+        .detail-specs { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
+        .detail-specs .dim { font-size: 0.74rem; color: var(--gold-light); border: 1px solid var(--line-gold); border-radius: 999px; padding: 4px 12px; }
+        .notes { width: 100%; margin-top: 18px; min-height: 70px; padding: 10px 12px; background: rgba(247, 243, 236, 0.06); border: 1px solid rgba(247, 243, 236, 0.18); color: var(--sand-light); font: inherit; font-size: 0.84rem; border-radius: var(--radius-sm); resize: vertical; }
+        .notes:focus { outline: none; border-color: var(--gold); }
+
+        .lead-actions { display: flex; align-items: center; gap: 10px; padding: 16px 0 24px; border-top: 1px solid rgba(247, 243, 236, 0.12); flex-wrap: wrap; }
+        .status-select { font: inherit; font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; background: var(--espresso); color: var(--gold-light); border: 1px solid var(--line-gold); padding: 6px 10px; border-radius: var(--radius-sm); }
+        .action-btn { font: inherit; font-size: 0.64rem; letter-spacing: 0.06em; text-transform: uppercase; background: none; border: 1px solid var(--line-gold); color: var(--gold-light); padding: 7px 12px; cursor: pointer; text-decoration: none; display: inline-block; border-radius: var(--radius-sm); transition: all 0.3s var(--ease); }
+        .action-btn:hover { background: var(--gold); color: var(--espresso); border-color: var(--gold); }
+        .action-btn.danger { border-color: rgba(240, 162, 154, 0.5); color: #f0a29a; margin-left: auto; }
+        .action-btn.danger:hover { background: #c9776c; color: #fff; border-color: #c9776c; }
+        .saved { font-size: 0.7rem; color: var(--gold); opacity: 0; transition: opacity 0.3s; }
+        .saved.show { opacity: 1; }
+
+        .transcript { max-height: 320px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; padding-right: 8px; }
+        .t-msg { font-size: 0.84rem; font-weight: 300; line-height: 1.5; padding: 8px 12px; border-radius: var(--radius-sm); white-space: pre-wrap; overflow-wrap: anywhere; }
+        .t-msg.user { background: rgba(247, 243, 236, 0.09); }
+        .t-msg.bot { border: 1px solid rgba(247, 243, 236, 0.14); }
+        .t-role { display: block; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 4px; }
+
+        .empty-state { text-align: center; padding: 72px 20px; color: rgba(247, 243, 236, 0.5); border-top: 1px solid rgba(247, 243, 236, 0.14); line-height: 1.6; }
+        .empty-state b { display: block; font-family: var(--font-display); font-weight: 600; font-size: 1.5rem; color: var(--sand-light); margin-bottom: 10px; }
+
+        @media (max-width: 800px) {
+            .lead-row { grid-template-columns: 1fr 1fr auto; }
+            .lead-row .lead-field:nth-child(3), .lead-row .lead-field:nth-child(4) { display: none; }
+            .lead-detail-inner { grid-template-columns: 1fr; gap: 20px; }
+            .search { width: 100%; }
+            .tools-right { width: 100%; justify-content: space-between; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <a class="back" href="/">&larr; Back to site</a>
+
+        <div class="login" id="login" hidden>
+            <h1>Admin</h1>
+            <p>Enter the admin password to see your leads.</p>
+            <form id="loginForm">
+                <input type="password" id="password" placeholder="Password" autocomplete="current-password" required>
+                <button type="submit" id="loginBtn">Sign in</button>
+                <div class="err" id="loginErr" role="alert"></div>
+            </form>
+        </div>
+
+        <div id="panel" hidden>
+            <div class="head">
+                <div>
+                    <h1>Lead Inbox</h1>
+                    <p>Every visitor Arty has qualified, from any device, with an AI summary and the full conversation.</p>
+                </div>
+                <div class="head-right">
+                    <div class="live-pill"><span class="dot"></span> Live</div>
+                    <button class="link-btn" id="logout">Sign out</button>
+                </div>
+            </div>
+
+            <div class="banner" id="banner" hidden></div>
+
+            <div class="stats-row">
+                <div class="stat"><b id="statTotal">0</b><span>Total Leads</span></div>
+                <div class="stat"><b id="statToday">0</b><span>Today</span></div>
+                <div class="stat"><b id="statPending">0</b><span>To Contact</span></div>
+            </div>
+
+            <div class="toolbar">
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="new">New</button>
+                    <button class="filter-btn" data-filter="contacted">Contacted</button>
+                    <button class="filter-btn" data-filter="closed">Closed</button>
+                </div>
+                <div class="tools-right">
+                    <input class="search" id="search" type="search" placeholder="Search name, phone, city">
+                    <button class="link-btn" id="exportCsv">Export CSV</button>
+                </div>
+            </div>
+
+            <div id="leadList" class="lead-list"></div>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+
+</html>

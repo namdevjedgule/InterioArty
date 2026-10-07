@@ -1,0 +1,13 @@
+{
+  "name": "interioarty-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Interio Arty website with the Arty AI chatbot (Vercel serverless API)",
+  "scripts": {
+    "dev": "vercel dev",
+    "dev:local": "node scripts/dev-server.js",
+    "smoke": "node scripts/smoke.js",
+    "test:long": "node scripts/long-convo-test.js",
+    "test:leads": "node scripts/leads-test.js"
+  }
+}
