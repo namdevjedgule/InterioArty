@@ -111,7 +111,7 @@
 
   function InterioArtyWidget(options) {
     this.apiBase = options.apiBase || '';
-    // Every lead is also copied to the studio's central Lead Inbox (Instagram and website leads in one CRM).
+    // Leads go to the studio's central Lead Inbox (the same CRM as Instagram), which replaces the old per-site admin.
     this.crmEndpoint = options.crmEndpoint || DEFAULT_CRM_ENDPOINT;
     this.persona = options.persona || null;
     this.meta = null;
@@ -643,7 +643,7 @@
     return out;
   }
 
-  // Sends the lead to the studio's backend so it shows in the admin panel on
+  // Sends the lead to the central Lead Inbox so it shows in the studio's CRM on
   // any device. Syncs are chained so they land in order (a late "summarizing"
   // snapshot can never overwrite the finished summary), always send the
   // latest local record, and retry a couple of times if the network blips.
@@ -654,9 +654,9 @@
       var rec = getLeads().find(function (l) {
         return l.id === id;
       });
-      if (!rec || !rec.cid) return null;
+      if (!rec || !rec.cid || !self.crmEndpoint) return null;
       var body = JSON.stringify({
-        cid: rec.cid,
+        id: rec.cid,
         name: rec.name,
         phone: rec.phone,
         email: rec.email,
@@ -669,12 +669,12 @@
         summarizing: rec.summarizing === true,
         transcript: rec.transcript,
       });
-      self.pushToCrm(rec);
       var attempt = function (n) {
-        return fetch(self.apiBase + '/api/leads', {
+        return fetch(self.crmEndpoint, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: body,
+          keepalive: true,
         })
           .then(function (r) {
             if (!r.ok && r.status >= 500 && n < 3) throw new Error('retry');
@@ -690,25 +690,6 @@
       };
       return attempt(1);
     });
-  };
-
-  // Fire-and-forget copy of the lead to the central inbox (same id every time, so it updates one record).
-  // Never blocks or breaks the chat or the studio's own sync.
-  InterioArtyWidget.prototype.pushToCrm = function (rec) {
-    if (!this.crmEndpoint || !rec || !rec.cid) return;
-    try {
-      fetch(this.crmEndpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          id: rec.cid, name: rec.name, phone: rec.phone, email: rec.email,
-          location: rec.location, bhk: rec.bhk, budget: rec.budget,
-          projectType: rec.projectType, timeline: rec.timeline, summary: rec.summary,
-          transcript: rec.transcript,
-        }),
-        keepalive: true,
-      }).catch(function () {});
-    } catch (e) { /* the central inbox is optional */ }
   };
 
   // The lead event arrives before the assistant's reply is added to the log, so
