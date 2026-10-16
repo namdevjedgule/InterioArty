@@ -103,12 +103,16 @@
     }
   }
 
+  var DEFAULT_CRM_ENDPOINT = 'https://interioarty-funnel.vercel.app/api/crm/ingest';
+
   function saveLeads(list) {
     localStorage.setItem(LEAD_STORE, JSON.stringify(list));
   }
 
   function InterioArtyWidget(options) {
     this.apiBase = options.apiBase || '';
+    // Every lead is also copied to the studio's central Lead Inbox (Instagram and website leads in one CRM).
+    this.crmEndpoint = options.crmEndpoint || DEFAULT_CRM_ENDPOINT;
     this.persona = options.persona || null;
     this.meta = null;
     this.messages = [];
@@ -665,6 +669,7 @@
         summarizing: rec.summarizing === true,
         transcript: rec.transcript,
       });
+      self.pushToCrm(rec);
       var attempt = function (n) {
         return fetch(self.apiBase + '/api/leads', {
           method: 'POST',
@@ -685,6 +690,25 @@
       };
       return attempt(1);
     });
+  };
+
+  // Fire-and-forget copy of the lead to the central inbox (same id every time, so it updates one record).
+  // Never blocks or breaks the chat or the studio's own sync.
+  InterioArtyWidget.prototype.pushToCrm = function (rec) {
+    if (!this.crmEndpoint || !rec || !rec.cid) return;
+    try {
+      fetch(this.crmEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: rec.cid, name: rec.name, phone: rec.phone, email: rec.email,
+          location: rec.location, bhk: rec.bhk, budget: rec.budget,
+          projectType: rec.projectType, timeline: rec.timeline, summary: rec.summary,
+          transcript: rec.transcript,
+        }),
+        keepalive: true,
+      }).catch(function () {});
+    } catch (e) { /* the central inbox is optional */ }
   };
 
   // The lead event arrives before the assistant's reply is added to the log, so
@@ -765,10 +789,12 @@
   // ---- Boot: read the script tag, build the widget, expose the API ----
   function initFromScript() {
     var current = document.currentScript;
-    var cfg = { apiBase: '', persona: null };
+    var cfg = { apiBase: '', persona: null, crmEndpoint: '' };
     if (current && current.getAttribute) {
       var base = current.getAttribute('data-api-base');
       if (base) cfg.apiBase = base.replace(/\/+$/, '');
+      var crm = current.getAttribute('data-crm-endpoint');
+      if (crm) cfg.crmEndpoint = crm;
       var persona = current.getAttribute('data-persona');
       if (persona) cfg.persona = persona;
     }
