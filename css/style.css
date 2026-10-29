@@ -599,16 +599,16 @@ body.modal-open {
   transition: transform .15s var(--ease);
 }
 
-.enquiry-modal__consent input:checked ~ .enquiry-modal__consent-box {
+.enquiry-modal__consent input:checked~.enquiry-modal__consent-box {
   background: var(--gold);
   border-color: var(--gold);
 }
 
-.enquiry-modal__consent input:checked ~ .enquiry-modal__consent-box::after {
+.enquiry-modal__consent input:checked~.enquiry-modal__consent-box::after {
   transform: rotate(45deg) scale(1);
 }
 
-.enquiry-modal__consent input:focus-visible ~ .enquiry-modal__consent-box {
+.enquiry-modal__consent input:focus-visible~.enquiry-modal__consent-box {
   outline: 2px solid var(--gold);
   outline-offset: 2px;
 }
@@ -1480,10 +1480,12 @@ body.modal-open {
 
 .cta-band__inner {
   position: relative;
-  display: grid;
-  grid-template-columns: 1.2fr 0.9fr;
-  gap: 60px;
-  align-items: center;
+  display: block;
+}
+
+.cta-band__inner>.reveal {
+  width: 100%;
+  max-width: 860px;
 }
 
 .cta-band h2 {
@@ -1500,49 +1502,7 @@ body.modal-open {
 .cta-band p {
   color: rgba(255, 255, 255, .7);
   margin-top: 18px;
-  max-width: 46ch;
-}
-
-.cta-form {
-  background: rgba(255, 255, 255, .05);
-  border: 1px solid rgba(255, 255, 255, .14);
-  border-radius: var(--radius-lg);
-  padding: 34px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.cta-form input,
-.cta-form textarea {
-  width: 100%;
-  background: rgba(255, 255, 255, .06);
-  border: 1px solid rgba(255, 255, 255, .16);
-  border-radius: var(--radius-sm);
-  padding: 15px 16px;
-  color: var(--white);
-  font-size: 14px;
-}
-
-.cta-form input::placeholder,
-.cta-form textarea::placeholder {
-  color: rgba(255, 255, 255, .45);
-}
-
-.cta-form input:focus,
-.cta-form textarea:focus {
-  border-color: var(--gold);
-  outline: none;
-}
-
-.cta-form button {
-  align-self: flex-start;
-  margin-top: 6px;
-}
-
-.cta-form__note {
-  font-size: 12px;
-  color: rgba(255, 255, 255, .45);
+  max-width: 64ch;
 }
 
 .footer {
@@ -1992,65 +1952,65 @@ body.modal-open {
 }
 
 .whatsapp-widget {
-    position: fixed;
-    right: 100px;
-    bottom: 24px;
-    z-index: 400;
-    width: 62px;
-    height: 62px;
-    border-radius: 50%;
-    background: var(--gold);
-    color: var(--espresso);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 14px 34px rgba(15, 61, 51, .28);
-    transition: transform .35s var(--ease), background .3s;
+  position: fixed;
+  right: 100px;
+  bottom: 24px;
+  z-index: 400;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--espresso);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 14px 34px rgba(15, 61, 51, .28);
+  transition: transform .35s var(--ease), background .3s;
+}
+
+.whatsapp-widget:hover {
+  background: var(--gold-light);
+  transform: translateY(-3px) scale(1.03);
+}
+
+.whatsapp-widget__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(219, 181, 106, .55);
+  animation: whatsappPulse 2.6s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes whatsappPulse {
+  0% {
+    transform: scale(1);
+    opacity: .7;
   }
- 
-  .whatsapp-widget:hover {
-    background: var(--gold-light);
-    transform: translateY(-3px) scale(1.03);
+
+  100% {
+    transform: scale(1.45);
+    opacity: 0;
   }
- 
-  .whatsapp-widget__ring {
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    border: 1px solid rgba(219, 181, 106, .55);
-    animation: whatsappPulse 2.6s ease-out infinite;
-    pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .whatsapp-widget {
+    right: 80px;
+    bottom: 14px;
+    width: 56px;
+    height: 56px;
   }
- 
-  @keyframes whatsappPulse {
-    0% {
-      transform: scale(1);
-      opacity: .7;
-    }
- 
-    100% {
-      transform: scale(1.45);
-      opacity: 0;
-    }
+}
+
+@media (max-width: 390px) {
+  .whatsapp-widget {
+    right: 76px;
+    bottom: 14px;
+    width: 52px;
+    height: 52px;
   }
- 
-  @media (max-width: 640px) {
-    .whatsapp-widget {
-      right: 80px;
-      bottom: 14px;
-      width: 56px;
-      height: 56px;
-    }
-  }
- 
-  @media (max-width: 390px) {
-    .whatsapp-widget {
-      right: 76px;
-      bottom: 14px;
-      width: 52px;
-      height: 52px;
-    }
-  }
+}
 
 /* =========================================================
    Utilities
@@ -2063,14 +2023,6 @@ body.modal-open {
   color: var(--text-muted);
 }
 
-/* =========================================================================
-   RESPONSIVE
-   One consolidated, descending breakpoint ladder: 1024 → 899 → 640 → 480 → 390,
-   then viewport-height tweaks. Every component's tablet/mobile behavior lives
-   here — nothing is redefined twice.
-   ========================================================================= */
-
-/* ---------- ≤1024px — small desktop / landscape tablet ---------- */
 @media (max-width: 1024px) {
   .container {
     padding-left: 28px;
@@ -2142,14 +2094,6 @@ body.modal-open {
 
   .project__steps {
     gap: 28px;
-  }
-
-  .cta-band__inner {
-    gap: 40px;
-  }
-
-  .cta-form {
-    padding: 28px;
   }
 
   .footer__top {
@@ -2281,11 +2225,6 @@ body.modal-open {
   }
 
   .project__steps {
-    grid-template-columns: 1fr;
-  }
-
-  .cta-band__inner {
-    gap: 45px;
     grid-template-columns: 1fr;
   }
 
@@ -2564,10 +2503,6 @@ body.modal-open {
     padding-right: 2px;
   }
 
-  .cta-band__inner {
-    gap: 35px;
-  }
-
   .cta-band h2 {
     font-size: clamp(30px, 8vw, 40px);
   }
@@ -2576,17 +2511,7 @@ body.modal-open {
     font-size: 14px;
   }
 
-  .cta-form {
-    padding: 22px;
-  }
-
-  .cta-form input,
-  .cta-form textarea {
-    padding: 13px 14px;
-    font-size: 13px;
-  }
-
-  .cta-form button {
+  .cta-band .btn {
     width: 100%;
     justify-content: center;
   }

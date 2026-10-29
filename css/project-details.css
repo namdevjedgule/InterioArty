@@ -224,7 +224,6 @@
     color: var(--gold);
 }
 
-/* ---------- Related projects (mirrors our-projects.html portfolio-card) ---------- */
 .portfolio-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

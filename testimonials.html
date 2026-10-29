@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testimonials - InterioArty | What Our Clients Say</title>
+    <title>Testimonials - Interio Arty | What Our Clients Say</title>
     <link rel="icon" type="image/x-icon" href="/favicon_io/favicon.ico" />
     <meta name="description"
-        content="Hear directly from InterioArty clients across Pune - video stories and written reviews from real homeowners.">
+        content="Hear directly from Interio Arty clients across Pune - video stories and written reviews from real homeowners.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,7 +30,10 @@
             background: var(--emerald-deep);
         }
 
-        .page-header__media { position: absolute; inset: 0; }
+        .page-header__media {
+            position: absolute;
+            inset: 0;
+        }
 
         .page-header__media img {
             width: 100%;
@@ -65,7 +68,10 @@
             max-width: 20ch;
         }
 
-        .page-header__content h1 em { color: var(--gold); font-style: italic; }
+        .page-header__content h1 em {
+            color: var(--gold);
+            font-style: italic;
+        }
 
         .page-header__content p.sub {
             color: rgba(255, 255, 255, .75);
@@ -83,9 +89,17 @@
             color: rgba(255, 255, 255, .6);
         }
 
-        .breadcrumb a:hover { color: var(--gold); }
-        .breadcrumb .sep { opacity: .5; }
-        .breadcrumb .current { color: var(--gold-light); }
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+
+        .breadcrumb .sep {
+            opacity: .5;
+        }
+
+        .breadcrumb .current {
+            color: var(--gold-light);
+        }
 
         /* ---------- Trust strip ---------- */
         .trust-strip {
@@ -116,7 +130,11 @@
             color: var(--espresso);
         }
 
-        .trust-strip__stars { color: var(--gold); letter-spacing: 2px; font-size: 13px; }
+        .trust-strip__stars {
+            color: var(--gold);
+            letter-spacing: 2px;
+            font-size: 13px;
+        }
 
         /* ---------- Video testimonials ---------- */
         .video-hero {
@@ -168,7 +186,10 @@
             color: var(--emerald);
         }
 
-        .video-hero__cta i { color: #ff0000; font-size: 17px; }
+        .video-hero__cta i {
+            color: #ff0000;
+            font-size: 17px;
+        }
 
         .video-grid {
             display: grid;
@@ -200,7 +221,9 @@
             transition: transform .5s ease;
         }
 
-        .video-card:hover .video-card__thumb img { transform: scale(1.06); }
+        .video-card:hover .video-card__thumb img {
+            transform: scale(1.06);
+        }
 
         .video-card__thumb::after {
             content: "";
@@ -230,7 +253,12 @@
             background: var(--gold);
         }
 
-        .video-card__play svg { width: 16px; height: 16px; color: var(--emerald-deep); margin-left: 2px; }
+        .video-card__play svg {
+            width: 16px;
+            height: 16px;
+            color: var(--emerald-deep);
+            margin-left: 2px;
+        }
 
         .video-card__duration {
             position: absolute;
@@ -244,7 +272,9 @@
             border-radius: 4px;
         }
 
-        .video-card__meta { padding: 14px 2px 0; }
+        .video-card__meta {
+            padding: 14px 2px 0;
+        }
 
         .video-card__meta h4 {
             font-size: 15px;
@@ -261,7 +291,9 @@
             gap: 6px;
         }
 
-        .video-card__meta p i { color: #ff0000; }
+        .video-card__meta p i {
+            color: #ff0000;
+        }
 
         /* ---------- Video lightbox ---------- */
         .video-lightbox {
@@ -275,7 +307,9 @@
             padding: 24px;
         }
 
-        .video-lightbox.is-open { display: flex; }
+        .video-lightbox.is-open {
+            display: flex;
+        }
 
         .video-lightbox__inner {
             position: relative;
@@ -310,7 +344,11 @@
             justify-content: center;
         }
 
-        .video-lightbox__close:hover { background: var(--gold); border-color: var(--gold); color: var(--emerald-deep); }
+        .video-lightbox__close:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--emerald-deep);
+        }
 
         /* ---------- Text testimonials ---------- */
         .text-testimonials {
@@ -364,20 +402,16 @@
             justify-content: center;
             font-family: var(--font-display);
             font-size: 14px;
+            letter-spacing: 0;
+            text-transform: uppercase;
             flex-shrink: 0;
         }
 
         .tt-card__person h5 {
             font-size: 14px;
+            line-height: 1.2;
             color: var(--espresso);
-            margin-bottom: 2px;
-        }
-
-        .tt-card__person span {
-            font-size: 11.5px;
-            letter-spacing: .04em;
-            text-transform: uppercase;
-            color: var(--gold);
+            margin: 0;
         }
 
         .tt-more {
@@ -386,17 +420,237 @@
         }
 
         @media (max-width: 1024px) {
-            .video-hero { grid-template-columns: 1fr; }
-            .video-grid { grid-template-columns: repeat(2, 1fr); }
-            .tt-grid { columns: 2 280px; }
+            .page-header__content {
+                padding-left: 28px;
+                padding-right: 28px;
+            }
+
+            .trust-strip__row {
+                gap: 18px 32px;
+            }
+
+            .video-hero {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+
+            .video-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 22px;
+            }
+
+            .video-grid>.video-card:last-child:nth-child(odd) {
+                grid-column: 1 / -1;
+                width: calc(50% - 11px);
+                justify-self: center;
+            }
+
+            .tt-grid {
+                columns: 2 280px;
+                column-gap: 22px;
+            }
+
+            .tt-card {
+                margin-bottom: 22px;
+            }
+        }
+
+        @media (max-width: 899px) {
+            .page-header {
+                padding-top: 84px;
+                min-height: 360px;
+            }
+
+            .page-header__content h1 {
+                max-width: 18ch;
+            }
+
+            .trust-strip {
+                padding: 22px 0;
+            }
+
+            .tt-card {
+                padding: 28px 26px;
+            }
+
+            .tt-more {
+                margin-top: 36px;
+            }
         }
 
         @media (max-width: 640px) {
-            .page-header { min-height: 340px; padding-top: 76px; }
-            .trust-strip__row { gap: 24px; }
-            .video-grid { grid-template-columns: 1fr; }
-            .tt-grid { columns: 1; }
-            .video-lightbox__close { top: -40px; }
+            .page-header {
+                min-height: 340px;
+                padding-top: 76px;
+            }
+
+            .page-header__content {
+                padding-left: 20px;
+                padding-right: 20px;
+                padding-bottom: 30px;
+            }
+
+            .page-header__content h1 {
+                max-width: 16ch;
+                margin: 12px 0 14px;
+            }
+
+            .page-header__content p.sub {
+                font-size: 14.5px;
+            }
+
+            .breadcrumb {
+                font-size: 11px;
+                flex-wrap: wrap;
+            }
+
+            .trust-strip__row {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px 12px;
+            }
+
+            .trust-strip__item {
+                flex-direction: column;
+                align-items: center;
+                gap: 2px;
+                font-size: 12px;
+                text-align: center;
+            }
+
+            .trust-strip__item strong {
+                font-size: 20px;
+            }
+
+            .trust-strip__item:last-child {
+                grid-column: 1 / -1;
+            }
+
+            .video-hero {
+                gap: 22px;
+            }
+
+            .video-hero__player {
+                border-radius: 14px;
+            }
+
+            .video-hero__side {
+                gap: 14px;
+            }
+
+            .video-hero__side h3 {
+                font-size: 19px;
+            }
+
+            .video-hero__side p {
+                font-size: 14px;
+            }
+
+            .video-grid {
+                grid-template-columns: 1fr;
+                gap: 26px;
+            }
+
+            .video-grid>.video-card:last-child:nth-child(odd) {
+                grid-column: auto;
+                width: 100%;
+            }
+
+            .video-card__thumb {
+                border-radius: 14px;
+            }
+
+            .video-card__play {
+                width: 46px;
+                height: 46px;
+            }
+
+            .video-card__meta h4 {
+                font-size: 14.5px;
+            }
+
+            .tt-grid {
+                columns: 1;
+            }
+
+            .tt-card {
+                padding: 26px 22px;
+                margin-bottom: 18px;
+            }
+
+            .tt-card__quote {
+                font-size: 15px;
+                margin-bottom: 18px;
+            }
+
+            .tt-more {
+                margin-top: 28px;
+            }
+
+            .video-lightbox {
+                padding: 14px;
+            }
+
+            .video-lightbox__inner {
+                border-radius: 10px;
+            }
+
+            .video-lightbox__close {
+                top: -40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header__content {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+
+            .tt-more .btn,
+            .cta-band .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .tt-card__avatar {
+                width: 38px;
+                height: 38px;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 390px) {
+            .page-header {
+                min-height: 320px;
+                padding-top: 72px;
+            }
+
+            .page-header__content h1 {
+                font-size: 28px;
+            }
+
+            .trust-strip__item strong {
+                font-size: 18px;
+            }
+
+            .video-card__meta h4 {
+                font-size: 14px;
+            }
+
+            .tt-card {
+                padding: 22px 18px;
+            }
+        }
+
+        @media (hover: none) {
+            .video-card:hover .video-card__thumb img {
+                transform: none;
+            }
+
+            .video-card:hover .video-card__play {
+                transform: translate(-50%, -50%);
+                background: rgba(255, 255, 255, .92);
+            }
         }
     </style>
 </head>
@@ -408,7 +662,7 @@
     <section class="page-header">
         <div class="page-header__media">
             <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=2000&q=80"
-                alt="InterioArty happy client interior">
+                alt="Interio Arty happy client interior">
         </div>
         <div class="page-header__scrim"></div>
         <div class="page-header__content">
@@ -426,7 +680,9 @@
         <div class="container">
             <div class="trust-strip__row">
                 <div class="trust-strip__item"><strong>400+</strong>&nbsp;Happy Clients</div>
-                <div class="trust-strip__item"><strong>4.8</strong>&nbsp;<span class="trust-strip__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+                <div class="trust-strip__item"><strong>4.8</strong>&nbsp;<span
+                        class="trust-strip__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+                <div class="trust-strip__item"><strong>100+</strong>&nbsp;Reviews on Google</div>
                 <div class="trust-strip__item"><strong>300+</strong>&nbsp;Homes Delivered</div>
                 <div class="trust-strip__item"><strong>12+</strong>&nbsp;Years in Pune</div>
             </div>
@@ -443,10 +699,8 @@
 
             <div class="video-hero reveal">
                 <div class="video-hero__player">
-                    <iframe
-                        src="https://www.youtube.com/embed/videoseries?list=UUwJ64NhBjuWwHJV3ufGN-bw"
-                        title="InterioArty video testimonials"
-                        loading="lazy"
+                    <iframe src="https://www.youtube.com/embed/videoseries?list=UUwJ64NhBjuWwHJV3ufGN-bw"
+                        title="Interio Arty video testimonials" loading="lazy"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe>
                 </div>
@@ -466,55 +720,58 @@
 
     <section class="section section--tight" style="padding-top:0;">
         <div class="container">
-            <!--
-                VIDEO GRID — replace data-yt with the real testimonial video IDs,
-                and each thumb image with https://img.youtube.com/vi/VIDEO_ID/hqdefault.jpg
-            -->
             <div class="video-grid reveal">
-                <button class="video-card" data-yt="VIDEO_ID_1">
+                <a class="video-card" href="https://www.youtube.com/watch?v=yZm0PtTu6bg" target="_blank" rel="noopener">
                     <div class="video-card__thumb">
-                        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80"
-                            alt="2BHK renovation testimonial thumbnail">
+                        <img src="https://img.youtube.com/vi/yZm0PtTu6bg/hqdefault.jpg"
+                            alt="Delivered 3BHK interior design walkthrough in Pune" loading="lazy">
                         <span class="video-card__play">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
                         </span>
-                        <span class="video-card__duration">1:24</span>
+                        <span class="video-card__duration">4:26</span>
                     </div>
                     <div class="video-card__meta">
-                        <h4>"They understood exactly what we wanted" - Kothrud 2BHK</h4>
-                        <p><i class="fa-brands fa-youtube"></i> InterioArty</p>
+                        <h4>Delivered 3BHK Interior Design | Luxury Home Walkthrough Pune | InterioArty</h4>
+                        <p><i class="fa-brands fa-youtube"></i> Interio Arty</p>
                     </div>
-                </button>
+                </a>
 
-                <button class="video-card" data-yt="VIDEO_ID_2">
+                <a class="video-card" href="https://www.youtube.com/watch?v=kzq16gdArQo" target="_blank" rel="noopener">
                     <div class="video-card__thumb">
-                        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80"
-                            alt="Full home interior testimonial thumbnail">
+                        <img src="https://img.youtube.com/vi/kzq16gdArQo/hqdefault.jpg"
+                            alt="Desai family review of Interio Arty" loading="lazy">
                         <span class="video-card__play">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
                         </span>
-                        <span class="video-card__duration">2:10</span>
+                        <span class="video-card__duration">2:00</span>
                     </div>
                     <div class="video-card__meta">
-                        <h4>"On time, on budget, zero stress" - Baner 3BHK</h4>
-                        <p><i class="fa-brands fa-youtube"></i> InterioArty</p>
+                        <h4>Desai Family Review | Interior Design in Pune: Where Modern Elegance Meets Comfort
+                            #interioarty</h4>
+                        <p><i class="fa-brands fa-youtube"></i> Interio Arty</p>
                     </div>
-                </button>
+                </a>
 
-                <button class="video-card" data-yt="VIDEO_ID_3">
+                <a class="video-card" href="https://www.youtube.com/watch?v=AEbP0eRBzUg" target="_blank" rel="noopener">
                     <div class="video-card__thumb">
-                        <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=800&q=80"
-                            alt="Modular kitchen testimonial thumbnail">
+                        <img src="https://img.youtube.com/vi/AEbP0eRBzUg/hqdefault.jpg"
+                            alt="Chouhan family review of Interio Arty" loading="lazy">
                         <span class="video-card__play">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
                         </span>
-                        <span class="video-card__duration">1:47</span>
+                        <span class="video-card__duration">4:47</span>
                     </div>
                     <div class="video-card__meta">
-                        <h4>"The VR walkthrough sold us instantly" - Wakad Kitchen</h4>
-                        <p><i class="fa-brands fa-youtube"></i> InterioArty</p>
+                        <h4>Chouhan Family Review | Interior Design in Pune: A Perfect Blend of Style and Comfort</h4>
+                        <p><i class="fa-brands fa-youtube"></i> Interio Arty</p>
                     </div>
-                </button>
+                </a>
             </div>
         </div>
     </section>
@@ -527,85 +784,185 @@
                 <h2>What clients <em style="color:var(--gold);font-style:italic;">are saying.</em></h2>
             </div>
 
-            <!-- Sample placeholder reviews — replace with real client testimonials before publishing -->
             <div class="tt-grid reveal">
                 <div class="tt-card">
                     <div class="tt-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                    <p class="tt-card__quote">"From the first meeting to the final handover, everything was
-                        transparent. No hidden costs, no surprises - exactly what they promised on paper is what we
-                        got in our home."</p>
-                    <div class="tt-card__person">
-                        <span class="tt-card__avatar">RP</span>
-                        <div>
-                            <h5>Riya &amp; Prashant Deshmukh</h5>
-                            <span>3BHK, Baner</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tt-card">
-                    <div class="tt-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                    <p class="tt-card__quote">"The VR walkthrough was a game changer. We could actually see our
-                        kitchen before a single tile was laid, and change the colours right there in the meeting."</p>
-                    <div class="tt-card__person">
-                        <span class="tt-card__avatar">SK</span>
-                        <div>
-                            <h5>Sameer Kulkarni</h5>
-                            <span>Modular Kitchen, Wakad</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tt-card">
-                    <div class="tt-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                    <p class="tt-card__quote">"We had one point of contact for the entire project - no chasing
-                        different vendors ourselves. It genuinely was a stress-free experience, delivered on
-                        schedule."</p>
-                    <div class="tt-card__person">
-                        <span class="tt-card__avatar">AN</span>
-                        <div>
-                            <h5>Anjali Nair</h5>
-                            <span>2BHK, Kothrud</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tt-card">
-                    <div class="tt-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                    <p class="tt-card__quote">"Quality of materials was noticeably better than the previous
-                        contractor we'd worked with. Everything feels solid, not like it'll need redoing in two
-                        years."</p>
-                    <div class="tt-card__person">
-                        <span class="tt-card__avatar">VJ</span>
-                        <div>
-                            <h5>Vikram Joshi</h5>
-                            <span>Full Home, Hinjewadi</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tt-card">
-                    <div class="tt-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                    <p class="tt-card__quote">"They stayed on call for weeks after handover to fix a couple of minor
-                        snags. That post-installation support is rare to find these days."</p>
-                    <div class="tt-card__person">
-                        <span class="tt-card__avatar">MP</span>
-                        <div>
-                            <h5>Meera Patil</h5>
-                            <span>Makeover, Aundh</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tt-card">
-                    <div class="tt-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                    <p class="tt-card__quote">"Our designer really listened - the final space feels like us, not a
-                        showroom catalogue copy-pasted into our flat."</p>
+                    <p class="tt-card__quote">"What a lovely experience! They truly transformed my home with their
+                        innovative
+                        ideas. The modular furniture fits perfectly in my space, and I love the design. It's a joy to
+                        spend time
+                        in my new surroundings."</p>
                     <div class="tt-card__person">
                         <span class="tt-card__avatar">TS</span>
                         <div>
-                            <h5>Tanvi Shah</h5>
-                            <span>1BHK, Viman Nagar</span>
+                            <h5>Tejas Sonawane</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tt-card">
+                    <div class="tt-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="tt-card__quote">"So happy with my experience! The InterioArty team took the time to
+                        understand my
+                        style and preferences. My new space is functional and beautifully designed. I love coming home
+                        to such a
+                        welcoming environment."</p>
+                    <div class="tt-card__person">
+                        <span class="tt-card__avatar">SD</span>
+                        <div>
+                            <h5>Shweta Dhanke</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tt-card">
+                    <div class="tt-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="tt-card__quote">"I was impressed by the variety of styles available. The team helped me
+                        find the
+                        perfect look that suits my taste. My modular kitchen is both practical and beautiful. Cooking
+                        has become
+                        so much more enjoyable in this new space."</p>
+                    <div class="tt-card__person">
+                        <span class="tt-card__avatar">KB</span>
+                        <div>
+                            <h5>Karanveer Bhadoria</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tt-card">
+                    <div class="tt-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="tt-card__quote">"The transformation of my kitchen was beyond what I imagined. They created
+                        a space
+                        that is both stylish and user-friendly. I'm thrilled with the quality of work and the materials
+                        used. I
+                        highly recommend them to anyone looking for a kitchen upgrade."</p>
+                    <div class="tt-card__person">
+                        <span class="tt-card__avatar">HK</span>
+                        <div>
+                            <h5>Harsh Kanojiya</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tt-card">
+                    <div class="tt-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="tt-card__quote">"From the very first meeting, I felt at ease. The designers were friendly
+                        and
+                        professional, making the entire process enjoyable. My new living room is chic and comfortable,
+                        perfect
+                        for hosting gatherings with family and friends."</p>
+                    <div class="tt-card__person">
+                        <span class="tt-card__avatar">AD</span>
+                        <div>
+                            <h5>Anil Dandekar</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tt-card">
+                    <div class="tt-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="tt-card__quote">"I was amazed by how the team understood my vision right away. They
+                        brought
+                        creativity and elegance to my home that I didn't know was possible. I feel so lucky to have
+                        chosen them
+                        for my interior design needs."</p>
+                    <div class="tt-card__person">
+                        <span class="tt-card__avatar">AS</span>
+                        <div>
+                            <h5>Ashwini Shukla</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tt-card">
+                    <div class="tt-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="tt-card__quote">"The ambiance of my home has completely changed for the better. The
+                        designers were
+                        attentive and really got to know my tastes. I love spending time in my beautifully designed
+                        space. It
+                        feels warm and inviting. Highly recommend their services."</p>
+                    <div class="tt-card__person">
+                        <span class="tt-card__avatar">CS</span>
+                        <div>
+                            <h5>Chandan Shukla</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tt-card">
+                    <div class="tt-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="tt-card__quote">"Interioarty did an amazing job transforming our space with creativity and
+                        precision. The design was stylish, functional, and exceeded our expectations. Highly recommend
+                        their
+                        services!"</p>
+                    <div class="tt-card__person">
+                        <span class="tt-card__avatar">MS</span>
+                        <div>
+                            <h5>Madhura Shinde</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tt-card">
+                    <div class="tt-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="tt-card__quote">"We had a great experience with Interioarty. The team is very
+                        knowledgeable and
+                        supportive. A huge thanks to all of them! Saurabh sir and Chandan bhaiya, thank you for all the
+                        support
+                        and guidance."</p>
+                    <div class="tt-card__person">
+                        <span class="tt-card__avatar">KD</span>
+                        <div>
+                            <h5>Ketan Deshpande</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tt-card">
+                    <div class="tt-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="tt-card__quote">"Interioarty's exceptional design expertise truly shines through in every
+                        project.
+                        Their attention to detail and commitment to excellence have transformed our space into a
+                        captivating
+                        masterpiece. If you're looking for top-tier interior design services, Interioarty is the way to
+                        go!"</p>
+                    <div class="tt-card__person">
+                        <span class="tt-card__avatar">YC</span>
+                        <div>
+                            <h5>Yash Chavan</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tt-card">
+                    <div class="tt-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="tt-card__quote">"Working with Interioarty has been an absolute pleasure. Their attention
+                        to detail,
+                        innovative design concepts, and professionalism exceeded our expectations. Our space has been
+                        transformed
+                        into a haven that perfectly reflects our style and personality. Thank you Interioarty for
+                        creating our
+                        dream space!"</p>
+                    <div class="tt-card__person">
+                        <span class="tt-card__avatar">SV</span>
+                        <div>
+                            <h5>Sameer Verma</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tt-card">
+                    <div class="tt-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="tt-card__quote">"Interioarty people are highly professional and committed to their work.
+                        They have
+                        made our modular kitchen and have done the ceiling in a combination of PVC and POP material,
+                        which looks
+                        beautiful. I recommend their services to all."</p>
+                    <div class="tt-card__person">
+                        <span class="tt-card__avatar">MR</span>
+                        <div>
+                            <h5>Mohammad Rahish</h5>
                         </div>
                     </div>
                 </div>
@@ -624,16 +981,11 @@
                 <p class="eyebrow">Let's Talk</p>
                 <h2>Ready to start <em>your story?</em></h2>
                 <p>Tell us about your space and budget - our design team usually calls back within a few hours.</p>
-                <p style="margin-top:30px;"><a href="tel:+917838653501" class="btn btn--outline">+91 78386 53501</a></p>
+                <p style="margin-top:30px; display:flex; gap:14px; flex-wrap:wrap;">
+                    <button type="button" class="btn btn--gold" data-open-chat>Chat with our Designer</button>
+                    <a href="tel:+917838653501" class="btn btn--outline">+91 78386 53501</a>
+                </p>
             </div>
-            <form class="cta-form reveal" id="ctaForm">
-                <input type="text" placeholder="Full name" required aria-label="Full name">
-                <input type="tel" placeholder="Phone number" required aria-label="Phone number">
-                <input type="text" placeholder="What are you looking to design? (e.g. 2BHK, kitchen)"
-                    aria-label="Project type">
-                <button type="submit" class="btn btn--gold">Request a Call</button>
-                <p class="cta-form__note">We usually call back within a few hours.</p>
-            </form>
         </div>
     </section>
 
@@ -648,6 +1000,7 @@
     </div>
 
     <div data-include="fragments/footer.html"></div>
+    <div data-include="fragments/whatsapp-widget.html"></div>
     <div data-include="fragments/chat-widget.html"></div>
 
     <script src="js/script.js" defer></script>

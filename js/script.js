@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initVrParallax();
     initServicesIndex();
     initCtaForm();
+    initChatTriggers();
 });
 
 function loadFragments() {
@@ -183,21 +184,21 @@ function initServicesIndex() {
 
 function initCtaForm() {
     const form = document.getElementById('ctaForm');
-    if (!form) return;
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = form.querySelector('button[type="submit"]');
+            const originalText = btn.textContent;
+            btn.textContent = 'Sending…';
+            btn.disabled = true;
 
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const btn = form.querySelector('button[type="submit"]');
-        const originalText = btn.textContent;
-        btn.textContent = 'Sending…';
-        btn.disabled = true;
-
-        setTimeout(() => {
-            btn.textContent = 'Request sent ✓';
-            form.reset();
-            setTimeout(() => { btn.textContent = originalText; btn.disabled = false; }, 2200);
-        }, 900);
-    });
+            setTimeout(() => {
+                btn.textContent = 'Request sent ✓';
+                form.reset();
+                setTimeout(() => { btn.textContent = originalText; btn.disabled = false; }, 2200);
+            }, 900);
+        });
+    }
 
     const newsletter = document.getElementById('newsletterForm');
     newsletter?.addEventListener('submit', (e) => {
@@ -388,9 +389,6 @@ function initEnquiryModal() {
         btn.textContent = 'Sending…';
         btn.disabled = true;
 
-        // TODO: replace with your real submission endpoint
-        // const formData = new FormData(form);
-
         setTimeout(() => {
             btn.textContent = originalText;
             btn.disabled = false;
@@ -402,5 +400,20 @@ function initEnquiryModal() {
                 form.reset();
             }, 2200);
         }, 700);
+    });
+}
+
+function initChatTriggers() {
+    document.addEventListener('click', (e) => {
+        const trigger = e.target.closest('[data-open-chat]');
+        if (!trigger) return;
+        e.preventDefault();
+
+        const toggle = document.getElementById('chatToggle');
+        if (!toggle) return;
+
+        if (toggle.getAttribute('aria-expanded') !== 'true') {
+            toggle.click();
+        }
     });
 }
